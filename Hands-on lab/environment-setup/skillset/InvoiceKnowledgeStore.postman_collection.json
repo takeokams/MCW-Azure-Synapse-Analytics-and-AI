@@ -36,7 +36,7 @@
 					],
 					"path": [
 						"indexes",
-						"{{index-name}}1"
+						"{{index-name}}"
 					],
 					"query": [
 						{

@@ -1,304 +1,301 @@
-![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+![マイクロソフト クラウド ワークショップ](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "マイクロソフト クラウド ワークショップ")
 
 <div class="MCWHeader1">
-Azure Synapse Analytics and AI
+Azure Synapse Analytics と AI
 </div>
-
 <div class="MCWHeader2">
-Whiteboard design session student guide
+ホワイトボード設計セッション受講者ガイド
 </div>
-
 <div class="MCWHeader3">
-July 2020
+2020 年 7 月
 </div>
+このドキュメントに記載されている情報 (URL 等のインターネット Web サイトに関する情報を含む) は、将来予告なしに変更されることがあります。特に断りがない限り、ここで使用している会社、組織、製品、ドメイン名、電子メール アドレス、ロゴ、人物、場所、イベントの例は、架空のものであり、実在する会社、組織、製品、ドメイン名、電子メール アドレス、ロゴ、人物、場所、イベントなどとは一切関係ありません。お客様ご自身の責任において、適用されるすべての著作権関連法規に従ったご使用を願います。このドキュメントのいかなる部分も、米国 Microsoft Corporation の書面による許諾を受けることなく、その目的を問わず、どのような形態であっても、複製または譲渡することは禁じられています。ここでいう形態とは、複写や記録など、電子的な、または物理的なすべての手段を含みます。ただしこれは、著作権法上のお客様の権利を制限するものではありません。
 
-Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
+マイクロソフトは、このドキュメントに記載されている内容に関し、特許、特許申請、商標、著作権、またはその他の無体財産権を有する場合があります。別途マイクロソフトのライセンス契約上に明示の規定のない限り、このドキュメントはこれらの特許、商標、著作権、またはその他の無体財産権に関する権利をお客様に許諾するものではありません。
 
-Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in this document. Except as expressly provided in any written license agreement from Microsoft, the furnishing of this document does not give you any license to these patents, trademarks, copyrights, or other intellectual property.
+製造元や製品の名前、URL は情報の提供のみを目的としており、マイクロソフトは、これらの製造元、またはマイクロソフトの技術での製品の使用について、明示的、黙示的、または法的にいかなる表示または保証も行いません。製造元または製品の使用は、マイクロソフトによるその製造元または製品の推奨を意味するものではありません。サード パーティのサイトへのリンクが提供されている場合があります。このようなサイトはマイクロソフトの管理下にはなく、マイクロソフトは、リンクされたサイトの内容またはリンクされたサイトに含まれるリンク、あるいはこのようなサイトの変更または更新について責任を負いません。マイクロソフトは、リンクされたサイトから受信された Web キャストまたは他のいかなる形態の転送にも責任を負いません。マイクロソフトは、これらのリンクを便宜のみを目的として提供しており、いかなるリンクの使用も、マイクロソフトによるサイトまたはそこに含まれる製品の推奨を意味するものではありません。
 
-The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
+© 2020 Microsoft Corporation.All rights reserved.
 
-© 2020 Microsoft Corporation. All rights reserved.
+Microsoft および <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> に記載されている商標は、Microsoft グループの商標です。その他すべての商標は、該当する各社が所有しています。
 
-Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
-
-**Contents**
+**目次**
 
 <!-- TOC -->
 
-- [Azure Synapse Analytics and AI whiteboard design session student guide](#azure-synapse-analytics-and-ai-whiteboard-design-session-student-guide)
-  - [Abstract and learning objectives](#abstract-and-learning-objectives)
-  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
-    - [Customer situation](#customer-situation)
-    - [Customer needs](#customer-needs)
-    - [Customer objections](#customer-objections)
-    - [Infographic for common scenarios](#infographic-for-common-scenarios)
-  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
-  - [Step 3: Present the solution](#step-3-present-the-solution)
-  - [Wrap-up](#wrap-up)
-  - [Additional references](#additional-references)
+- [Azure Synapse Analytics と AI ホワイトボード設計セッション受講者ガイド](#azure-synapse-analytics-と-ai-ホワイトボード設計セッション受講者ガイド)
+    - [要約と学習目的](#要約と学習目的)
+    - [ステップ 1: 顧客のケース スタディの確認](#ステップ-1-顧客のケース-スタディの確認)
+        - [顧客の状況](#顧客の状況)
+        - [顧客のニーズ](#顧客のニーズ)
+        - [顧客の反論](#顧客の反論)
+        - [一般的なシナリオのインフォグラフィック](#一般的なシナリオのインフォグラフィック)
+    - [ステップ 2: 概念実証ソリューションの設計](#ステップ-2-概念実証ソリューションの設計)
+    - [ステップ 3: ソリューションをプレゼンテーションする](#ステップ-3-ソリューションをプレゼンテーションする)
+    - [まとめ](#まとめ)
+    - [追加リファレンス](#追加リファレンス)
 
 <!-- /TOC -->
+# Azure Synapse Analytics と AI ホワイトボード設計セッション受講者ガイド
 
-# Azure Synapse Analytics and AI whiteboard design session student guide
+## 要約と学習目的
 
-## Abstract and learning objectives
+このホワイトボード設計セッションでは、グループを作って、Azure Synapse Analytics を使用してエンドツーエンドのソリューションを設計するプロセスを見ていきます。設計セッションでは、データ読み込み、データ準備、データ変換、およびデータ サービスについて説明し、機械学習の実行およびバッチ データとリアルタイム データの両方の処理についても説明します。
 
-In this whiteboard design session, you will work in a group to look at the process of designing an end-to-end solution using Azure Synapse Analytics. The design session will cover data loading, data preparation, data transformation and data serving, along with performing machine learning and handling of both batch and real-time data.
+このホワイトボード設計セッションを完了すると、Azure Synapse Analytics を使用する完全なエンドツーエンドの高度な分析ソリューションを設計および構築できるようになります。
 
-At the end of this whiteboard design session, you will be better able to design and build a complete end-to-end advanced analytics solution using Azure Synapse Analytics.
+## ステップ 1: 顧客のケース スタディの確認
 
-## Step 1: Review the customer case study
+**成果**
 
-**Outcome**
+顧客のニーズを分析する。
 
-Analyze your customer's needs.
+所要時間: 15 分
 
-Timeframe: 15 minutes
+指示: セッションの参加者全員と共に、ファシリテーター/SME は、顧客のケース スタディの概要を技術的なヒントと併せてプレゼンテーションします。
 
-Directions:  With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips.
+1. テーブルの参加者およびトレーナーと打ち合わせを行います。
 
-1. Meet your table participants and trainer.
+2. 受講者ガイドのステップ 1 ～ 3 の指示をすべて読みます。
 
-2. Read all of the directions for steps 1-3 in the student guide.
+3. テーブル チームとして、次の顧客のケース スタディを確認します。
 
-3. As a table team, review the following customer case study.
+### 顧客の状況
 
-### Customer situation
+Wide World Importers (WWI) は、数百軒の実店舗とオンライン ストアを展開し、さまざまな製品を販売しています。
 
-Wide World Importers (WWI) has hundreds of brick and mortar stores and an online store where they sell a variety of products.
+WWI は、データは小売業にとって "酸素" のようなものであると信じています。これまで小売業ではデータが不足することはありませんでしたが、WWI はこのデータの価値を最大限に活かすことができていませんでした。彼らは、断片化されたデータや顧客の行動や期待についての理解不足に悪戦苦闘していますが、カスタマー エクスペリエンス戦略を成功させるにはデータを効果的に使用することが不可欠であると信じています。
 
-WWI believes that data is the oxygen of retail. Retail has never been short of data, but they have not been able to maximize the value of this data. They struggle with fragmented data and a lack of understanding of customer behavior and expectations and believe that a successful customer experience strategy is founded upon the effective use of data.
+WWI は、小売データに分析を加えることで、見込み顧客および既存の顧客をその購買ジャーニーを通じて魅了する、パーソナライズされたオムニチャネル キャンペーンを改善する方法が明らかになる可能性があることを理解しています。
 
-They understand that using analytics on top of retail data has the potential to unlock ways for them to improve personalized, omni-channel campaigns that engage potential and existing customers across their buying journey.
+WWI は、顧客データ、運用データ、調達およびサプライヤー データ、取引データなど小売業のライフサイクル データに分析を組み合わせることによって、顧客離れの抑制、ロイヤルティの強化、カスタマー ジャーニーの向上、コンテクスト マーケティング実施能力の獲得、アトリビューションの測定を実現し、組織全体の成長を包括的に推進する企業全体にわたる洞察を提供することを望んでいます。
 
-They would like to combine their retail lifecycle data including customer data, operations data, sourcing and supplier data as well as transaction data with analytics to reduce churn, enhance loyalty, advance customer journeys, enable the ability to conduct contextual marketing, measure attribution and provide insights across their enterprise to holistically drive growth across the organization.
+そのために、これまでのキャンペーンと顧客の分析データを使用して、現在について意思決定しようとしています。それらの大量のこれまでのデータ セット以外に、Twitter からのストリーミング ツイート データおよび実店舗の IoT センサーからのテレメトリを使用したいと考えています。実際に、今の瞬間に得たデータを利用して、次の瞬間のための意思決定に情報を提供したいと考えています。WWI は、まずは商品レコメンデーションを行うことによって、データから将来を予測する機会を見出します。
 
-They are looking to use historical campaign and customer analytics data and make decisions for the present. Beyond these large historical data sets, they would like to use streaming tweet data from Twitter as well as telemetry from IoT sensors in their brick and mortar locations. In effect, they would like to use data from the present moment to inform decisions for the next moment. WWI sees an opportunity to use their data to predict the future, initially by making product recommendations.
+最高技術責任者 (CTO) の Peter Guerin 氏によれば、Wide World Importers では、Oracle に 300 億行を超える、5 年以上にわたる販売トランザクション データが保存されています。しかし、同社の企業データ ソースはそれだけではありません。SAP HANA に財務データ、Teradata にマーケティング データがそれぞれ保存され、さらに Twitter からソーシャル メディア データを取り込んでいます。必要なのは、これらのすべてのソースのデータを統合し、クエリを実行し、分析できるソリューションです。また、どんなに量が多くても、それらのデータに対してクエリを実行してから数秒以内に結果を得られることを望んでいます。
 
-According to Peter Guerin, Chief Technical Officer (CTO), Wide World Importers has over 5 years of sales transaction data from Oracle, consisting of more than 30  billion rows. But that is not their only enterprise data source. They have finance data stored in SAP HANA, marketing data in Teradata and social media data coming in from Twitter. They need a solution that allows them to integrate, query over and analyze the data from all of these sources. Additionally, regardless of the volume, they want to be able to execute queries across such data with results returning in seconds.
+前述のデータ ソースに加えて、通路を歩く顧客の移動パターンを追跡するテレメトリ データを生成する店舗内 IoT センサーがあります。100 軒の店舗があり、店舗あたり 50 個のセンサーがリアルタイム データを提供します。このデータを使用して、人々がほとんどの時間を過ごしているのはどの売り場 (または通路群) で、ほとんど滞在しないのはどの売り場かを把握したいと考えています。このデータをほぼリアルタイムに取り込んで処理し、速やかにパターンを特定して店舗間で共有できるようにするソリューションを必要としています。たとえば、東海岸の店舗が開店したときの早い時間の購買行動で検出したパターンから、閉店前のセールや、開店前の西海岸の店舗での店内商品の配置替えに役立つ知識を得られる可能性があります。
 
-In addition to those data sources, they have in-store IoT sensors producing telemetry data that tracks the traffic patterns of customers walking the aisles. Each store has 50 sensors, and they have 100 stores equipped to provide this real-time data. Using this data they want to understand in which departments (or groups of aisles) people are spending most of their time, and which of those they are not. They would like a solution to ensure that this data gets ingested and processed in near real time, allowing them to quickly identify patterns that can be shared between stores. For example, as stores open on the East Coast, patterns detected in early buying behavior could inform last minute offers and in store product placement of products in their West Coast stores that have yet to open.
+WWI は、社内の専門家が、コードを作成して、または作成しないで、データの取り込みとデータの変換のパイプラインを作成できるようにするオプションを望んでいます。彼らはこれを実現するために、グラフィカル デザイナーを使用してそれらの変換パイプラインを容易に構築できるようにするツールを使用することと、彼らのチームが希望する場合はコードでそれを実装できるようにすることを望んでいます。
 
-WWI would like the option to enable their specialists to create data ingest and data transformation pipelines with or without code. They would like to accomplish this using tools that simplify the building of these transformation pipelines using a graphical designer, while also allowing their team to implement with code when preferred by their team.
+Guerin 氏は、自身の経験から、ツールに対する不満点は、予備調査のデータ分析をする前に必要なセットアップ作業量にあるとも述べています。そのため、WWI が取り込んだ生データを速やかに調査してその内容を理解できるソリューションを望んでいます。
 
-Peter also mentioned that, in his experience, a point of frustration with the tools was how much setup was required before any preliminary exploratory data analysis could be performed. He would prefer a solution that allows WWI to quickly explore the raw ingested data to understand its contents.
+Wide World Importers は、業務の全体像を把握するために、履歴データ、リアルタイムの Twitter センチメント、および IoT センサー データから導出した主要業績評価指標 (KPI)、さらに機械学習を使用して生成した主要商品レコメンデーションを確認できるダッシュボードの作成を必要としています。
 
-To bring their entire operation into perspective, Wide World Importers would like to create a dashboard where they can see their key performance indicators (KPIs) derived from historical data, real-time twitter sentiment and IoT sensor data, and key product recommendations generated using machine learning.
+### 顧客のニーズ
 
-### Customer needs
+1. 履歴分析、リアルタイム分析、および予測分析を組み合わせてビジネスの洞察を得ること。
 
-1. Gain business insights using a combination of historical, real-time, and predictive analytics.
+2. 構造化データ ソースと非構造化データ ソースを処理する統合アプローチを実現すること。
 
-2. Have a unified approach to handling their structured and unstructured data sources.
+3. データ エンジニアとデータ サイエンティストから成るチームが、数ペタバイトに及ぶ数十億行の構造化データと企業業務の非構造化データに対する複雑なクエリを導入して実行できること。
 
-3. Enable their team of data engineers and data scientists to bring in and run complex queries over petabytes of structured data with billions of rows and unstructured enterprise operational data.
+4. ビジネス アナリストとデータ サイエンス/データ エンジニアリング チームが信頼できる唯一の情報源を共有できること。
 
-4. Enable business analysts and data science/data engineering teams to share a single source of truth.
+5. 取り込み、変換、クエリ、および保存を行う際に使用する異種サービスの数を最小限に抑えて、データ エンジニア、データ サイエンティスト、およびデータベース管理者のチームが、1 つのツールを習得し、開発、管理、および監視を行うための共有ベスト プラクティスを構築できること。
 
-5. Minimize the number of disparate services they use across ingest, transformation, querying and storage, so that teams of data engineers, data scientists and database administrators can master one tool, and can build shared best practices for development, management and monitoring.
+6. 1 つのコラボレーション環境内で作業すること。
 
-6. Work within a single collaborative environment.
+7. パフォーマンス上の懸念から、必ず、ソリューションの最高のパフォーマンスを達成するための中核となるアプローチが十分に理解されるようにすること。
 
-7. Concerned about performance, must make sure core approaches for best performance of the solution are well understood.
+8. すべてのコンポーネントにわたって一貫したセキュリティ モデルを提供するソリューションを作成すること。
 
-8. Create a solution that provides a consistent security model across all components.
+### 顧客の反論
 
-### Customer objections
+1. WWI は、Azure が提供するいくつかのサービスでは機能が重複していることを把握しています。望んでいる分析ソリューションになるように、時間をかけてそれらを調整したいとは考えていません。
 
-1. WWI understands that Azure offers several services with overlapping capabilities.  They do not want to spend the time stitching them together to get to the desired analytics solution.
+2. 大量のデータセットを数秒以内で読み込むと主張する競合システムのデモを見たことがあります。Azure ではそのようなソリューションを提供していますか。
 
-2. WWI have seen demos from competing systems that claim to load massive datasets in seconds. Does Azure offer such a solution?
+3. 取り込み、変換、クエリ、および保存を行う際に使用する異種サービスの数を最小限に抑えて、WWI のデータ エンジニア、データ サイエンティスト、およびデータベース管理者から成るチームが、1 つのツールを習得し、開発、管理、および監視を行うための共有ベスト プラクティスを構築できるようにすることが本当に可能ですか。
 
-3. Is it really possible to minimize the number of disparate services they use across ingest, transformation, querying and storage, so that WWI team of data engineers, data scientists and database administrators can master one tool, and can build shared best practices for development, management and monitoring?
+4. サーバーレス クエリのことを聞いたことがありますが、Azure では提供していますか。それは WWI が持つ規模のデータのクエリに対応できますか。どの形式をサポートしていますか。WWI のダッシュボードやレポートをサポートするのに適していますか。
 
-4. WWI have heard of serverless querying, does Azure offer this? Does it support querying the data at the scale of WWI and what formats does it support? Would this be appropriate for supporting WWI dashboards or reports?
+5. Azure がサーバーレス クエリをサポートしている場合、サーバーレスを選択すると、事前に割り当てたクエリ リソースを使用するオプションは削除されますか。
 
-5. If Azure provides serverless querying, does selecting serverless remove the option of using pre-allocated query resources?
+6. 保存時のデータは保護されますか。データの暗号化に使用した鍵の管理は行われますか。
 
-6. Would data be protected at rest and are there controls over the keys used to encrypt it?
+7. Azure Databricks と Azure Synapse Analytics は機能が重複しているように見えますが、何を基準にして選択するのですか。
 
-7. Azure Databricks and Azure Synapse Analytics seem to have overlapping capabilities, how does one choose between them?
+8. Azure は、クライアント アプリケーションから簡単に呼び出すことができるように、Web サービスとしてのモデルの展開をどのようにサポートしていますか。
 
-8. How does Azure support deploying the models as web services so that they can easily be invoked from client applications?
+9. Azure において、モデルの再トレーニング プロセスはどのように実行されますか。WWI のデータ サイエンティストは、新しいモデルをトレーニングし、評価する一方で、アプリケーションに更新を展開するために使用される DevOps プロセスに、どのようにこの再トレーニングを確実に組み込むことができますか。Azure は、クライアント アプリケーション、機械学習 API、およびその API を支援するモデルに対する更新を調整するために役立ちますか。
 
-9. What does the model re-training process look like in Azure? How can WWI data scientists train and evaluate new models but also ensure this re-training becomes part of the DevOps process used to deploy any updates to the application. Can Azure help them orchestrate updates to the client applications, the machine learning API's and the models that power the API's?
+### 一般的なシナリオのインフォグラフィック
 
-### Infographic for common scenarios
+![Azure Synapse Analytics の機能の概要。Azure Synapse Studio によるユーザー エクスペリエンス、SQL と Spark によるデータ処理用プラットフォーム、およびデータ レイクの統合管理を提供するソリューションの構成が示されています。](media/infographic.png "Azure Synapse Analytics の概要")
 
-![Overview of Azure Synapse Analytics features and capabilities. Showing how one solution provides the user experience with Azure Synapse Studio, a platform for processing data with SQL and Spark, and integrated management of the data lake.](media/infographic.png "Azure Synapse Analytics Overview")
+## ステップ 2: 概念実証ソリューションの設計
 
-## Step 2: Design a proof of concept solution
+**成果**
 
-**Outcome**
+ソリューションを設計し、そのソリューションを 15 分のチョークトーク形式で顧客の対象者にプレゼンテーションする準備をする。
 
-Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
+所要時間: 60 分
 
-Timeframe: 60 minutes
+**ビジネス ニーズ**
 
-**Business needs**
+指示: テーブルのすべての参加者と共に以下の質問に回答し、回答をフリップ チャートに一覧にします。
 
-Directions: With all participants at your table, answer the following questions and list the answers on a flip chart:
+1. このソリューションを誰にプレゼンテーションするべきか。顧客の対象者は誰か。意思決定者は誰か。
 
-1. Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
+2. ソリューションで解決する必要がある顧客のビジネス ニーズは何か。
 
-2. What customer business needs do you need to address with your solution?
+**設計**
 
-**Design**
+指示: テーブルのすべての参加者と共に、フリップ チャートの次の質問に回答します。
 
-Directions: With all participants at your table, respond to the following questions on a flip chart:
+アーキテクチャの概要
 
-*High Level Architecture*
+1. データ読み込み、データ変換、ストレージ、機械学習モデリング、およびレポートの最上位の要件に対応するための初期ビジョンを図示します。
 
-1. Diagram your initial vision for handling the top-level requirements for data loading, data transformation, storage, machine learning modeling, and reporting.
+取り込みと保存
 
-*Ingest & Store*
+1. 推奨するソリューションについて、フラット ファイル データを取り込んで保存した場所からデータ レイクに移動する場合に最も効率的なのは、具体的にはどのアプローチだと WWI に伝えますか。
 
-1. For the solution you recommend, what specific approach would you say to WWI is the most efficient for moving flat file data from the ingest storage locations to the data lake?
+2. どのストレージ サービスを使用するように勧めますか。さまざまな洗練レベルでデータを管理できるようにするために、どのようにフォルダーを構造化することを勧めますか。
 
-2. What storage service would you recommend they use and how would you recommend they structure the folders so they can manage the data at the various levels of refinement?
+3. 新しいデータ ソースからバッチで生データを取り込む場合、ソリューションではどのデータ形式をサポートできますか。
 
-3. When it comes to ingesting raw data in batch from new data sources, what data formats could they support with your solution?
+4. 店舗内 IoT デバイスからのストリーミング データをどのように取り込みますか。
 
-4. How will you ingest streaming data from the in-store IoT devices?
+変換
 
-*Transform*
+1. 生データを取り込んだ後、変換パイプラインを構築する前またはそれをデータ ウェアハウスに読み込む前に、WWI はどのようにして速やかにその生データを調査してその内容を理解できるのでしょうか。
 
-1. Before building transformation pipelines or loading it into the data warehouse, how can WWI quickly explore the raw ingested data to understand its contents?
+2. 洗練したバージョンのデータをクエリできるように保存する場合、どのデータ形式を使用することを勧めますか。それはなぜですか。
 
-2. When it comes to storing refined versions of the data for possible querying, what data format would you recommend they use? Why?
+3. データの準備、マージ、および変換に使用するように勧めるサービスについて、どの状況でグラフィカル デザイナーを使用できて、どの状況でコードを作成する必要がありますか。
 
-3. Regarding the service you recommend they use for preparing, merging and transforming the data, in which situations can they use the graphical designer and which situations would require code?
+4. WWI のデータ チームは、データの速やかな前処理と、データ サイエンティストによる Spark と Python の両方を使用した機械学習モデルのトレーニングを可能にするオープン ソース パッケージを利用することに慣れています。マイクロソフトのソリューションでそれを実現する方法を説明してください。
 
-4. Their data team is accustomed to leveraging open source packages that help them quickly pre-process the data, as well as enable their data scientists to train machine learning models using both Spark and Python. Explain how your solution would enable this.
+5. マイクロソフトのソリューションでは、WWI のデータ エンジニアとデータ サイエンティストが Jupyter ノートブック内で作業できますか。ライブラリをどのように管理しますか。
 
-5. Does your solution allow their data engineers and data scientists to work within Jupyter notebooks? How are libraries managed?
+6. このソリューションは、サプライヤーの請求書によって、データ ウェアハウス内の部品コスト テーブルを常に更新する必要性にどのように対応しますか。
 
-6. How does your solution address their need to keep their part costs table in the data warehouse updated by the supplier invoices?
+クエリ
 
-*Query*
+WWI の販売トランザクション データセットは 10 億行を超えています。ダウンストリームのレポート クエリのために、これらの行を数十秒以内で結合、射影、およびフィルターできるようにする必要があります。WWI は、これを実現するにはあまりにデータが多すぎることを懸念しています。
 
-Their sales transaction dataset exceeds a billion rows. For their downstream reporting queries, they need to be able to join, project and filter these rows in no longer than 10s of seconds. WWI is concerned their data is just too big to do this.
+1. ファクト テーブルで前述のパフォーマンスを達成するには、具体的にどのインデックス作成手法を使用する必要がありますか。それはなぜですか。
 
-1. What specific indexing techniques should they use to reach this kind of performance for their fact tables? Why?
+2. 1 億行未満のテーブルにも同じアプローチを勧めますか。
 
-2. Would you recommend the same approach for tables they have with less than 100 million rows?
+3. 小規模なルックアップ テーブル (店舗の名称や住所が保存されているテーブルなど) のインデックスはどのように構成する必要がありますか。
 
-3. How should they configure indexes on their smaller lookup tables (e.g., those that contain store names and addresses)?
+4. 1 行のみを取得するポイント ルックアップにのみ使用する大規模なルックアップ テーブルにはどんなことを提案しますか。複数のクエリがフィルタリングする列が異なっていても効率的にルックアップできるように、大規模なルックアップ テーブルの柔軟性を高めるにはどうすればいいですか。
 
-4. What would you suggest for their larger lookup tables that are used just for point lookups that retrieve only a single row? How could they makes these more flexible so that queries filtering against different sets of columns would still yield efficient lookups?
+5. ステージング テーブルの読み込みを最も速くするには、何を使用する必要がありますか。
 
-5. What should they use for the fastest loading of staging tables?
-  
-6. What are the typical issues they should look out for with regards to **distributed** table design for the following scenarios?
+6. 以下に示すシナリオでの**分散**テーブル設計に関して注意する必要がある典型的な問題には何がありますか。
+   
+   - 最も小さいファクト テーブルが数 GB を超えていて、本質的に挿入が頻繁に行われます。
+   
+   - WWI のデータ チームは、データ ウェアハウスを開発する際に生の入力データから役に立つかもしれないテーブルをいくつか作成しましたが、現在それらのテーブルは他のテーブルと結合されておらず、データ分散に使用するのに最適な列も不明です。
+   
+   - WWI のデータ エンジニアは、データを準備する際に、一時ステージング テーブルを使用することがあります。
+   
+   - 数百 MB から 1.5 GB までの規模のルックアップ テーブルがあります。
 
-    - Their smallest fact table exceeds several GB’s and by their nature experiences frequent inserts.
+7. データの一部に JSON 形式の列が含まれています。どうすればこれらの階層フィールドを表形式構造に平坦化できますか。
 
-    - As they develop the data warehouse, the WWI data team identified some tables created from the raw input that might be useful, but they don’t currently join to other tables and they are not sure of the best columns they should use for distributing the data.
+8. JSON データを更新するのにどんなアプローチを使用できますか。
 
-    - Their data engineers sometimes use temporary staging tables in their data preparation.
+9. WWI は、一部のクエリでは、結果を返す時間を短縮できるのであれば、精度が多少落ちるのは構わないと考えています。どうすればそれを実現できますか。
 
-    - They have lookup tables that range from several hundred MBs to 1.5 GBs
+10. ダウンストリームのレポートは多数のユーザーが使用します。これは多くの場合、それほど頻繁に変化しないデータに対して同じクエリが繰り返し実行されることを意味します。何を使用すると、このようなタイプのクエリのパフォーマンスを高めることができますか。基礎となるデータが変化する場合、このアプローチはどのように機能しますか。
 
-7. Some of their data contains columns in the JSON format, how could they flatten these hierarchical fields to a tabular structure?
+可視化
 
-8. What approach can they use to update the JSON data?
+1. WWI は、どの製品を使用すると、小売トランザクション データを可視化できますか。それはインストールする必要がある独立したツールですか。
 
-9. In some of their queries, they are OK trading off speed of returning counts for a small reduction in accuracy. How might they do this?
+2. その同じツールを使用して、バッチ データとストリーミング データの両方を 1 つのダッシュボード画面で可視化できますか。
 
-10. Their downstream reports are used by many users, which often means the same query is being executed repeatedly against data that does not change that often. What can WWI to improve the performance of these types of queries? How does this approach work when the underlying data changes?
+3. 推奨する製品を使用する場合、データを参照するレポートを作成する前に、すべてのデータをデータ ウェアハウスに読み込む必要がありますか。
 
-*Visualize*
+管理
 
-1. What product can WWI use to visualize their retail transaction data? Is it a separate tool that they need to install?
+1. これまで、WWI のシステムはユーザーに人気がありませんでした。時間的制約のない調査クエリが使用可能なリソースを飽和状態にして、重要なレポートを作成するための優先度の高いクエリの実行を遅らせていました。推奨するソリューションがこれを解決するのにどのように役立つのか説明してください。
 
-2. Can they use this same tool to visualize both the batch and streaming data in a single dashboard view?
+2. 推奨するソリューションは、テーブル分散が最適ではない、データ スキュー、キャッシュ ミス、tempdb 競合、プラン選択が最適ではないなどの問題を WWI が検出するのを支援するために何を提供しますか。
 
-3. With the product you recommend, do they need to load all the data into the data warehouse before they can create reports against it?
+3. WWI は、データ ウェアハウス ソフトウェアを最新の状態に保つには、それに伴うダウンタイムを許容できるタイミングを決める必要があることを理解しています。推奨するソリューションでは、どうすれば WWI は予期しないアップグレードに慌てることのない設定を確立できますか。
 
-*Manage*
+安全性
 
-1. In previous efforts, WWI systems struggled with their own popularity. Exploratory queries that were not time sensitive would saturate the available resources and delay the execution of higher priority queries supporting critical reports. Explain how your solution helps to resolve this.
+1. 推奨するソリューションは、たとえば SQL と Spark のワークロードに対して、どのようにして統合された認証を提供しますか。
 
-2. What does your solution provide to WWI to help them identify issues such as suboptimal table distribution, data skew, cache misses, tempdb contention and suboptimal plan selection?
+2. Azure Data Lake Store Gen2 に保存されているデータに対するデータ アクセスをどのように承認しますか。Azure Synapse SQL データベースに保存されているデータについてはどうですか。
 
-3. WWI recognizes there is a balance between the data warehouse software staying up to date and when they can afford downtime that might result. How can they establish their preferences with your solution so they are never caught off guard with an upgrade?
+3. WWI の課題の 1 つは、複数の部門が特定のテーブルに対するクエリを実行できる可能性がある一方で、各自にどのデータの表示が許可されるのかは部門または社内での役割によって決まることです。推奨するソリューションでは、これをどのようにサポートできますか。3 つの選択肢を提案する必要があります。
 
-*Secure*
+4. そのソリューションは、WWI がセキュリティの構成ミスを検出、追跡、および修復し、脅威を検出するのに役立ちますか。どんな方法ですか。
 
-1. How does your solution provide unified authentication, such as across SQL and Spark workloads?
+5. WWI はこのソリューションを使用して、機密情報を検出、分類、および保護し、機密情報へのアクセスを追跡できるようにすることで、機密情報を監視できますか。
 
-2. How is access to data authorized for data stored in Azure Data Lake Store Gen2? In Azure Synapse SQL databases?
+6. ネットワーク セキュリティの観点から、推奨するソリューションをどのように保護する必要がありますか。
 
-3. One of WWI's challenges is that while multiple departments might be able to query a given table, what data they should be allowed to see depends on their department or role within the company. How could your solution support this? You should suggest three options.
+**準備**
 
-4. Can the solution help WWI discover, track and remediate security misconfigurations and detect threats? How?
+指示: テーブルのすべての参加者と共に、以下を行います。
 
-5. Can WWI use this same solution to monitor for sensitive information by enabling them to discover, classify and protect and track access to such data?
+1. 提案したソリューションでは対応していない顧客ニーズを特定する。
 
-6. From a network security standpoint, how should your solution be secured?
+2. ソリューションの利点を特定する。
 
-**Prepare**
+3. 顧客の反論にどのように回答するかを決定する。
 
-Directions: With all participants at your table:
+顧客に対する 15 分のチョークトーク形式のプレゼンテーションを準備する。
 
-1. Identify any customer needs that are not addressed with the proposed solution.
+## ステップ 3: ソリューションをプレゼンテーションする
 
-2. Identify the benefits of your solution.
+**成果**
 
-3. Determine how you will respond to the customer's objections.
+顧客の対象者にソリューションを 15 分のチョークトーク形式でプレゼンテーションする。
 
-Prepare a 15-minute chalk-talk style presentation to the customer.
+所要時間: 30 分
 
-## Step 3: Present the solution
+**プレゼンテーション**
 
-**Outcome**
+指示:
 
-Present a solution to the target customer audience in a 15-minute chalk-talk format.
+1. 別のテーブルとペアを組む。
 
-Timeframe: 30 minutes
+2. 一方のテーブルはマイクロソフト チーム、他方のテーブルは顧客とする。
 
-**Presentation**
+3. マイクロソフト チームは提案ソリューションを顧客にプレゼンテーションする。
 
-Directions:
+4. 顧客は反論リストから反論を 1 つ行う。
 
-1. Pair with another table.
+5. マイクロソフト チームは反論に回答する。
 
-2. One table is the Microsoft team and the other table is the customer.
+6. 顧客チームはマイクロソフト チームにフィードバックを提供する。
 
-3. The Microsoft team presents their proposed solution to the customer.
+7. テーブル間で役割を切り替えて、ステップ 2 ～ 6 を繰り返す。
 
-4. The customer makes one of the objections from the list of objections.
+## まとめ
 
-5. The Microsoft team responds to the objection.
+所要時間: 15 分
 
-6. The customer team gives feedback to the Microsoft team.
+指示: より大きなグループでテーブルに再度集まり、ファシリテーター/SME がこのケース スタディの推奨ソリューションを共有するのを聞きます。
 
-7. Tables switch roles and repeat Steps 2-6.
-
-## Wrap-up
-
-Timeframe: 15 minutes
-
-Directions: Tables reconvene with the larger group to hear the facilitator/SME share the preferred solution for the case study.
-
-## Additional references
+## 追加リファレンス
 
 |                               |                                                                                                |
 |-------------------------------|------------------------------------------------------------------------------------------------|
-| **Description** | **Links** |
-| What is Azure Synapse Analytics  | https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-overview-what-is  |
-| Cheat sheet for Azure Synapse Analytics solutions  | https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/cheat-sheet  |
-| Azure Synapse Analytics FAQ  | https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-overview-faq  |
-| Advanced data security for Azure SQL Database  | https://docs.microsoft.com/en-us/azure/sql-database/sql-database-advanced-data-security?toc=/azure/synapse-analytics/sql-data-warehouse/toc.json&bc=/azure/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json  |
-| Private link for Azure SQL DB and Data Warehouse | https://docs.microsoft.com/en-us/azure/sql-database/sql-database-private-endpoint-overview?toc=/azure/synapse-analytics/sql-data-warehouse/toc.json&bc=/azure/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json |
-| Column-level security | https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/column-level-security |
-| Row-level security | https://docs.microsoft.com/en-us/sql/relational-databases/security/row-level-security?toc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Ftoc.json&bc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Fbreadcrumb%2Ftoc.json&view=sql-server-ver15 |
-| Dynamic Data Masking | https://docs.microsoft.com/en-us/azure/sql-database/sql-database-dynamic-data-masking-get-started?toc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Ftoc.json&bc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Fbreadcrumb%2Ftoc.json&view=sql-server-ver15 |
-| Transparent Data Encryption | https://docs.microsoft.com/en-us/azure/sql-database/transparent-data-encryption-azure-sql?toc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Ftoc.json&bc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Fbreadcrumb%2Ftoc.json&view=sql-server-ver15&tabs=azure-portal |
-| JSON Functions | https://docs.microsoft.com/en-us/sql/t-sql/functions/json-functions-transact-sql?toc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Ftoc.json&bc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Fbreadcrumb%2Ftoc.json&view=sql-server-ver15 |
-| Result set caching |  https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/performance-tuning-result-set-caching?view=sql-server-ver15 |
-| Overview of Tables in Synapse Analytics | https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-overview?view=sql-server-ver15 |
-| Workload Management | https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-workload-management?view=sql-server-ver15 |
-| Intro to Azure Data Lake Store Gen2 | https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction |
-| Azure Stream Analytics | https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-introduction |
+| **説明** | **リンク** |
+| Azure Synapse Analytics とは| https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-overview-what-is
+| Azure Synapse Analytics ソリューションの早見表| https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/cheat-sheet
+| Azure Synapse Analytics の FAQ| https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-overview-faq
+| Azure SQL Database の高度なデータ セキュリティ| https://docs.microsoft.com/en-us/azure/sql-database/sql-database-advanced-data-security?toc=/azure/synapse-analytics/sql-data-warehouse/toc.json\&bc=/azure/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json
+| Azure SQL DB および Data Warehouse のプライベート リンク| https://docs.microsoft.com/en-us/azure/sql-database/sql-database-private-endpoint-overview?toc=/azure/synapse-analytics/sql-data-warehouse/toc.json\&bc=/azure/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json
+| 列レベルのセキュリティ| https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/column-level-security
+| 行レベルのセキュリティ| https://docs.microsoft.com/en-us/sql/relational-databases/security/row-level-security?toc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Ftoc.json\&bc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Fbreadcrumb%2Ftoc.json\&view=sql-server-ver15
+| 動的データ マスク| https://docs.microsoft.com/en-us/azure/sql-database/sql-database-dynamic-data-masking-get-started?toc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Ftoc.json\&bc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Fbreadcrumb%2Ftoc.json\&view=sql-server-ver15
+| Transparent Data Encryption| https://docs.microsoft.com/en-us/azure/sql-database/transparent-data-encryption-azure-sql?toc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Ftoc.json\&bc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Fbreadcrumb%2Ftoc.json\&view=sql-server-ver15\&tabs=azure-portal
+| JSON 関数| https://docs.microsoft.com/en-us/sql/t-sql/functions/json-functions-transact-sql?toc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Ftoc.json\&bc=%2Fazure%2Fsynapse-analytics%2Fsql-data-warehouse%2Fbreadcrumb%2Ftoc.json\&view=sql-server-ver15
+| 結果セットのキャッシュ| https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/performance-tuning-result-set-caching?view=sql-server-ver15
+| Synapse Analytics のテーブルの概要| https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-tables-overview?view=sql-server-ver15
+| ワークロード管理| https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-workload-management?view=sql-server-ver15
+| Azure Data Lake Store Gen2 の概要| https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction
+| Azure Stream Analytics| https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-introduction
+

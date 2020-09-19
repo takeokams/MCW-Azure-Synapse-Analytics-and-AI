@@ -1,51 +1,64 @@
-# Azure Synapse Analytics and AI
-Wide World Importers (WWI) has hundreds of brick and mortar stores and an online store where they sell a variety of products. They would like to gain business insights using historical, real-time, and predictive analytics using structured and unstructured data sources. In doing so, they want to enable their IT team of data engineers and data scientists to bring in and run complex queries over petabytes of structured data with billions of rows and unstructured enterprise operational data. At the same time, they want to enable business analysts and their IT team to share a single source of truth and have a single workspace to collaborate and work with enterprise data and enriched customer data. They want to accomplish this minimizing the number of disparate services they use across ingest, transformation, querying and storage, so that their team of data engineers, data scientists and database administrators can master one tool, and can build shared best practices for development, management and monitoring.
+# Azure Synapse Analytics と AI
 
-July 2020
+Wide World Importers (WWI) は、数百軒の実店舗とオンライン ストアを展開し、さまざまな製品を販売しています。構造化データ ソースと非構造化データ ソースを使用して履歴分析、リアルタイム分析、および予測分析を実行し、ビジネスの洞察を得ることを望んでいます。そうすることで、データ エンジニアとデータ サイエンティストから成る IT チームが、数ペタバイトに及ぶ数十億行の構造化データと企業業務の非構造化データに対する複雑なクエリを導入して実行できるようにしたいと考えています。同時に、ビジネス アナリストと同社の IT チームが、信頼できる唯一の情報源を共有し、1 つのワークスペースで連携して企業データと強化された顧客データを操作できるようにしたいと考えています。また、前述の内容を達成するために取り込み、変換、クエリ、および保存を行う際に使用する異種サービスの数を最小限に抑えて、同社のデータ エンジニア、データ サイエンティスト、およびデータベース管理者のチームが、1 つのツールを習得し、開発、管理、および監視を行うための共有ベスト プラクティスを構築できるようにすることを望んでいます。
 
-## Target audience
-- Data engineer
-- Data scientist
-- Machine Learning engineer
+2020 年 7 月
 
-## Abstracts
+## 対象者
 
-### Workshop
-In this workshop, you will look at the process of creating an end-to-end solution using Azure Synapse Analytics. The workshop will cover data loading, data preparation, data transformation and data serving, along with performing machine learning and handling of both batch and real-time data.
+- データ エンジニア
+- データ サイエンティスト
+- 機械学習エンジニア
 
-At the end of this whiteboard design session, you will be better able to design and build a complete end-to-end advanced analytics solution using Azure Synapse Analytics.
+## 要約
 
-### Whiteboard design session
-In this whiteboard design session, you will work in a group to look at the process of designing an end-to-end solution using Azure Synapse Analytics. The design session will cover data loading, data preparation, data transformation and data serving, along with performing machine learning and handling of both batch and real-time data.
+### ワークショップ
 
-At the end of this whiteboard design session, you will be better able to design and build a complete end-to-end advanced analytics solution using Azure Synapse Analytics.
+このワークショップでは、Azure Synapse Analytics を使用してエンドツーエンドのソリューションを作成するプロセスを検討します。データ読み込み、データ変換、データ準備、およびデータ サービスについて説明し、機械学習の実行およびバッチ データとリアルタイム データの両方の処理についても説明します。
 
-### Hands-on lab
+このホワイトボード設計セッションを完了すると、Azure Synapse Analytics を使用する完全なエンドツーエンドの高度な分析ソリューションを設計および構築できるようになります。
 
-In this hands-on-lab, you will build an end-to-end data analytics with machine learning solution using Azure Synapse Analytics. The information will be presented in the context of a retail scenario. We will be heavily leveraging Azure Synapse Studio, a tool that conveniently unifies the most common data operations from ingestion, transformation, querying, and visualization.
+### ホワイトボード設計セッション
 
-## Azure services and related products
--	Azure Synapse Analytics
--	Azure Storage and Azure Data Lake gen 2
--	Azure Stream Analytics
--	Azure Machine Learning
--	Azure App Service
--	Event Hubs
--	IoT Hub
--	Power BI
+このホワイトボード設計セッションでは、グループを作って、Azure Synapse Analytics を使用してエンドツーエンドのソリューションを設計するプロセスを見ていきます。設計セッションでは、データ読み込み、データ準備、データ変換、およびデータ サービスについて説明し、機械学習の実行およびバッチ データとリアルタイム データの両方の処理についても説明します。
 
-## Related references
+このホワイトボード設計セッションを完了すると、Azure Synapse Analytics を使用する完全なエンドツーエンドの高度な分析ソリューションを設計および構築できるようになります。
+
+### ハンズオン ラボ
+
+このハンズオン ラボでは、Azure Synapse Analytics を使用する機械学習ソリューションによりエンドツーエンドのデータ分析を構築します。この情報は、小売シナリオのコンテキストで提示されます。ここで多用する Azure Synapse Studio は、取り込み、変換、クエリ、および視覚化から最も一般的なデータ操作を使いやすく統合するツールです。
+
+## Azure サービスと関連製品
+
+- Azure Synapse Analytics
+- Azure Storage および Azure Data Lake (第 2 世代)
+- Azure Stream Analytics
+- Azure Machine Learning
+- Azure App Service
+- Event Hubs
+- IoT Hub
+- Power BI
+
+## 関連リファレンス
+
 - [MCW](https://github.com/Microsoft/MCW)
 
-## Help & Support
+## ヘルプおよびサポート
 
-We welcome feedback and comments from Microsoft SMEs & learning partners who deliver MCWs.  
+マイクロソフト SME および MCW を提供する学習パートナーからのフィードバックおよびコメントをお待ちしております。
 
-***Having trouble?***
-- First, verify you have followed all written lab instructions (including the Before the Hands-on lab document).
-- Next, submit an issue with a detailed description of the problem.
-- Do not submit pull requests. Our content authors will make all changes and submit pull requests for approval.  
+**日本語版について**
 
-If you are planning to present a workshop, *review and test the materials early*! We recommend at least two weeks prior.
+このリポジトリは、2020年9月時点のMCW-Azure-Synapse-Analytics-and-AIの日本語訳です。
 
-### Please allow 5 - 10 business days for review and resolution of issues.
+**お困りですか?**
+
+- おかしいな? と思ったら、英語版オリジナルをご確認いただき、オリジナルでも発生するのか日本語訳だけの問題かを切り分けてください。
+- 英語オリジナルについては、下記手順で英語リポジトリに対して改善要求をお送りください。
+- まず、ラボに記載されているすべての指示 (「ハンズオン ラボの前に」のドキュメントを含む) に従っていることを確認します。
+- 次に、問題を、その詳細な説明とともに送信します。
+- pull 要求を送信しないでください。コンテンツ作成者がすべての変更を行い、pull 要求を送信して承認を求めます。
+
+ワークショップ開催を計画している場合、早めに資料をレビューおよびテストしてください。少なくとも 2 週間前には実施することをお勧めします。
+
+### レビューと問題の解決には 5 ～ 10 営業日かかります。

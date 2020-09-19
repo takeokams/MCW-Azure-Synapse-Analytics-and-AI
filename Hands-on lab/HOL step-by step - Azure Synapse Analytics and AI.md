@@ -1,385 +1,380 @@
-![Microsoft Cloud Workshop](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+![マイクロソフト クラウド ワークショップ](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "マイクロソフト クラウド ワークショップ")
 
 <div class="MCWHeader1">
-Azure Synapse Analytics and AI
+Azure Synapse Analytics と AI
 </div>
-
 <div class="MCWHeader2">
-Hands-on lab step-by-step
+段階的ハンズオン ラボ
 </div>
-
 <div class="MCWHeader3">
-July 2020
+2020 年 7 月
 </div>
+このドキュメントに記載されている情報 (URL 等のインターネット Web サイトに関する情報を含む) は、将来予告なしに変更されることがあります。特に断りがない限り、ここで使用している会社、組織、製品、ドメイン名、電子メール アドレス、ロゴ、人物、場所、イベントの例は、架空のものであり、実在する会社、組織、製品、ドメイン名、電子メール アドレス、ロゴ、人物、場所、イベントなどとは一切関係ありません。お客様ご自身の責任において、適用されるすべての著作権関連法規に従ったご使用を願います。このドキュメントのいかなる部分も、米国 Microsoft Corporation の書面による許諾を受けることなく、その目的を問わず、どのような形態であっても、複製または譲渡することは禁じられています。ここでいう形態とは、複写や記録など、電子的な、または物理的なすべての手段を含みます。ただしこれは、著作権法上のお客様の権利を制限するものではありません。
 
+マイクロソフトは、このドキュメントに記載されている内容に関し、特許、特許申請、商標、著作権、またはその他の無体財産権を有する場合があります。別途マイクロソフトのライセンス契約上に明示の規定のない限り、このドキュメントはこれらの特許、商標、著作権、またはその他の無体財産権に関する権利をお客様に許諾するものではありません。
 
-Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
+製造元や製品の名前、URL は情報の提供のみを目的としており、マイクロソフトは、これらの製造元、またはマイクロソフトの技術での製品の使用について、明示的、黙示的、または法的にいかなる表示または保証も行いません。製造元または製品の使用は、マイクロソフトによるその製造元または製品の推奨を意味するものではありません。サード パーティのサイトへのリンクが提供されている場合があります。このようなサイトはマイクロソフトの管理下にはなく、マイクロソフトは、リンクされたサイトの内容またはリンクされたサイトに含まれるリンク、あるいはこのようなサイトの変更または更新について責任を負いません。マイクロソフトは、リンクされたサイトから受信された Web キャストまたは他のいかなる形態の転送にも責任を負いません。マイクロソフトは、これらのリンクを便宜のみを目的として提供しており、いかなるリンクの使用も、マイクロソフトによるサイトまたはそこに含まれる製品の推奨を意味するものではありません。
 
-Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in this document. Except as expressly provided in any written license agreement from Microsoft, the furnishing of this document does not give you any license to these patents, trademarks, copyrights, or other intellectual property.
+© 2020 Microsoft Corporation.All rights reserved.
 
-The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
+Microsoft および <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> に記載されている商標は、Microsoft グループの商標です。その他すべての商標は、該当する各社が所有しています。
 
-© 2020 Microsoft Corporation. All rights reserved.
-
-Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
-
-**Contents** 
+**目次**
 
 <!-- TOC -->
-- [Azure Synapse Analytics and AI hands-on lab step-by-step](#azure-synapse-analytics-and-ai-hands-on-lab-step-by-step)
-  - [Abstract and learning objectives](#abstract-and-learning-objectives)
-  - [Overview](#overview)
-  - [Solution architecture](#solution-architecture)
-  - [Requirements](#requirements)
-  - [Before the hands-on lab](#before-the-hands-on-lab)
-  - [Resource naming throughout this lab](#resource-naming-throughout-this-lab)
-  - [Exercise 1: Accessing the Azure Synapse Analytics workspace](#exercise-1-accessing-the-azure-synapse-analytics-workspace)
-    - [Task 1: Launching Synapse Studio](#task-1-launching-synapse-studio)
-  - [Exercise 2: Create and populate the supporting tables in the SQL Pool](#exercise-2-create-and-populate-the-supporting-tables-in-the-sql-pool)
-    - [Task 1: Create the sale table](#task-1-create-the-sale-table)
-    - [Task 2: Populate the sale table](#task-2-populate-the-sale-table)
-    - [Task 3: Create the customer information table](#task-3-create-the-customer-information-table)
-    - [Task 4: Populate the customer information table](#task-4-populate-the-customer-information-table)
-    - [Task 5: Create the campaign analytics table](#task-5-create-the-campaign-analytics-table)
-    - [Task 6: Populate the campaign analytics table](#task-6-populate-the-campaign-analytics-table)
-    - [Task 7: Populate the product table](#task-7-populate-the-product-table)
-  - [Exercise 3: Exploring raw parquet](#exercise-3-exploring-raw-parquet)
-    - [Task 1: Query sales Parquet data with Synapse SQL Serverless](#task-1-query-sales-parquet-data-with-synapse-sql-serverless)
-    - [Task 2: Query sales Parquet data with Azure Synapse Spark](#task-2-query-sales-parquet-data-with-azure-synapse-spark)
-  - [Exercise 4: Exploring raw text based data with Azure Synapse SQL Serverless](#exercise-4-exploring-raw-text-based-data-with-azure-synapse-sql-serverless)
-    - [Task 1: Query CSV data](#task-1-query-csv-data)
-    - [Task 2: Query JSON data](#task-2-query-json-data)
-  - [Exercise 5: Synapse Pipelines and Cognitive Search](#exercise-5-synapse-pipelines-and-cognitive-search)
-    - [Task 1: Create the invoice storage container](#task-1-create-the-invoice-storage-container)
-    - [Task 2: Create and train an Azure Forms Recognizer model and setup Cognitive Search](#task-2-create-and-train-an-azure-forms-recognizer-model-and-setup-cognitive-search)
-    - [Task 3: Configure a skillset with Form Recognizer](#task-3-configure-a-skillset-with-form-recognizer)
-    - [Task 4: Create the Synapse Pipeline](#task-4-create-the-synapse-pipeline)
-  - [Exercise 6: Security](#exercise-6-security)
-    - [Task 1: Column level security](#task-1-column-level-security)
-    - [Task 2: Row level security](#task-2-row-level-security)
-    - [Task 3: Dynamic data masking](#task-3-dynamic-data-masking)
-  - [Exercise 7: Machine Learning](#exercise-7-machine-learning)
-    - [Task 1: Training, consuming, and deploying models](#task-1-training-consuming-and-deploying-models)
-  - [Exercise 8: Monitoring](#exercise-8-monitoring)
-    - [Task 1: Workload importance](#task-1-workload-importance)
-    - [Task 2: Workload isolation](#task-2-workload-isolation)
-    - [Task 3: Monitoring with Dynamic Management Views](#task-3-monitoring-with-dynamic-management-views)
-    - [Task 4: Orchestration Monitoring with the Monitor Hub](#task-4-orchestration-monitoring-with-the-monitor-hub)
-    - [Task 5: Monitoring SQL Requests with the Monitor Hub](#task-5-monitoring-sql-requests-with-the-monitor-hub)
-  - [After the hands-on lab](#after-the-hands-on-lab)
-    - [Task 1: Delete the resource group](#task-1-delete-the-resource-group)
+
+- [Azure Synapse Analytics と AI 段階的ハンズオン ラボ](#azure-synapse-analytics-と-ai-段階的ハンズオン-ラボ)
+    - [要約と学習目的](#要約と学習目的)
+    - [概要](#概要)
+    - [ソリューションのアーキテクチャ](#ソリューションのアーキテクチャ)
+    - [必要条件](#必要条件)
+    - [ハンズオン ラボの前に](#ハンズオン-ラボの前に)
+    - [このラボ全体で使用するリソースの名前付け規則](#このラボ全体で使用するリソースの名前付け規則)
+    - [演習 1: Azure Synapse Analytics ワークスペースへのアクセス](#演習-1-azure-synapse-analytics-ワークスペースへのアクセス)
+        - [タスク 1: Synapse Studio の起動](#タスク-1-synapse-studio-の起動)
+    - [演習 2: SQL プールでのサポート用テーブルの作成とデータの読み込み](#演習-2-sql-プールでのサポート用テーブルの作成とデータの読み込み)
+        - [タスク 1: 販売テーブルの作成](#タスク-1-販売テーブルの作成)
+        - [タスク 2: 販売テーブルへのデータの読み込み](#タスク-2-販売テーブルへのデータの読み込み)
+        - [タスク 3: 顧客情報テーブルの作成](#タスク-3-顧客情報テーブルの作成)
+        - [タスク 4: 顧客情報テーブルへのデータの読み込み](#タスク-4-顧客情報テーブルへのデータの読み込み)
+        - [タスク 5: キャンペーン分析テーブルの作成](#タスク-5-キャンペーン分析テーブルの作成)
+        - [タスク 6: キャンペーン分析テーブルへのデータの読み込み](#タスク-6-キャンペーン分析テーブルへのデータの読み込み)
+        - [タスク 7: 製品テーブルへのデータの読み込み](#タスク-7-製品テーブルへのデータの読み込み)
+    - [演習 3: 生 Parquet の調査](#演習-3-生-parquet-の調査)
+        - [タスク 1: Synapse SQL サーバーレスによる販売 Parquet データに対するクエリの実行](#タスク-1-synapse-sql-サーバーレスによる販売-parquet-データに対するクエリの実行)
+        - [タスク 2: Azure Synapse Spark による販売 Parquet データに対するクエリの実行](#タスク-2-azure-synapse-spark-による販売-parquet-データに対するクエリの実行)
+    - [演習 4: Azure Synapse SQL サーバーレスによるテキストベースの生データの調査](#演習-4-azure-synapse-sql-サーバーレスによるテキストベースの生データの調査)
+        - [タスク 1: CSV データに対するクエリの実行](#タスク-1-csv-データに対するクエリの実行)
+        - [タスク 2: JSON データに対するクエリの実行](#タスク-2-json-データに対するクエリの実行)
+    - [演習 5: Synapse パイプラインと Cognitive Search](#演習-5-synapse-パイプラインと-cognitive-search)
+        - [タスク 1: 請求書のストレージ コンテナーの作成](#タスク-1-請求書のストレージ-コンテナーの作成)
+        - [タスク 2: Azure Forms Recognizer モデルの作成およびトレーニングと Cognitive Search のセットアップ](#タスク-2-azure-forms-recognizer-モデルの作成およびトレーニングと-cognitive-search-のセットアップ)
+        - [タスク 3: Form Recognizer でのスキルセットの構成](#タスク-3-form-recognizer-でのスキルセットの構成)
+        - [タスク 4: Synapse パイプラインの作成](#タスク-4-synapse-パイプラインの作成)
+    - [演習 6: セキュリティ](#演習-6-セキュリティ)
+        - [タスク 1: 列レベルのセキュリティ](#タスク-1-列レベルのセキュリティ)
+        - [タスク 2: 行レベルのセキュリティ](#タスク-2-行レベルのセキュリティ)
+        - [タスク 3: 動的データ マスク](#タスク-3-動的データ-マスク)
+    - [演習 7: 機械学習](#演習-7-機械学習)
+        - [タスク 1: モデルのトレーニング、利用、および展開](#タスク-1-モデルのトレーニング利用および展開)
+    - [演習 8: 監視](#演習-8-監視)
+        - [タスク 1: ワークロードの重要度](#タスク-1-ワークロードの重要度)
+        - [タスク 2: ワークロードの分離](#タスク-2-ワークロードの分離)
+        - [タスク 3: 動的管理ビューによる監視](#タスク-3-動的管理ビューによる監視)
+        - [タスク 4: \[Monitor\] ハブによるオーケストレーションの監視](#タスク-4-\monitor\-ハブによるオーケストレーションの監視)
+        - [タスク 5: \[Monitor\] ハブによる SQL 要求の監視](#タスク-5-\monitor\-ハブによる-sql-要求の監視)
+    - [ハンズオン ラボの後に](#ハンズオン-ラボの後に)
+        - [タスク 1: リソース グループの削除](#タスク-1-リソース-グループの削除)
+
 <!-- /TOC -->
+# Azure Synapse Analytics と AI 段階的ハンズオン ラボ
 
-# Azure Synapse Analytics and AI hands-on lab step-by-step
+## 要約と学習目的
 
-## Abstract and learning objectives
+このハンズオン ラボでは、Azure Synapse Analytics を使用する機械学習ソリューションによりエンドツーエンドのデータ分析を構築します。この情報は、小売シナリオのコンテキストで提示されます。ここで多用する Azure Synapse Studio は、取り込み、変換、クエリ、および視覚化から最も一般的なデータ操作を使いやすく統合するツールです。
 
-In this hands-on-lab, you will build an end-to-end data analytics with machine learning solution using Azure Synapse Analytics. The information will be presented in the context of a retail scenario. We will be heavily leveraging Azure Synapse Studio, a tool that conveniently unifies the most common data operations from ingestion, transformation, querying, and visualization.
+## 概要
 
-## Overview
+このラボでは、Azure Synapse Analytics のさまざまな機能について説明します。Azure Synapse Analytics Studio は、全チーム メンバーが共同で使用できる単独のツールです。Synapse Studio は、データの取り込み、クリーニング、および生ファイルの変換からノートブックを使用した機械学習モデルのトレーニング、登録、および使用まで、このラボ全体で使用する唯一のツールです。ラボでは、データ関連のワークロードを監視して優先順位を付けるハンズオンエクスペリエンスも提供します。
 
-In this lab various features of Azure Synapse Analytics will be explored. Azure Synapse Analytics Studio is a single tool that every team member can use collaboratively. Synapse Studio will be the only tool used throughout this lab through data ingestion, cleaning, and transforming raw files to using Notebooks to train, register, and consume a Machine learning model. The lab will also provide hands-on-experience monitoring and prioritizing data related workloads.
+## ソリューションのアーキテクチャ
 
-## Solution architecture
+![アーキテクチャ図については、次の段落で説明します。](media/archdiagram.png "アーキテクチャ図")
 
-![Architecture diagram explained in the next paragraph.](media/archdiagram.png "Architecture Diagram")
+このラボでは、さまざまな種類の生データ ファイルを取り込むコールド データ シナリオについて説明します。これらのファイルはあらゆる場所に存在する可能性があります。このラボで使用するファイルの種類は、CSV、Parquet、および JSON です。このデータは、パイプライン経由で Synapse Analytics に取り込まれます。その後は、データ フロー、Synapse Spark、Synapse SQL (プロビジョニング済みとサーバーレスの両方) などのさまざまなツールを使用して、データを変換および強化できます。処理後のデータには、Synapse SQL ツールを使用してクエリを実行できます。Azure Synapse Studio は、ノートブックを作成してさらにデータの処理、データセットの作成、および機械学習モデルのトレーニングと作成を行う機能も備えています。その後、これらのモデルは、ストレージ アカウントや、SQL テーブルにも保存できます。保存したモデルはさらに、T-SQL などのさまざまな方法で使用できます。ADLS Gen 2 Data Lake は、Azure Synapse Analytics のあらゆる側面を支える基盤コンポーネントです。
 
-This lab explores the cold data scenario of ingesting various types of raw data files. These files can exist anywhere. The file types used in this lab are CSV, parquet, and JSON. This data will be ingested into Synapse Analytics via Pipelines. From there, the data can be transformed and enriched using various tools such as data flows, Synapse Spark, and Synapse SQL (both provisioned and serverless). Once processed, data can be queried using Synapse SQL tooling. Azure Synapse Studio also provides the ability to author notebooks to further process data, create datasets, train, and create machine learning models. These models can then be stored in a storage account or even in a SQL table. These models can then be consumed via various methods, including T-SQL. The foundational component supporting all aspects of Azure Synapse Analytics is the ADLS Gen 2 Data Lake.
+## 必要条件
 
-## Requirements
+1. Microsoft Azure のサブスクリプション
 
-1. Microsoft Azure subscription
+2. Azure Synapse ワークスペース/Studio
 
-2. Azure Synapse Workspace / Studio
+## ハンズオン ラボの前に
 
-## Before the hands-on lab
+ラボの演習に進む前に、「ハンズオン ラボの前に」設定ガイドを参照してください。
 
-Refer to the Before the hands-on lab setup guide manual before continuing to the lab exercises.
+## このラボ全体で使用するリソースの名前付け規則
 
-## Resource naming throughout this lab
+このラボの残りの部分では、さまざまな ASA (Azure Synapse Analytics) 関連のリソースに以下の用語を使用します (必ず各自の環境の実際の名前と値に置き換えてください)。
 
-For the remainder of this lab, the following terms will be used for various ASA (Azure Synapse Analytics) related resources (make sure you replace them with actual names and values from your environment):
+| Azure Synapse Analytics リソース| 参照名
+|----------|----------
+| Azure サブスクリプション| `WorkspaceSubscription`
+| Azure リージョン| `WorkspaceRegion`
+| ワークスペース リソース グループ| `WorkspaceResourceGroup`
+| ワークスペース/ワークスペース名| `asaworkspace{suffix}`
+| プライマリ ストレージ アカウント| `asadatalake{suffix}`
+| 既定ファイル システム コンテナー| `DefaultFileSystem`
+| SQL プール| `SqlPool01`
+| SQL サーバーレス エンドポイント| `SqlServerless01`
+| Azure Key Vault| `asakeyvault{suffix}`
 
-| Azure Synapse Analytics Resource  | To be referred to                                                                  |
-|-----------------------------------|------------------------------------------------------------------------------------|
-| Azure Subscription                | `WorkspaceSubscription`                                                            |
-| Azure Region                      | `WorkspaceRegion`                                                                  |
-| Workspace resource group          | `WorkspaceResourceGroup`                                                           |
-| Workspace / workspace name        | `asaworkspace{suffix}`                                                             |
-| Primary Storage Account           | `asadatalake{suffix}`                                                              |
-| Default file system container     | `DefaultFileSystem`                                                                |
-| SQL Pool                          | `SqlPool01`                                                                        |
-| SQL Serverless Endpoint           | `SqlServerless01`                                                                  |
-| Azure Key Vault                   | `asakeyvault{suffix}`                                                              |
+## 演習 1: Azure Synapse Analytics ワークスペースへのアクセス
 
-## Exercise 1: Accessing the Azure Synapse Analytics workspace
+**所要時間**: 5 分
 
-**Duration**: 5 minutes
+このラボでは、すべての演習でワークスペース Synapse Studio ユーザー インターフェイスを利用します。この演習では、Synapse Studio を起動するステップの概要を示します。別途指定されない限り、メニュー操作を含むすべての手順は Synapse Studio で実行します。
 
-All exercises in this lab utilize the workspace Synapse Studio user interface. This exercise will outline the steps to launch Synapse Studio. Unless otherwise specified, all instruction including menu navigation will occur in Synapse Studio.
+### タスク 1: Synapse Studio の起動
 
-### Task 1: Launching Synapse Studio
+1. [Azure Portal](https://portal.azure.com) にログインします。
 
-1. Log into the [Azure Portal](https://portal.azure.com).
+2. 左側のメニューを展開して、**\[Resource groups\]** 項目を選択します。
+   
+   ![Azure Portal の左側メニューが展開され、\[Resource groups\] 項目が強調表示されています。](media/azureportal_leftmenu_resourcegroups.png "Azure Portal の [Resource Groups] メニュー項目")
 
-2. Expand the left menu, and select the **Resource groups** item.
-  
-    ![The Azure Portal left menu is expanded with the Resource groups item highlighted.](media/azureportal_leftmenu_resourcegroups.png "Azure Portal Resource Groups menu item")
+3. リソース グループのリストから `WorkspaceResourceGroup` を選択します。
 
-3. From the list of resource groups, select `WorkspaceResourceGroup`.
-  
-4. From the list of resources, select the **Synapse Workspace** resource, `asaworkspace{suffix}`.
-  
-    ![In the resource list, the Synapse Workspace item is selected.](media/resourcelist_synapseworkspace.png "The resource group listing")
+4. リソースのリストから **\[Synapse Workspace\]** リソースの `asaworkspace{suffix}` を選択します。
+   
+   ![リソース リストで \[Synapse Workspace\] 項目が選択されています。](media/resourcelist_synapseworkspace.png "リソース グループのリスト")
 
-5. On the **Overview** tab of the Synapse Workspace page, select the **Launch Synapse Studio** item from the top toolbar. Alternatively you can select the Workspace web URL link.
+5. \[Synapse Workspace\] ページの **\[Overview\]** タブで、上部のツールバーから **\[Launch Synapse Studio\]** 項目を選択します。代わりに \[Workspace web URL\] リンクを選択することもできます。
+   
+   ![\[Synapse workspace\] リソース画面の \[Overview\] ペインが表示され、上部のツールバーの \[Launch Synapse Studio\] が強調表示されています。\[Workspace web URL\] の値も強調表示されています。](media/workspaceresource_launchsynapsestudio.png "Synapse Studio の起動")
 
-    ![On the Synapse workspace resource screen, the Overview pane is shown with the Launch Synapse Studio button highlighted in the top toolbar. The Workspace web URL value is also highlighted.](media/workspaceresource_launchsynapsestudio.png "Launching Synapse Studio")
+## 演習 2: SQL プールでのサポート用テーブルの作成とデータの読み込み
 
-## Exercise 2: Create and populate the supporting tables in the SQL Pool
+**所要時間**: 120 分
 
-**Duration**: 120 minutes
+有意義なデータのクエリを実行する最初のステップは、データを格納するテーブルを作成することです。ここでは、SaleSmall、CustomerInfo、CampaignAnalytics、および Sales の 4 つのテーブルを作成します。Azure Synapse Analytics でテーブルを設計する場合、各テーブルのデータの予想量および各テーブルの使用方法を考慮する必要があります。テーブルを設計する際は以下のガイダンスを利用して、ベスト エクスペリエンスと最大のパフォーマンスを確保します。
 
-The first step in querying meaningful data is to create tables to house the data. In this case, we will create four different tables: SaleSmall, CustomerInfo, CampaignAnalytics, and Sales. When designing tables in Azure Synapse Analytics, we need to take into account the expected amount of data in each table, as well as how each table will be used. Utilize the following guidance when designing your tables to ensure the best experience and performance.
+テーブル設計におけるパフォーマンスの考慮事項
 
-Table design performance considerations
+| テーブルのインデックス作成方法| 推奨される用途
+|----------|----------
+| クラスター化列ストア| 1 億行を超えるテーブルにお勧めします。データ圧縮および全体的なクエリ パフォーマンスが最も優れています。
+| ヒープ テーブル| 1 億行未満の小規模なテーブル。通常は変換前のステージング テーブルとして使用されます。
+| クラスター化インデックス| クエリ実行結果として 1 行のみを返す大規模な (1 億行を超える) ルックアップ テーブル。
+| クラスター化インデックス + 非クラスター化セカンダリ インデックス| クエリ実行結果として 1 つ (または非常に少ない数) のレコードを返す大規模な (1 億行を超える) テーブル。
 
-| Table Indexing | Recommended use |
-|--------------|-------------|
-| Clustered Columnstore | Recommended for tables with greater than 100 million rows, offers the highest data compression with best overall query performance. |
-| Heap Tables | Smaller tables with less than 100 million rows, commonly used as a staging table prior to transformation. |
-| Clustered Index | Large lookup tables (> 100 million rows) where querying will only result in a single row returned. |
-| Clustered Index + non-clustered secondary index | Large tables (> 100 million rows) when single (or very few) records are being returned in queries. |
+| テーブル分散/パーティション タイプ| 推奨される用途
+|----------|----------
+| ハッシュ分散| 挿入/更新/削除の各操作の頻度が低い 2 GB を超えるテーブル。スター スキーマの大規模なファクト テーブルに適しています。
+| ラウンド ロビンによる分散| 既定の分散。データまたは使用方法に関する情報が少ない場合に使用します。この分散はステージング テーブルに使用します。
+| レプリケート テーブル| サイズが 1.5 GB 未満の小規模なルックアップ テーブル。
 
-| Table Distribution/Partition Type | Recommended use |
-|--------------------|-------------|
-| Hash distribution | Tables that are larger than 2 GBs with infrequent insert/update/delete operations, works well for large fact tables in a star schema. |
-| Round robin distribution | Default distribution, when little is known about the data or how it will be used. Use this distribution for staging tables. |
-| Replicated tables | Smaller lookup tables, less than 1.5 GB in size. |
+### タスク 1: 販売テーブルの作成
 
-### Task 1: Create the sale table
+Wide World Importers は、過去 5 年間に 30 億行を超える販売データを収集しています。この量のデータで消費するストレージは 2 GB を超えます。ラボで使用するのはこのデータの一部のみですが、設計するテーブルは運用環境を想定します。この演習の説明で大まかに示したガイダンスを使用して、**クラスター化列ストア** テーブルと、ほとんどのクエリで使用する **CustomerId** フィールドに基づく **ハッシュ** テーブル分散が必要なことを確認できます。さらにパフォーマンスを向上するために、テーブルをトランザクション日でパーティション分割して、日付または日付演算を含むクエリが確実に、良好な時間で結果を返せるようにします。
 
-Over the past 5 years, Wide World Importers has amassed over 3 billion rows of sales data. With this quantity of data, the storage consumed would be greater than 2 GB. While we will be using only a subset of this data for the lab, we will design the table for the production environment. Using the guidance outlined in the current Exercise description, we can ascertain that we will need a **Clustered Columnstore** table with a **Hash** table distribution based on the **CustomerId** field which will be used in most queries. For further performance gains, the table will be partitioned by transaction date to ensure queries that include dates or date arithmetic are returned in a favorable amount of time.
+1. 左側のメニューを展開して、**\[Develop\]** 項目を選択します。**\[Develop\]** ブレードで **\[+\]** を展開して、**\[SQL script\]** 項目を選択します。
+   
+   ![左側メニューが展開され、\[Develop\] 項目が選択されています。\[Develop\] ブレードで \[+\] が展開され、\[SQL script\] 項目が強調表示されています。](media/develop_newsqlscript_menu.png "[Develop] ハブ")
 
-1. Expand the left menu and select the **Develop** item. From the **Develop** blade, expand the **+** button and select the **SQL script** item.
+2. クエリ タブのツールバー メニューで、SQL プールの `SQLPool01` に接続していることを確認します。
+   
+   ![クエリ タブのツールバー メニューが表示され、\[Connect to\] が SQL プールに設定されています。](media/querytoolbar_connecttosqlpool.png "SQL プールへの接続")
 
-    ![The left menu is expanded with the Develop item selected. The Develop blade has the + button expanded with the SQL script item highlighted.](media/develop_newsqlscript_menu.png "The Develop Hub")
-
-2. In the query tab toolbar menu, ensure you connect to your SQL Pool, `SQLPool01`.
-
-    ![The query tab toolbar menu is displayed with the Connect to set to the SQL Pool.](media/querytoolbar_connecttosqlpool.png "Connecting to the SQL Pool")
-
-3. In the query window, copy and paste the following query to create the customer information table. Then select the **Run** button in the query tab toolbar.
-
-    ```sql
-      CREATE TABLE [wwi_mcw].[SaleSmall]
-      (
-        [TransactionId] [uniqueidentifier]  NOT NULL,
-        [CustomerId] [int]  NOT NULL,
-        [ProductId] [smallint]  NOT NULL,
-        [Quantity] [tinyint]  NOT NULL,
-        [Price] [decimal](9,2)  NOT NULL,
-        [TotalAmount] [decimal](9,2)  NOT NULL,
-        [TransactionDateId] [int]  NOT NULL,
-        [ProfitAmount] [decimal](9,2)  NOT NULL,
-        [Hour] [tinyint]  NOT NULL,
-        [Minute] [tinyint]  NOT NULL,
-        [StoreId] [smallint]  NOT NULL
-      )
-      WITH
-      (
-        DISTRIBUTION = HASH ( [CustomerId] ),
-        CLUSTERED COLUMNSTORE INDEX,
-        PARTITION
-        (
-          [TransactionDateId] RANGE RIGHT FOR VALUES (
-            20180101, 20180201, 20180301, 20180401, 20180501, 20180601, 20180701, 20180801, 20180901, 20181001, 20181101, 20181201,
-            20190101, 20190201, 20190301, 20190401, 20190501, 20190601, 20190701, 20190801, 20190901, 20191001, 20191101, 20191201)
-        )
-      );
-    ```
-
-4. From the top toolbar, select the **Discard all** button as we will not be saving this query. When prompted, choose to **Discard changes**.
-
-   ![The top toolbar menu is displayed with the Discard all button highlighted.](media/toptoolbar_discardall.png "Discarding all changes")
-  
-### Task 2: Populate the sale table
-
-The data that we will be retrieving to populate the sale table is currently stored as a series of parquet files in the **asadatalake{SUFFIX}** data lake (Azure Data Lake Storage Gen 2). This storage account has already been added as a linked service in Azure Synapse Analytics when the environment was provisioned. Linked Services are synonymous with connection strings in Azure Synapse Analytics. Azure Synapse Analytics linked services provides the ability to connect to nearly 100 different types of external services ranging from Azure Storage Accounts to Amazon S3 and more.
-
-1. Review the presence of the **asadatalake{SUFFIX}** linked service, by selecting **Manage** from the left menu, and selecting **Linked services** from the blade menu. Filter the linked services by the term **asadatalake** to find the **asadatalake{SUFFIX}** item. Further investigating this item will unveil that it makes a connection to the storage account using a storage account key.
-  
-   ![The Manage item is selected from the left menu. The Linked services menu item is selected on the blade. On the Linked services screen the term asadatalake{SUFFIX} is entered in the search box and the asadatalake{SUFFIX} Azure Blob Storage item is selected from the filtered results list.](media/manage_linkedservices_solliancepublicdata.png "Searching for a linked service")
-
-2. The sale data for each day is stored in a separate parquet file which is placed in storage following a known convention. In this lab, we are interested in populating the Sale table with only 2018 and 2019 data. Investigate the structure of the data by selecting the **Data** tab, and in the **Data** pane, select the **Linked** tab, and expanding the `asadatalake{SUFFIX}` Storage account.
-
-    > **Note**: The current folder structure for daily sales data is as follows: 
-    /wwi-02/sale-small/Year=`YYYY`/Quarter=`Q#`/Month=`M`/Day=`YYYYMMDD`, where `YYYY` is the 4 digit year (eg. 2019), `Q#` represents the quarter (eg. Q1), `M` represents the numerical month (eg. 1 for January) and finally `YYYYMMDD` represents a numeric date format representation (eg. `20190516` for May 16, 2019).
-    > A single parquet file is stored each day folder with the name **sale-small-YYYYMMDD-snappy.parquet** (replacing `YYYYMMDD` with the numeric date representation).
-
-    ```text
-    Sample path to the parquet folder for January 1, 2019:
-    /wwi-02/sale-small/Year=2019/Quarter=Q1/Month=1/Day=20190101/sale-small-20190101-snappy.parquet
-    ```
-
-3. Create a new Dataset by selecting **Data** from the left menu, expanding the **+** button on the Data blade and selecting **Dataset**. We will be creating a dataset that will point to the root folder of the sales data in the data lake.
-
-4. In the **New dataset** blade, with the **All** tab selected, choose the **Azure Data Lake Storage Gen2** item. Select **Continue**.
-
-    ![The New dataset blade is displayed with the All tab selected, the Azure Data Lake Storage Gen2 item is selected from the list.](media/new_dataset_type_selection.png "Defining a new Dataset")
-
-5. In the **Select format** screen, choose the **Parquet** item. Select **Continue**.
-
-    ![In the Select format screen, the Parquet item is highlighted.](media/dataset_format_parquet.png "Selecting Parquet")
-
-6. In the **Set properties** blade, populate the form as follows then select **OK**.
-  
-   | Field | Value |
-   |-------|-------|
-   | Name  | Enter **asamcw_sales_parquet**. |
-   | Linked service | **asadatalake{SUFFIX}** |
-   | File path - Container | Enter **wwi-02**. |  
-   | File path - Folder | Enter **sale-small**. |
-   | Import schema | **From connection/store** |
-
-    ![The Set properties blade is displayed with fields populated with the values from the preceding table.](media/dataset_salesparquet_propertiesform.png "Dataset form")
-
-7. Now we will need to define the destination dataset for our data. In this case we will be storing sale data in our SQL Pool. Create a new dataset by expanding the **+** button on the **Data** blade and selecting **Dataset**.
-
-8. On the **New dataset** blade, with the **Azure** tab selected, enter **synapse** as a search term and select the **Azure Synapse Analytics (formerly SQL DW)** item. Select **Continue**.
-  
-9. On the **Set properties** blade, set the field values to the following, then select **OK**.
-
-   | Field | Value |
-   |-------|-------|
-   | Name  | Enter **asamcw_sale_asa**. |
-   | Linked service | **SQLPool01** |
-   | Table name | **wwi_mcw.SaleSmall** |  
-   | Import schema | **From connection/store** |
-
-    ![The Set properties blade is populated with the values specified in the preceding table.](media/dataset_saleasaform.png "Dataset form")
-  
-10. In the top toolbar, select **Publish all** to publish the new dataset definitions. When prompted, select the **Publish** button to deploy the changes to the workspace.
-
-    ![The top toolbar is displayed with the Publish all button highlighted.](media/publishall_toolbarmenu.png "Publish changes")
-
-11. Since we want to filter on multiple sale year folders (Year=2018 and Year=2019) and copy only the 2018 and 2019 sales data, we will need to create a data flow to define the specific data that we wish to retrieve from our source dataset. To create a new data flow, start by selecting **Develop** from the left menu, and in the **Develop** blade, expand the **+** button and select **Data flow**.
-
-    ![From the left menu, the Develop item is selected. From the Develop blade the + button is expanded with the Data flow item highlighted.](media/develop_newdataflow_menu.png "Creating a data flow")
-
-12. In the side pane on the **General** tab, name the data flow by entering **ASAMCW_Exercise_2_2018_and_2019_Sales** in the **Name** field.
-
-    ![The General tab is displayed with ASAMCW_Exercise_2_2018_and_2019_Sales entered as the name of the data flow.](media/dataflow_generaltab_name.png "Naming the data flow")
-
-13. In the data flow designer window, select the **Add Source** box.
-
-    ![The Add source box is highlighted in the data flow designer window.](media/dataflow_addsourcebox.png "Adding a data flow source")
-
-14. With the added source selected in the designer, in the lower pane with the **Source settings** tab selected, set the following field values:
-  
-    | Field | Value |
-    |-------|-------|
-    | Output stream name  | Enter **salesdata**. |
-    | Source type | **Dataset** |
-    | Dataset | **asamcw_sales_parquet** |
-
-    ![The Source settings tab is selected displaying the Output stream name set to salesdata and the selected dataset being asamcw_sales_parquet.](media/dataflow_source_sourcesettings.png "Defining the source")
-
-15. Select the **Source options** tab, and add the following as **Wildcard paths**, this will ensure that we only pull data from the parquet files for the sales years of 2018 and 2019:
-
+3. 以下のクエリをコピーしてクエリ ウィンドウに貼り付けて、顧客情報テーブルを作成します。クエリ タブのツールバーで **\[Run\]** を選択します。
+   
+   ```sql
+     CREATE TABLE [wwi_mcw].[SaleSmall]
+     (
+       [TransactionId] [uniqueidentifier]  NOT NULL,
+       [CustomerId] [int]  NOT NULL,
+       [ProductId] [smallint]  NOT NULL,
+       [Quantity] [tinyint]  NOT NULL,
+       [Price] [decimal](9,2)  NOT NULL,
+       [TotalAmount] [decimal](9,2)  NOT NULL,
+       [TransactionDateId] [int]  NOT NULL,
+       [ProfitAmount] [decimal](9,2)  NOT NULL,
+       [Hour] [tinyint]  NOT NULL,
+       [Minute] [tinyint]  NOT NULL,
+       [StoreId] [smallint]  NOT NULL
+     )
+     WITH
+     (
+       DISTRIBUTION = HASH ( [CustomerId] ),
+       CLUSTERED COLUMNSTORE INDEX,
+       PARTITION
+       (
+         [TransactionDateId] RANGE RIGHT FOR VALUES (
+           20180101, 20180201, 20180301, 20180401, 20180501, 20180601, 20180701, 20180801, 20180901, 20181001, 20181101, 20181201,
+           20190101, 20190201, 20190301, 20190401, 20190501, 20190601, 20190701, 20190801, 20190901, 20191001, 20191101, 20191201)
+       )
+     );
+   ```
+
+4. このクエリは保存しないので、上部のツールバーから **\[Discard all\]** を選択します。確認を求められたら **\[Discard changes\]** を選択します。
+   
+   ![上部のツールバー メニューが表示され、\[Discard all\] が強調表示されています。](media/toptoolbar_discardall.png "すべての変更の破棄")
+
+### タスク 2: 販売テーブルへのデータの読み込み
+
+販売テーブルに読み込むために取得するデータは、現在はデータ レイク (Azure Data Lake Storage Gen 2) の **asadatalake{SUFFIX}** に一連の Parquet ファイルとして保存されています。このストレージ アカウントは、環境をプロビジョニングした際に、Azure Synapse Analytics で、リンクされたサービスとしてすでに追加されています。Azure Synapse Analytics では、リンクされたサービスは接続文字列と同義です。Azure Synapse Analytics のリンクされたサービスは、Azure Storage Accounts、Amazon S3 など、100 種類近い外部サービスに接続する機能を提供します。
+
+1. 左側メニューから **\[Manage\]** を選択し、ブレード メニューから **\[Linked services\]** を選択することによって、**asadatalake{SUFFIX}** というリンクされたサービスが存在することを確認します。リンクされたサービスを条件 **「asadatalake」** でフィルターして、**asadatalake{SUFFIX}** 項目を見つけます。この項目を詳細に調査すると、それがストレージ アカウント キーを使用してストレージ アカウントに接続していることがわかります。
+   
+   ![左側メニューで \[Manage\] 項目が選択されています。ブレードで \[Linked services\] メニュー項目が選択されています。\[Linked services\] 画面の検索ボックスに条件「asadatalake{SUFFIX}」が入力され、フィルター済み結果リストで \[asadatalake{SUFFIX} Azure Blob Storage\] 項目が選択されています。](media/manage_linkedservices_solliancepublicdata.png "リンクされたサービスの検索")
+
+2. 各日の販売データは、既知の名前付け規則に従ってストレージに配置されている個別の Parquet ファイルに保存されています。このラボでは、2018 年と 2019 年のデータだけを販売テーブルに読み込むことを考えています。**\[Data\]** タブを選択して、**\[Data\]** ペインで **\[Linked\]** タブを選択して、`asadatalake{SUFFIX}` ストレージ アカウントを展開することによって、データの構造を調査します。
+   
+   > **注**: 日次販売データの現在のフォルダー構造は、/wwi-02/sale-small/Year=`YYYY`/Quarter=`Q#`/Month=`M`/Day=`YYYYMMDD` となっています。ここで、`YYYY` は 4 桁の年 (例: 2019)、`Q#` は四半期 (例: Q1)、`M` は月を表す数値 (例: 1 月の場合は 1)、`YYYYMMDD` は数値の日付形式表現 (例: 2019 年 5 月 16 日の場合は `20190516`) をそれぞれ表しています。個別の Parquet ファイルは、日毎のフォルダーに、**sale-small-YYYYMMDD-snappy.parquet** (`YYYYMMDD` は数値の日付表現で置換) という名前で保存されています。
+   
+   ```text
+   Sample path to the parquet folder for January 1, 2019:
+   /wwi-02/sale-small/Year=2019/Quarter=Q1/Month=1/Day=20190101/sale-small-20190101-snappy.parquet
+   ```
+
+3. 左側メニューから **\[Data\]** を選択し、\[Data\] ブレードで **\[+\]** を展開して **\[Dataset\]** を選択することによって、新しいデータセットを作成します。作成するのは、データ レイクの販売データのルート フォルダーを参照するデータセットです。
+
+4. **\[New dataset\]** ブレードで **\[All\]** タブが選択されている状態で、**\[Azure Data Lake Storage Gen2\]** 項目を選択します。**\[Continue\]** を選択します。
+   
+   ![\[New dataset\] ブレードで \[All\] タブが選択され、リストで \[Azure Data Lake Storage Gen2\] 項目が選択されています。](media/new_dataset_type_selection.png "新しいデータセットの定義")
+
+5. **\[Select format\]** 画面で **\[Parquet\]** 項目を選択します。**\[Continue\]** を選択します。
+   
+   ![\[Select format\] 画面で \[Parquet\] 項目が強調表示されています。](media/dataset_format_parquet.png "Parquet の選択")
+
+6. **\[Set properties\]** ブレードでフォームに以下の情報を入力して、**\[OK\]** を選択します。
+   
+   | フィールド| 値
+   |----------|----------
+   | Name|  **「asamcw\_sales\_parquet」** と入力
+   | Linked service| **asadatalake{SUFFIX}**
+   | File path - コンテナー|  **「wwi-02」** と入力
+   | File path - フォルダー| **「sale-small」** と入力
+   | Import schema| **From connection/store**
+
+   ![\[Set properties\] ブレードが表示され、フィールドに前述の表の値が入力されています。](media/dataset_salesparquet_propertiesform.png "[Dataset] フォーム")
+
+7. 次に、データの保存先データセットを定義する必要があります。ここでは、販売データを SQL プールに保存します。**\[Data\]** ブレードで **\[+\]** を展開して **\[Dataset\]** を選択することによって、新しいデータセットを作成します。
+
+8. **\[New dataset\]** ブレードで **\[Azure\]** タブが選択されている状態で、検索条件として **「synapse」**と入力し、**\[Azure Synapse Analytics (formerly SQL DW)\]** 項目を選択します。**\[Continue\]** を選択します。
+
+9. **\[Set properties\]** ブレードでフィールドに以下の値を設定して、**\[OK\]** を選択します。
+   
+   | フィールド| 値
+   |----------|----------
+   | Name| **「asamcw\_sale\_asa」** と入力
+   | Linked service| **SQLPool01**
+   | Table name| **wwi\_mcw.SaleSmall**
+   | Import schema| **\[From connection/store\]**
+
+   ![\[Set properties\] ブレードに前述の表で指定されている値が入力されています。](media/dataset_saleasaform.png "[Dataset] フォーム")
+
+10. 上部のツールバーで **\[Publish all\]** を選択して、新しいデータセット定義を公開します。確認を求められたら **\[Publish\]** を選択して、変更をワークスペースに展開します。
+    
+    ![上部のツールバーが表示され、\[Publish all\] が強調表示されています。](media/publishall_toolbarmenu.png "変更の発行")
+
+11. 複数の販売年フォルダー (Year=2018 および Year=2019) をフィルターして、2018 年と 2019 年の販売データだけをコピーしたいので、ソース データセットから取得する特定のデータを定義するデータ フローを作成する必要があります。新しいデータ フローを作成するには、まず左側メニューから **\[Develop\]** を選択し、**\[Develop\]** ブレードで **\[+\]** を展開して **\[Data flow\]** を選択します。
+    
+    ![左側メニューから \[Develop\] 項目が選択されています。\[Develop\] ブレードで \[+\] が展開され、\[Data flow\] 項目が強調表示されています。](media/develop_newdataflow_menu.png "データ フローの作成")
+
+12. 作業ウィンドウの **\[General\]** タブで、**\[Name\]** フィールドに **「ASAMCW\_Exercise\_2\_2018\_and\_2019\_Sales」** と入力して、データ フローに名前を付けます。
+    
+    ![\[General\] タブが表示され、データ フローの名前として「ASAMCW\_Exercise\_2\_2018\_and\_2019\_Sales」と入力されています。](media/dataflow_generaltab_name.png "データ フローの命名")
+
+13. データ フロー デザイナー ウィンドウで **\[Add Source\]** ボックスを選択します。
+    
+    ![データ フロー デザイナー ウィンドウで \[Add source\] ボックスが強調表示されています。](media/dataflow_addsourcebox.png "データ フロー ソースの追加")
+
+14. デザイナーで追加したソースが選択されている状態で、下方のペインで **\[Source settings\]** タブを選択し、フィールドに以下の値を設定します。
+    
+    | フィールド| 値
+    |----------|----------
+    | Output stream name| 「**salesdata**」と入力
+    | Source type| **Dataset**
+    | Dataset| **asamcw\_sales\_parquet**
+
+    ![\[Source settings\] タブが選択され、\[Output stream name\] に \[salesdata\] が設定されているのと、\[Dataset\] で \[asamcw\_sales\_parquet\] が選択されているのが表示されています。](media/dataflow_source_sourcesettings.png "ソースの定義")
+
+15. **\[Source options\]** タブを選択して、**\[Wildcard paths\]** に以下の値を追加します。これにより、確実に販売年が 2018 年と 2019 年の Parquet ファイルのデータだけを取得できます。
+    
     1. sale-small/Year=2018/\*/\*/\*/\*
-
+    
     2. sale-small/Year=2019/\*/\*/\*/\*
+    
+    ![\[Source options\] タブが選択され、上記のワイルドカード パスが強調表示されています。](media/dataflow_source_sourceoptions.png "ソースでのワイルドカード パスの設定")
 
-      ![The Source options tab is selected with the above wildcard paths highlighted.](media/dataflow_source_sourceoptions.png "Setting wildcard paths on the source")
+16. **\[salesdata\]** ソースの右下の **\[+\]** を展開して、メニューの **\[Destination\]** セクションにある **\[Sink\]** 項目を選択します。
+    
+    ![データ フロー デザイナーのソース要素の右下にある \[+\] ボタンが強調表示されています。](media/dataflow_source_additem.png "別のデータ フロー アクティビティの追加")
 
-16. At the bottom right of the **salesdata** source, expand the **+** button and select the **Sink** item located in the **Destination** section of the menu.
+17. デザイナーで新しく追加した **\[Sink\]** 要素を選択し、下方のペインで **\[Sink\]** タブが選択されている状態で以下のようにフォームに値を入力します。
+    
+    | フィールド| 値
+    |----------|----------
+    | Output stream name| **「sale」** と入力
+    | Incoming stream| **salesdata**
+    | Sink type| **データセット**
+    | Dataset| **asamcw\_sale\_asa**
 
-      ![The + button is highlighted toward the bottom right of the source element on the data flow designer.](media/dataflow_source_additem.png "Adding another data flow activity")
+    ![\[Sink\] タブが表示され、フォームに前述の表の値が入力されています。](media/dataflow_sink_sinktab.png "データ フロー シンクの定義")
 
-17. In the designer, select the newly added **Sink** element and in the bottom pane with the **Sink** tab selected, fill the form as follows:
+18. **\[Mapping\]** タブを選択して、**\[Auto mapping\]** 設定をオフの位置に切り替えます。以下の入力列を選択する必要があります。
+    
+    | 入力列| 出力列
+    |----------|----------
+    | Quantity| Quantity
+    | TransactionDate| TransactionDateId
+    | Hour| Hour
+    | Minute| Minute
 
-    | Field | Value |
-    |-------|-------|
-    | Output stream name  | Enter **sale**. |
-    | Incoming stream | **salesdata** |
-    | Sink type | **Dataset** |
-    | Dataset | **asamcw_sale_asa** |
+    ![\[Mapping\] タブが選択され、\[Auto mapping\] トグルがオフの位置に設定されています。\[+ Add mapping\] が、前述の表で指定されているマッピング エントリとともに強調表示されています。](media/dataflow_sink_mapping.png "列のマッピング")
 
-    ![The Sink tab is displayed with the form populated with the values from the preceding table.](media/dataflow_sink_sinktab.png "Defining the data flow sink")
+19. 上部のツールバーで **\[Publish all\]** を選択して、新しいデータセット定義を公開します。確認を求められたら **\[Publish\]** を選択して、新しいデータ フローをワークスペースに展開します。
+    
+    ![上部のツールバーが表示され、\[Publish all\] が強調表示されています。](media/publishall_toolbarmenu.png "変更の公開")
 
-18. Select the **Mapping** tab and toggle the **Auto mapping** setting to the off position. You will need to select Input columns for the following:
-  
-    | Input column | Output column |
-    |-------|-------|
-    | Quantity | Quantity |
-    | TransactionDate  | TransactionDateId |
-    | Hour | Hour |
-    | Minute | Minute |
+20. これで、このデータ フローをパイプラインでアクティビティとして使用できるようになりました。左側メニューから **\[Orchestrate\]** を選択し、**\[Orchestrate\]** ブレードで **\[+\]** を展開して **\[Pipeline\]** を選択することによって、新しいパイプラインを作成します。
 
-    ![The Mapping tab is selected with the Auto mapping toggle set to the off position. The + Add mapping button is highlighted along with the mapping entries specified in the preceding table.](media/dataflow_sink_mapping.png "Mapping columns")
+21. **\[Properties\]** ブレードで、パイプラインの名前として **「ASAMCW - Exercise 2 - Copy Sale Data」** と入力します。
 
-19. In the top toolbar, select **Publish all** to publish the new dataset definitions. When prompted, select the **Publish** button to deploy the new data flow to the workspace.
+22. **\[Activities\]** メニューで **\[Move \& transform\]** セクションを展開して、**\[Data flow\]** のインスタンスをパイプラインのデザイン サーフェイスにドラッグします。
+    
+    ![パイプラインの \[Activities\] メニューが表示され、\[Move and transform\] セクションが展開されています。ドラッグ操作を示す矢印によって、\[Data flow\] アクティビティをパイプラインのデザイン サーフェイスに追加する操作が示されています。](media/pipeline_sales_dataflowactivitymenu.png "データ フロー アクティビティのドラッグ アンド ドロップ")
 
-    ![The top toolbar is displayed with the Publish all button highlighted.](media/publishall_toolbarmenu.png "Publishing changes")
+23. **\[Adding data flow\]** ブレードで、**\[Use existing data flow\]** が選択されていることを確認します。選択リストから **\[ASAMCW\_Exercise\_2\_2018\_and\_2019\_Sales\]** を選択して **\[OK\]** を選択します。
+    
+    ![\[Adding data flow\] ブレードが表示され、適切な値が入力されています。](media/pipeline_dataflowactivity_addingblade.png "データ フロー アクティビティの構成")
 
-20. We can now use this data flow as an activity in a pipeline. Create a new pipeline by selecting **Orchestrate** from the left menu, and in the **Orchestrate** blade, expand the **+** button and select **Pipeline**.
+24. **\[Settings\]** タブを選択して、フォームのフィールドに以下の値を設定します。
+    
+    | フィールド| 値
+    |----------|----------
+    | Data flow| **ASAMCW\_Exercise\_2\_2018\_and\_2019\_Sales**
+    | Staging linked service| `asadatalake{SUFFIX}`
+    | Staging storage folder - コンテナー| **「staging」** と入力
+    | Staging storage folder - フォルダー| **「mcwsales」** と入力
 
-21. On the **Properties** blade, Enter **ASAMCW - Exercise 2 - Copy Sale Data** as the Name of the pipeline.
+    ![データ フロー アクティビティの \[Settings\] タブが表示され、前述の表で指定されているフィールドが強調表示されています。](media/pipeline_sales_dataflowsettings.png "データ フロー アクティビティの設定")
 
-22. From the **Activities** menu, expand the **Move & transform** section and drag an instance of **Data flow** to the design surface of the pipeline.
-  
-    ![The Activities menu of the pipeline is displayed with the Move and transform section expanded. An arrow indicating a drag operation shows adding a Data flow activity to the design surface of the pipeline.](media/pipeline_sales_dataflowactivitymenu.png "Drag and drop of the data flow activity")
+25. 上部のツールバーで **\[Publish all\]** を選択して、新しいデータセット定義を公開します。確認を求められたら **\[Publish\]** を選択して、変更をコミットします。
+    
+    ![上部のツールバーが表示され、\[Publish all\] が強調表示されています。](media/publishall_toolbarmenu.png "変更の公開")
 
-23. In the **Adding data flow** blade, ensure **Use existing data flow** is selected, and choose **ASAMCW_Exercise_2_2018_and_2019_Sales** from the select list and select **Finish**.
+26. 公開されたら、パイプライン デザイナーのツールバーで **\[Add trigger\]** 項目を展開して、**\[Trigger now\]** を選択します。**\[Pipeline run\]** ブレードで **\[OK\]** を選択して、最後に公開した構成で先に進みます。パイプラインが動作していることおよびパイプラインの完了時を示すトースト通知ウィンドウが表示されます。
 
-    ![The Adding data flow blade is displayed populated with the appropriate values.](media/pipeline_dataflowactivity_addingblade.png "Configuring the data flow activity")
+27. \[Orchestrate\] ブレードで **\[ASAMCW - Exercise 2 - Copy Sale Data\]** パイプラインを特定して、パイプラインの実行のステータスを表示します。アクション メニューを展開して、**\[Monitor\]** 項目を選択します。
+    
+    ![\[Orchestrate\] ブレードで、\[ASAMCW - Exercise 2 - Copy Sale Data\] パイプラインのアクション メニューが表示され、\[Monitor\] 項目が選択されています。](media/orchestrate_pipeline_monitor_copysaledata.png "パイプラインの監視")
 
-24. Select the **Settings** tab and set the form fields to the following values:
+28. **\[Pipeline runs\]** テーブルで、作成したパイプラインの実行が進行中と表示されます。このパイプライン操作は、完了するのに約 45 分かかります。最新の進行状況を確認するには、ときどきこのテーブルを最新の情報に更新する必要があります。パイプライン操作が完了したら、パイプラインの実行の \[Status\] が **\[Succeeded\]** と表示されます。このパイプラインを実行している間、遠慮なくこの演習の次のタスクに進んでください。
+    
+    ![\[Pipeline runs\] 画面で、正常終了したパイプラインの実行がテーブルで強調表示されています。](media/pipeline_run_sales_successful.png "正常終了したパイプラインのインジケーター")
 
-    | Field | Value |
-    |-------|-------|
-    | Data flow  | **ASAMCW_Exercise_2_2018_and_2019_Sales** |
-    | Staging linked service | `asadatalake{SUFFIX}` |
-    | Staging storage folder - Container | Enter **staging**. |
-    | Staging storage folder - Folder | Enter **mcwsales**. |
+29. 新しいクエリを作成することによって、テーブルにデータが読み込まれていることを検証します。左側メニューから **\[Develop\]** 項目を選択し、**\[Develop\]** ブレードで **\[+\]** を展開して **\[SQL script\]** を選択します。クエリ ウィンドウで、SQL プール データベース (`SQLPool01`) に接続していることを確認して、以下のクエリを貼り付けて実行します。完了したら、上部のツールバーから **\[Discard all\]** を選択します。
 
-    ![The data flow activity Settings tab is displayed with the fields specified in the preceding table highlighted.](media/pipeline_sales_dataflowsettings.png "Data flow activity settings")
+```sql
+  select count(TransactionId) from wwi_mcw.SaleSmall;
+```
 
-25. In the top toolbar, select **Publish all** to publish the new dataset definitions. When prompted, select the **Publish** button to commit the changes.
+### タスク 3: 顧客情報テーブルの作成
 
-    ![The top toolbar is displayed with the Publish all button highlighted.](media/publishall_toolbarmenu.png "Publishing changes")
+Wide World Importers は、過去 5 年間に 30 億行を超える販売データを収集しています。このデータ量から、顧客情報ルックアップ テーブルは 1 億行を超えることが予想されますが、使用するストレージは 1.5 GB 未満です。ラボで使用するのはこのデータの一部のみですが、設計するテーブルは運用環境を想定します。この演習の説明で大まかに説明したガイダンスを使用して、**クラスター化列ストア** テーブルと、顧客データを保持する**レプリケート** テーブル分散が必要なことを確認できます。
 
-26. Once published, expand the **Add trigger** item on the pipeline designer toolbar, and select **Trigger now**. In the **Pipeline run** blade, select **OK** to proceed with the latest published configuration. You will see notification toast windows indicating the pipeline is running and when it has completed.
+1. 左側のメニューを展開して、**\[Develop\]** 項目を選択します。**\[Develop\]** ブレードで **\[+\]** を展開して、**\[SQL script\]** 項目を選択します。
+   
+   ![左側メニューが展開され、\[Develop\] 項目が選択されています。\[Develop\] ブレードで \[+\] が展開され、\[SQL script\] 項目が強調表示されています。](media/develop_newsqlscript_menu.png "SQL スクリプトの追加")
 
-27. View the status of the pipeline run by locating the **ASAMCW - Exercise 2 - Copy Sale Data** pipeline in the Orchestrate blade. Expand the actions menu, and select the **Monitor** item.
+2. クエリ タブのツールバー メニューで、SQL プールの `SQLPool01` に接続していることを確認します。
+   
+   ![クエリ タブのツールバー メニューが表示され、\[Connect to\] が SQL プールに設定されています。](media/querytoolbar_connecttosqlpool.png "SQL プールへの接続")
 
-    ![In the Orchestrate blade, the Action menu is displayed with the Monitor item selected on the ASAMCW - Exercise 2 - Copy Sale Data pipeline.](media/orchestrate_pipeline_monitor_copysaledata.png "Monitoring a pipeline")
-  
-28. You should see a run of the pipeline we created in the **Pipeline runs** table showing as in progress. It will take approximately 45 minutes for this pipeline operation to complete. You will need to refresh this table from time to time to see updated progress. Once it has completed. You should see the pipeline run displayed with a Status of **Succeeded**. _Feel free to proceed to the following tasks in this exercise while this pipeline runs_.
-  
-    ![On the pipeline runs screen, a successful pipeline run is highlighted in the table.](media/pipeline_run_sales_successful.png "Successful pipeline indicator")
-
-29. Verify the table has populated by creating a new query. Select the **Develop** item from the left menu, and in the **Develop** blade, expand the **+** button, and select **SQL script**. In the query window, be sure to connect to the SQL Pool database (`SQLPool01`), then paste and run the following query. When complete, select the **Discard all** button from the top toolbar.
-
-  ```sql
-    select count(TransactionId) from wwi_mcw.SaleSmall;
-  ```
-
-### Task 3: Create the customer information table
-
-Over the past 5 years, Wide World Importers has amassed over 3 billion rows of sales data. With this quantity of data, the customer information lookup table is estimated to have over 100 million rows but will consume less than 1.5 GB of storage. While we will be using only a subset of this data for the lab, we will design the table for the production environment. Using the guidance outlined in the Exercising description, we can ascertain that we will need a **Clustered Columnstore** table with a **Replicated** table distribution to hold customer data.
-
-1. Expand the left menu and select the **Develop** item. From the **Develop** blade, expand the **+** button and select the **SQL script** item.
-
-    ![The left menu is expanded with the Develop item selected. The Develop blade has the + button expanded with the SQL script item highlighted.](media/develop_newsqlscript_menu.png "Adding a SQL script")
-
-2. In the query tab toolbar menu, ensure you connect to your SQL Pool, `SQLPool01`.
-
-    ![The query tab toolbar menu is displayed with the Connect to set to the SQL Pool.](media/querytoolbar_connecttosqlpool.png "Connecting to the SQL Pool")
-
-3. In the query window, copy and paste the following query to create the customer information table. Then select the **Run** button in the query tab toolbar.
-  
+3. 以下のクエリをコピーしてクエリ ウィンドウに貼り付けて、顧客情報テーブルを作成します。クエリ タブのツールバーで **\[Run\]** を選択します。
+   
    ```sql
     CREATE TABLE [wwi_mcw].[CustomerInfo]
     (
@@ -396,245 +391,246 @@ Over the past 5 years, Wide World Importers has amassed over 3 billion rows of s
     )
     GO
    ```
+   
+   ![クエリ タブのツールバーが表示され、\[Run\] が選択されています。](media/querytoolbar_run.png "クエリの実行")
 
-   ![The query tab toolbar is displayed with the Run button selected.](media/querytoolbar_run.png "Running the query")
+4. このクエリは保存しないので、上部のツールバーから **\[Discard all\]** を選択します。確認を求められたら **\[Discard changes\]** を選択します。
+   
+   ![上部のツールバー メニューが表示され、\[Discard all\] が強調表示されています。](media/toptoolbar_discardall.png "すべての変更の破棄")
 
-4. From the top toolbar, select the **Discard all** button as we will not be saving this query. When prompted, choose to **Discard changes**.
+### タスク 4: 顧客情報テーブルへのデータの読み込み
 
-   ![The top toolbar menu is displayed with the Discard all button highlighted.](media/toptoolbar_discardall.png "Discard all changes")
+1. 顧客情報テーブルに読み込むために取得するデータは、現在はデータ レイク (Azure Data Lake Storage Gen 2 アカウント) に CSV 形式で保存されています。このデータを所有するストレージ アカウントは、環境をプロビジョニングした際に、Azure Synapse Analytics でリンクされたサービスとしてすでに追加されています。
 
-### Task 4: Populate the customer information table
+2. 前のステップと同様に、データの保存先も、リンクされたサービスとして追加されています。ここでは、データの保存先は SQL プールの `SQLPool01` です。前のステップを繰り返しますが、今回は条件 **「sqlpool」** でフィルターして、リンクされたサービスの存在を確認します。
 
-1. The data that we will be retrieving to populate the customer information table is currently stored in CSV format in the data lake (Azure Data Lake Storage Gen2 account). The storage account that possesses this data has already been added as a linked service in Azure Synapse Analytics when the environment was provisioned. 
+3. 次に実行する必要があるのは、コピーする情報を表すソース データセットを定義することです。このデータセットは、顧客情報を含む CSV ファイルを参照します。左側メニューから **\[Data\]** を選択します。**\[Data\]** ブレードで **\[+\]** を展開して、**\[Dataset\]** を選択します。
+   
+   ![左側メニューで \[Data\] 項目が選択されています。\[Data\] ブレードで \[+\] が展開され、\[Dataset\] 項目が強調表示されています。](media/data_newdatasetmenu.png "新しいデータセットの作成")
 
-2. Similar to the previous step, the destination for our data has also been added as a linked service. In this case, the destination for our data is our SQL Pool, `SQLPool01`. Repeat the previous step, this time filtering with the term **sqlpool** to verify the existence of the linked service.
+4. **\[New dataset\]** ブレードで **\[Azure\]** タブが選択されている状態で、**\[Azure Data Lake Storage Gen2\]** 項目を選択します。**\[Continue\]** を選択します。
+   
+   ![\[New dataset\] ブレードで \[All\] タブが選択され、\[Azure Data Lake Gen2\] 項目が強調表示されています。](media/newdataset_azuredatalakegen2.png "データセット タイプとして [Azure Data Lake Gen2] を選択")
 
-3. The next thing that we will need to do is define a source dataset that will represent the information that we are copying over. This dataset will reference the CSV file containing customer information. From the left menu, select **Data**. From the **Data** blade, expand the **+** button and select **Dataset**.
+5. **\[Select format\]** ブレードで **\[CSV Delimited Text\]** を選択します。**\[Continue\]** を選択します。
+   
+   ![\[Select format\] ブレードで \[CSV Delimited Text\] 項目が強調表示されています。](media/newdataset_selectfileformat_csv.png "データセット形式を CSV として定義")
 
-    ![The Data item is selected from the left menu. On the Data blade, the + button is expanded with the Dataset item highlighted.](media/data_newdatasetmenu.png "Creating a new Dataset")
+6. **\[Set properties\]** ブレードでフィールドに以下の値を設定して、**\[OK\]** を選択します。
+   
+   | フィールド| 値
+   |----------|----------
+   | Name| **「asamcw\_customerinfo\_csv」** と入力
+   | Linked service| **asadatalake{SUFFIX}**
+   | File Path - コンテナー| **「wwi-02」** と入力
+   | File Path - ディレクトリ| 「**customer-info**」と入力
+   | File Path - ファイル| **「customerinfo.csv」** と入力
+   | First row as header| オン
+   | Import schema| **\[From connection/store\]** を選択
 
-4. On the **New dataset** blade, with the **Azure** tab selected, choose the **Azure Data Lake Gen2** item. Select **Continue**.  
-  
-    ![On the New dataset blade, the All tab is selected and the Azure Data Lake Gen2 item is highlighted.](media/newdataset_azuredatalakegen2.png "Selecting Azure Data Lake Gen2 as the dataset type")
+   ![\[Set properties\] フォームが表示され、前述の表で指定されている値が入力されています。](media/customerinfodatasetpropertiesform.png "データセットの構成")
 
-5. On the **Select format** blade, select **CSV Delimited Text**. Select **Continue**.
+7. 次に、データの保存先データセットを定義する必要があります。ここでは、顧客情報データを SQL プールに保存します。**ステップ 3** と同様に、**\[Data\]** ブレードで **\[+\]** を展開します。
 
-    ![On the Select format blade the CSV Delimited Text item is highlighted.](media/newdataset_selectfileformat_csv.png "Defining the dataset format to be CSV")
+8. **\[New dataset\]** ブレードで **\[Azure\]** タブが選択されている状態で、検索条件として **「synapse」** と入力し、**\[Azure Synapse Analytics (formerly SQL DW)\]** 項目を選択します。**\[Continue\]** を選択します。
+   
+   ![\[New dataset\] ブレードで検索条件として「synapse」が入力され、フィルター結果から \[Azure Synapse Analytics (formerly SQL DW)\] が選択されています。](media/newdataset_synapseitem.png "データセット タイプとして [Azure Synapse Analytics] を選択")
 
-6. On the **Set properties** blade, set the fields to the following values, then select **OK**.
+9. **\[Set properties\]** ブレードでフィールドに以下の値を設定して、**\[OK\]** を選択します。
+   
+   | フィールド| 値
+   |----------|----------
+   | Name| **「asamcw\_customerinfo\_asa」** と入力
+   | Linked service| **SQLPool01**
+   | Table name| **wwi\_mcw.CustomerInfo**
+   | Import schema| **\[From connection/store\]**
 
-   | Field | Value |
-   |-------|-------|
-   | Name  | Enter **asamcw_customerinfo_csv**. |
-   | Linked service | **asadatalake{SUFFIX}**|
-   | File Path - Container | Enter **wwi-02**. |
-   | File Path - Directory | Enter **customer-info**. |
-   | File Path - File | Enter **customerinfo.csv**. |
-   | First row as header | Checked |
-   | Import schema | Select **From connection/store**. |
+   ![\[Set properties\] ブレードに前述の表で指定されている値が入力されています。](media/dataset_customerinfoasaform.png "データセットの [Configuration] フォーム")
 
-    ![The Set properties form is displayed with the values specified in the previous table.](media/customerinfodatasetpropertiesform.png "Configuring the dataset")
+10. 上部のツールバーで **\[Publish all\]** を選択して、新しいデータセット定義を公開します。確認を求められたら **\[Publish\]** を選択して、変更をコミットします。
+    
+    ![上部のツールバーが表示され、\[Publish all\] が強調表示されています。](media/publishall_toolbarmenu.png "変更の公開")
 
-7. Now we will need to define the destination dataset for our data. In this case we will be storing customer information data in our SQL Pool. On the **Data** blade, expand the **+** button just as you did in **Step 3**.
+11. 次に、データを CustomerInfo テーブルに読み込むパイプラインを定義します。左側メニューから **\[Orchestrate\]** を選択します。\[Orchestrate\] ブレードで **\[+\]** を展開して、**\[Pipeline\]** 項目を選択します。
+    
+    ![左側メニューで \[Orchestrate\] メニュー項目が選択されています。\[Orchestrate\] ブレードで \[+\] が展開され、\[Pipeline\] 項目が強調表示されています。](media/orchestrate_newpipelinemenu.png "[Orchestrate] ハブ")
 
-8. On the **New dataset** blade, with the **Azure** tab selected, enter **synapse** as a search term and select the **Azure Synapse Analytics (formerly SQL DW)** item. Select **Continue**.
+12. **\[Properties\]** ブレードで、**\[Name\]** フィールドに **「ASAMCW - Exercise 2 - Copy Customer Information」** と入力します。
+    
+    ![\[General\] タブが表示され、\[Name\] フィールドに前述の値が入力されています。](media/pipeline_customerinfo_generaltab.png "パイプラインの命名")
 
-    ![On the New dataset blade, synapse is entered as the search term and Azure Synapse Analytics (formerly SQL DW) is selected from the filtered results.](media/newdataset_synapseitem.png "Selecting Azure Synapse Analytics as the dataset type")
-  
-9. On the **Set properties** blade, set the field values to the following, then select **OK**.
+13. **\[Activities\]** メニューで **\[Move \& transform\]** 項目を展開します。**\[Copy data\]** アクティビティのインスタンスをパイプラインのデザイン サーフェイスにドラッグします。
+    
+    ![\[Activities\] メニューで \[Move and transform\] セクションが展開されています。矢印が、\[Copy data\] アクティビティのインスタンスをパイプラインのデザイン サーフェイスにドラッグすることを示しています。](media/pipeline_addcopydataactivity.png "パイプラインに対するコピー アクティビティの追加")
 
-   | Field | Value |
-   |-------|-------|
-   | Name  | Enter **asamcw_customerinfo_asa**. |
-   | Linked service | **SQLPool01** |
-   | Table name | **wwi_mcw.CustomerInfo** |  
-   | Import schema | **From connection/store** |
+14. パイプライン デザイン サーフェイスで **\[Copy data\]** アクティビティを選択します。下側の **\[General\]** タブで、**\[Name\]** フィールドに **「Copy Customer Information Data」** と入力します。
+    
+    ![\[General\] が選択され、\[Name\] フィールドが「Copy Customer Information Data」に設定されています。](media/pipeline_copycustomerinformation_general.png "データのコピー アクティビティの命名")
 
-    ![The Set properties blade is populated with the values specified in the preceding table.](media/dataset_customerinfoasaform.png "Configuration form for the dataset")
+15. 下側で **\[Source\]** タブを選択します。**\[Source dataset\]** フィールドで **\[asamcw\_customerinfo\_csv\]** を選択します。
+    
+    ![\[Source\] タブが選択され、\[Source dataset\] フィールドが \[asamcw\_customerinfo\_csv\] に設定されています。](media/pipeline_copycustomerinformation_source.png "ソース データセットの選択")
 
-10. In the top toolbar, select **Publish all** to publish the new dataset definitions. When prompted, select the **Publish** button to commit the changes.
-
-    ![The top toolbar is displayed with the Publish all button highlighted.](media/publishall_toolbarmenu.png "Publishing changes")
-
-11. Next, we will define a pipeline to populate data into the CustomerInfo table. From the left menu, select **Orchestrate**. From the Orchestrate blade, select the **+** button and select the **Pipeline** item.
-
-    ![The Orchestrate menu item is selected from the left menu. On the Orchestrate blade, the + button is expanded with the Pipeline item highlighted.](media/orchestrate_newpipelinemenu.png "The Orchestrate Hub")
-
-12. In the **Properties** blade, enter **ASAMCW - Exercise 2 - Copy Customer Information** in the **Name** field.
-
-    ![The General tab is shown with the name field populated as described above.](media/pipeline_customerinfo_generaltab.png "Naming the pipeline")
-
-13. In the **Activities** menu, expand the **Move & transform** item. Drag an instance of the **Copy data** activity to the design surface of the pipeline.
-
-    ![In the Activities menu, the Move and transform section is expanded. An arrow denotes an instance of the Copy data activity being dragged over to the design surface of the pipeline.](media/pipeline_addcopydataactivity.png "Adding a copy activity to the pipeline")
-
-14. Select the **Copy data** activity on the pipeline design surface. In the bottom pane, on the **General** tab, enter **Copy Customer Information Data** in the **Name** field.
-
-    ![The General tab is selected with the Name field set to Copy Customer Information Data.](media/pipeline_copycustomerinformation_general.png "Naming the Copy data activity")
-
-15. Select the **Source** tab in the bottom pane. In the **Source dataset** field, select **asamcw_customerinfo_csv**.
-
-    ![The Source tab is selected with the Source dataset field set to asamcw_customerinfo_csv.](media/pipeline_copycustomerinformation_source.png "Selecting a source dataset")
-  
-16. Select the **Sink** tab in the bottom pane. In the **Sink dataset** field, select **asamcw_customerinfo_asa**, for the **Copy method** field, select **Bulk insert**, and for **Pre-copy script** enter:
-
+16. 下側で **\[Sink\]** タブを選択します。**\[Sink dataset\]** フィールドで **\[asamcw\_customerinfo\_asa\]** を選択し、**\[Copy method\]** フィールドで **\[Bulk insert\]** を選択し、**\[Pre-copy script\]** に以下のテキストを入力します。
+    
     ```sql
       truncate table wwi_mcw.CustomerInfo
     ```
+    
+    ![\[Sink\] タブが選択され、\[Sink dataset\] フィールドが \[asamcw\_customerinfo\_asa\] に設定され、\[Copy method\] が \[Bulk insert\] に設定され、\[Pre-copy script\] フィールドが前述のクエリに設定されています。](media/pipeline_copycustomerinformation_sink.png "シンク データセットの選択")
 
-    ![The Sink tab is selected with the Sink dataset field set to asamcw_customerinfo_asa, the Copy method set to Bulk insert, and the Pre-copy script field set to the previous query.](media/pipeline_copycustomerinformation_sink.png "Selecting the sink dataset")
-  
-17. Select the **Mapping** tab in the bottom pane. Select the **Import schemas** button. You will notice that Azure Synapse Analytics automated the mapping for us since the field names and types match.
+17. 下側で **\[Mapping\]** タブを選択します。**\[Import schemas\]** を選択します。フィールドの名前と型が一致しているので、Azure Synapse Analytics がマッピングを自動実行したことがわかります。
+    
+    ![下側で \[Mapping\] タブが選択されています。ソースから保存先へのフィールド マッピングが表示されています。](media/pipeline_copycustomerinformation_mapping.png "ソースから保存先へのフィールド マッピング")
 
-    ![The Mapping tab is selected in the bottom pane. The source to destination field mapping is shown.](media/pipeline_copycustomerinformation_mapping.png "Source to destination field mapping")
+18. 上部のツールバーで **\[Publish all\]** を選択して、新しいデータセット定義を公開します。確認を求められたら **\[Publish\]** を選択して、変更をコミットします。
+    
+    ![上部のツールバーが表示され、\[Publish all\] が強調表示されています。](media/publishall_toolbarmenu.png "変更の公開")
 
-18. In the top toolbar, select **Publish all** to publish the new dataset definitions. When prompted, select the **Publish** button to commit the changes.
+19. 公開されたら、パイプライン デザイナーのツールバーで **\[Add trigger\]** 項目を展開して、**\[Trigger now\]** を選択します。**\[Pipeline run\]** ブレードで **\[OK\]** を選択して、最後に公開した構成で先に進みます。パイプラインが動作していることおよびパイプラインの完了時を示すトースト通知ウィンドウが表示されます。
 
-    ![The top toolbar is displayed with the Publish all button highlighted.](media/publishall_toolbarmenu.png "Publishing changes")
+20. \[Orchestrate\] ブレードで **\[ASAMCW - Exercise 2 - Copy Customer Information\]** パイプラインを特定して、完了した実行のステータスを表示します。アクション メニューを展開して、**\[Monitor\]** 項目を選択します。
+    
+    ![\[Orchestrate\] ブレードで、\[ASAMCW - Exercise 2 - Copy Customer Information\] パイプラインのアクション メニューが表示され、\[Monitor\] 項目が選択されています。](media/pipeline_copycustomerinformation_monitormenu.png "パイプラインの監視")
 
-19. Once published, expand the **Add trigger** item on the pipeline designer toolbar, and select **Trigger now**. In the **Pipeline run** blade, select **OK** to proceed with the latest published configuration. You will see notification toast windows indicating the pipeline is running and when it has completed.
+21. **\[Pipeline runs\]** テーブルで、作成したパイプラインの実行が正常終了したことが表示されます。
+    
+    ![\[Pipeline runs\] 画面で、正常終了したパイプラインの実行がテーブルで強調表示されています。](media/pipeline_run_customerinfo_successful.png "正常終了したパイプライン実行のインジケーター")
 
-20. View the status of the completed run by locating the **ASAMCW - Exercise 2 - Copy Customer Information** pipeline in the Orchestrate blade. Expand the actions menu, and select the **Monitor** item.
+22. 新しいクエリを作成することによって、テーブルにデータが読み込まれていることを検証します。**タスク 1** と同様に、左側メニューから **\[Develop\]** 項目を選択し、**\[Develop\]** ブレードで **\[+\]** を展開して **\[SQL script\]** を選択します。クエリ ウィンドウで、SQL プール データベース (`SQLPool01`) に接続していることを確認して、以下のクエリを貼り付けて実行します。完了したら、上部のツールバーから **\[Discard all\]** を選択します。
 
-    ![In the Orchestrate blade, the Action menu is displayed with the Monitor item selected on the ASAMCW - Exercise 2 - Copy Customer Information pipeline.](media/pipeline_copycustomerinformation_monitormenu.png "Monitoring the pipeline")
-  
-21. You should see a successful run of the pipeline we created in the **Pipeline runs** table.
-  
-    ![On the pipeline runs screen, a successful pipeline run is highlighted in the table.](media/pipeline_run_customerinfo_successful.png "Successful pipeline run indicator")
+```sql
+  select * from wwi_mcw.CustomerInfo;
+```
 
-22. Verify the table has populated by creating a new query. Remember from **Task 1**, select the **Develop** item from the left menu, and in the **Develop** blade, expand the **+** button, and select **SQL script**. In the query window, be sure to connect to the SQL Pool database (`SQLPool01`), then paste and run the following query. When complete, select the **Discard all** button from the top toolbar.
+### タスク 5: キャンペーン分析テーブルの作成
 
-  ```sql
-    select * from wwi_mcw.CustomerInfo;
-  ```
-  
-### Task 5: Create the campaign analytics table
+キャンペーン分析テーブルに対するクエリは、主にダッシュボードと KPI で実行されます。このテーブルを設計するにあたってパフォーマンスは重要な要素です。したがって、**クラスター化列ストア** テーブルと、極めて均等にデータを分散する **Region** フィールドに基づく**ハッシュ** テーブル分散が必要なことを確認できます。
 
-The campaign analytics table will be queried primarily for dashboard and KPI purposes. Performance is a large factor in the design of this table, and as such  we can ascertain that we will need a **Clustered Columnstore** table with a **Hash** table distribution based on the **Region** field which will fairly evenly distribute the data.
+1. 左側のメニューを展開して、**\[Develop\]** 項目を選択します。**\[Develop\]** ブレードで **\[+\]** を展開して、**\[SQL script\]** 項目を選択します。
+   
+   ![左側メニューが展開され、\[Develop\] 項目が選択されています。\[Develop\] ブレードで \[+\] が展開され、\[SQL script\] 項目が強調表示されています。](media/develop_newsqlscript_menu.png "新しい SQL スクリプトの作成")
 
-1. Expand the left menu and select the **Develop** item. From the **Develop** blade, expand the **+** button and select the **SQL script** item.
+2. クエリ タブのツールバー メニューで、SQL プールの `SQLPool01` に接続していることを確認します。
+   
+   ![クエリ タブのツールバー メニューが表示され、\[Connect to\] が SQL プールに設定されています。](media/querytoolbar_connecttosqlpool.png "SQL プールへの接続")
 
-    ![The left menu is expanded with the Develop item selected. The Develop blade has the + button expanded with the SQL script item highlighted.](media/develop_newsqlscript_menu.png "Creating a new SQL script")
+3. 以下のクエリをコピーしてクエリ ウィンドウに貼り付けて、キャンペーン分析テーブルを作成します。クエリ タブのツールバーで **\[Run\]** を選択します。
+   
+   ```sql
+   CREATE TABLE [wwi_mcw].[CampaignAnalytics]
+   (
+       [Region] [nvarchar](50)  NULL,
+       [Country] [nvarchar](30)  NOT NULL,
+       [ProductCategory] [nvarchar](50)  NOT NULL,
+       [CampaignName] [nvarchar](500)  NOT NULL,
+       [Analyst] [nvarchar](25) NULL,
+       [Revenue] [decimal](10,2)  NULL,
+       [RevenueTarget] [decimal](10,2)  NULL,
+       [City] [nvarchar](50)  NULL,
+       [State] [nvarchar](25)  NULL
+   )
+   WITH
+   (
+       DISTRIBUTION = HASH ( [Region] ),
+       CLUSTERED COLUMNSTORE INDEX
+   );  
+   ```
+   
+   ![クエリ タブのツールバーが表示され、\[Run\] が選択されています。](media/querytoolbar_run.png "クエリの実行")
 
-2. In the query tab toolbar menu, ensure you connect to your SQL Pool, `SQLPool01`.
+4. このクエリは保存しないので、上部のツールバーから **\[Discard all\]** を選択します。確認を求められたら **\[Discard changes\]** を選択します。
+   
+   ![上部のツールバー メニューが表示され、\[Discard all\] が強調表示されています。](media/toptoolbar_discardall.png "すべての変更の破棄")
 
-    ![The query tab toolbar menu is displayed with the Connect to set to the SQL Pool.](media/querytoolbar_connecttosqlpool.png "Connecting to the SQL Pool")
+### タスク 6: キャンペーン分析テーブルへのデータの読み込み
 
-3. In the query window, copy and paste the following query to create the campaign analytics table. Then select the **Run** button in the query tab toolbar.
+顧客情報テーブルと同様に、キャンペーン分析テーブルも、データ レイクにある CSV ファイルからデータを読み込みます。そのために、ストレージにある CSV ファイルを参照するソース データセットとシンク データセット、および SQL プールに作成したキャンペーン分析テーブルが必要です。受け取ったソース CSV ファイルは適切にフォーマットされていなかったので、データ ウェアハウスにインポートする前にこのデータを調整するためのデータ変換を追加する必要があります。
 
-    ```sql
-    CREATE TABLE [wwi_mcw].[CampaignAnalytics]
-    (
-        [Region] [nvarchar](50)  NULL,
-        [Country] [nvarchar](30)  NOT NULL,
-        [ProductCategory] [nvarchar](50)  NOT NULL,
-        [CampaignName] [nvarchar](500)  NOT NULL,
-        [Analyst] [nvarchar](25) NULL,
-        [Revenue] [decimal](10,2)  NULL,
-        [RevenueTarget] [decimal](10,2)  NULL,
-        [City] [nvarchar](50)  NULL,
-        [State] [nvarchar](25)  NULL
-    )
-    WITH
-    (
-        DISTRIBUTION = HASH ( [Region] ),
-        CLUSTERED COLUMNSTORE INDEX
-    );  
-    ```
+1. ソース データセットは、キャンペーン分析情報を含む CSV ファイルを参照します。左側メニューから **\[Data\]** を選択します。**\[Data\]** ブレードで **\[+\]** を展開して、**\[Dataset\]** を選択します。
+   
+   ![左側メニューで \[Data\] 項目が選択されています。\[Data\] ブレードで \[+\] が展開され、\[Dataset\] 項目が強調表示されています。](media/data_newdatasetmenu.png "新しいデータセットの作成")
 
-    ![The query tab toolbar is displayed with the Run button selected.](media/querytoolbar_run.png "Running the query")
+2. **\[New dataset\]** ブレードで **\[All\]** タブが選択されている状態で、**\[Azure Data Lake Storage Gen2\]** 項目を選択します。**\[Continue\]** を選択します。
+   
+   ![\[New dataset\] ブレードで \[All\] タブが選択され、リストで \[Azure Data Lake Storage Gen2\] 項目が選択されています。](media/new_dataset_type_selection.png "データセット タイプの選択")
 
-4. From the top toolbar, select the **Discard all** button as we will not be saving this query. When prompted, choose to **Discard changes**.
+3. **\[Select format\]** ブレードで **\[CSV Delimited Text\]** を選択します。**\[Continue\]** を選択します。
+   
+   ![\[Select format\] ブレードで \[CSV Delimited Text\] 項目が強調表示されています。](media/newdataset_selectfileformat_csv.png "データセット形式の選択")
 
-   ![The top toolbar menu is displayed with the Discard all button highlighted.](media/toptoolbar_discardall.png "Discard all changes")
+4. **\[Set properties\]** ブレードでフィールドに以下の値を設定して、**\[OK\]** を選択します。データのプレビューを選択して、CSV ファイルのサンプルを表示できます。先頭行をヘッダーとして設定していないので、ヘッダー列が先頭行として表示されることがわかります。また、市と州の値が表示されないことがわかります。これは、ヘッダー行の列数が、ファイルの残りの部分と一致していないためです。このあとすぐに、データ変換で先頭行を除外します。
+   
+   | フィールド| 値
+   |----------|----------
+   | Name| **「asamcw\_campaignanalytics\_csv」** と入力
+   | Linked service| **\[asadatalake{SUFFIX}\]** を選択
+   | File Path - コンテナー| **「wwi-02」** と入力
+   | File Path - ディレクトリ| 「**campaign-analytics**」と入力
+   | File Path - ファイル| 「**campaignanalytics.csv**」と入力
+   | First row as header| オフ
+   | Import schema| **\[From connection/store\]** を選択
 
-### Task 6: Populate the campaign analytics table
+   ![\[Set properties\] フォームが表示され、前述の表で指定されている値が入力されています。](media/campaignanalyticsdatasetpropertiesform.png)
 
-Similar to the customer information table, we will also be populating the campaign analytics table via a CSV file located in the data lake. This will require source and sink datasets to point to the CSV file in storage and the campaign analytics table that you just created in the SQL Pool. The source CSV file that was received is poorly formatted - we will need to add data transformations to make adjustments to this data before it is imported into the data warehouse.
+5. 中央のペインにある **\[asamcw\_campainganalytics\_csv\]** データセットの **\[Connection\]** タブで、以下のフィールド値を確実に設定します。
+   
+   | フィールド| 値
+   |----------|----------
+   | エスケープ文字| **バックスラッシュ (\\)**
+   | 引用符文字| **二重引用符 (")**
 
-1. The source dataset will reference the CSV file containing campaign analytics information. From the left menu, select **Data**. From the **Data** blade, expand the **+** button and select **Dataset**.
 
-    ![The Data item is selected from the left menu. On the Data blade, the + button is expanded with the Dataset item highlighted.](media/data_newdatasetmenu.png "Creating a new dataset")
+6. 次に、データの保存先データセットを定義する必要があります。ここでは、キャンペーン分析データを SQL プールに保存します。**\[Data\]** ブレードで **\[+\]** を展開して、**\[Dataset\]** を選択します。
 
-2. On the **New dataset** blade, with the **All** tab selected, choose the **Azure Data Lake Storage Gen2** item. Select **Continue**.  
-  
-    ![The New dataset blade is displayed with the All tab selected, the Azure Data Lake Storage Gen2 item is selected from the list.](media/new_dataset_type_selection.png "Selecting the dataset type")
+7. **\[New dataset\]** ブレードで **\[Azure\]** タブが選択されている状態で、検索条件として **「synapse」** と入力し、**\[Azure Synapse Analytics (formerly SQL DW)\]** 項目を選択します。**\[Continue\]** を選択します。
+   
+   ![\[New dataset\] ブレードで検索条件として「synapse」が入力され、フィルター結果から \[Azure Synapse Analytics (formerly SQL DW)\] が選択されています。](media/newdataset_synapseitem.png "データセット タイプの選択")
 
-3. On the **Select format** blade, select **CSV Delimited Text**. Select **Continue**.
+8. **\[Set properties\]** ブレードでフィールドに以下の値を設定して、**\[OK\]** を選択します。
+   
+   | フィールド| 値
+   |----------|----------
+   | Name| **「asamcw\_campaignanalytics\_asa」** と入力
+   | Linked service| **SQLPool01**
+   | Table name| **wwi\_mcw.CampaignAnalytics**
+   | Import schema| **\[From connection/store\]** を選択
 
-    ![On the Select format blade the CSV Delimited Text item is highlighted.](media/newdataset_selectfileformat_csv.png "Selecting the dataset format")
+   ![\[Set properties\] ブレードに前述の表で指定されている値が入力されています。](media/dataset_campaignanalyticsasaform.png "[dataset configuration] フォーム")
 
-4. On the **Set properties** blade, set the fields to the following values, then select **OK**. You may choose to preview the data which will show a sample of the CSV file. Notice that since we are not setting the first row as the header, the header columns appear as the first row. Also, notice that the city and state values do not appear. This is because of the mismatch in the number of columns in the header row compared to the rest of the file. Soon, we will exclude the first row as we transform the data.
+9. 上部のツールバーで **\[Publish all\]** を選択して、新しいデータセット定義を公開します。確認を求められたら **\[Publish\]** を選択して、変更をコミットします。
+   
+   ![上部のツールバーが表示され、\[Publish all\] が強調表示されています。](media/publishall_toolbarmenu.png "変更の発行")
 
-   | Field | Value |
-   |-------|-------|
-   | Name  | Enter **asamcw_campaignanalytics_csv** |
-   | Linked service | Select **asadatalake{SUFFIX}**.|
-   | File Path - Container | Enter **wwi-02** |
-   | File Path - Directory | Enter **campaign-analytics** |
-   | File Path - File | Enter **campaignanalytics.csv** |
-   | First row as header | Unchecked |
-   | Import schema | Select **From connection/store** |
+10. ソース データのフォーマットが適切ではなく、Analyst の列が含まれていないので、ソース データを変換するデータ フローを作成する必要があります。データ フローを使用すると、コードを記述することなく、グラフィカルにデータセット フィルターと変換を定義できます。これらのデータ フローは、オーケストレーション パイプラインでアクティビティとして利用できます。まず左側メニューから **\[Develop\]** を選択し、**\[Develop\]** ブレードで **\[+\]** を展開して **\[Data flow\]** を選択することによって、新しいデータ フローを作成します。
+    
+    ![左側メニューから \[Develop\] 項目が選択されています。\[Develop\] ブレードで \[+\] が展開され、\[Data flow\] 項目が強調表示されています。](media/develop_newdataflow_menu.png "新しいデータフローの作成")
 
-    ![The Set properties form is displayed with the values specified in the previous table.](media/campaignanalyticsdatasetpropertiesform.png)
+11. **\[Properties\]** ブレードで、**\[Name\]** フィールドに **「ASAMCW\_Exercise\_2\_Campaign\_Analytics\_Data」** と入力して、データ フローに名前を付けます。
+    
+    ![\[Properties\] ブレードが表示され、データ フローの名前として「ASAMCW\_Exercise\_2\_Campaign\_Analytics\_Data」と入力されています。](media/dataflow_campaignanalytics_propertiesblade.png "データ フローの命名")
 
-5. In the center pane, on the **Connection** tab of **asamcw_campainganalytics_csv** dataset, ensure the following field values are set:
+12. データ フロー デザイナー ウィンドウで **\[Add Source\]** ボックスを選択します。
+    
+    ![データ フロー デザイナー ウィンドウで \[Add source\] ボックスが強調表示されています。](media/dataflow_addsourcebox.png "データ フロー ソースの追加")
 
-   | Field | Value |
-   |-------|-------|
-   | Escape Character  | **Backslash (\\\)** |
-   | Quote Character | **Double quote (")** |  
+13. **\[Source settings\]** で、以下のように構成します。
+    
+    | フィールド| 値
+    |----------|----------
+    | Output stream name| 「**campaignanalyticscsv**」と入力
+    | Source type| **Dataset**
+    | Dataset| **asamcw\_campaignanalytics\_csv**
+    | Skip line count| **「1」** と入力
 
-6. Now we will need to define the destination dataset for our data. In this case we will be storing campaign analytics data in our SQL Pool. On the **Data** blade, expand the **+** button and select **Dataset**.
+    ![\[Source settings\] タブが表示され、フォームに前述の表で定義されている値が入力されています。](media/dataflow_campaignanalytics_sourcesettings.png "[data flow configuration] フォーム")
 
-7. On the **New dataset** blade, with the **Azure** tab selected, enter **synapse** as a search term and select the **Azure Synapse Analytics (formerly SQL DW)** item. Select **Continue**.
+14. データ フローを作成する際、デバッグをオンにすることによって、データのプレビュー、スキーマのインポート (プロジェクション) など、一部の機能が有効になります。このオプションを有効にするためにかかる時間およびラボの環境上の制約により、これらの機能は回避します。データ ソースのスキーマを設定する必要があります。それには、データフロー デザイナーのツールバー メニューの右側にある**スクリプト** アイコンを選択します。
+    
+    ![データフロー デザイナーのツールバーの一部が表示され、スクリプト アイコンが強調表示されています。](media/dataflow_toolbarscriptmenu.png "データ フローのスクリプト アイコン")
 
-    ![On the New dataset blade, synapse is entered as the search term and Azure Synapse Analytics (formerly SQL DW) is selected from the filtered results.](media/newdataset_synapseitem.png "Selecting the dataset type")
-  
-8. On the **Set properties** blade, set the field values to the following, then select **OK**.
-
-   | Field | Value |
-   |-------|-------|
-   | Name  | Enter **asamcw_campaignanalytics_asa**. |
-   | Linked service | **SQLPool01** |
-   | Table name | **wwi_mcw.CampaignAnalytics** |  
-   | Import schema | Select **From connection/store**. |
-
-    ![The Set properties blade is populated with the values specified in the preceding table.](media/dataset_campaignanalyticsasaform.png "The dataset configuration form")
-
-9. In the top toolbar, select **Publish all** to publish the new dataset definitions. When prompted, select the **Publish** button to commit the changes.
-
-    ![The top toolbar is displayed with the Publish all button highlighted.](media/publishall_toolbarmenu.png "Publish changes")
-
-10. Since our source data is malformed and does not contain an Analyst column, we will need to create a data flow to transform the source data. A data flow allows you to graphically define dataset filters and transformations without writing code. These data flows can be leveraged as an activity in an orchestration pipeline. Create a new data flow, start by selecting **Develop** from the left menu, and in the **Develop** blade, expand the **+** button and select **Data flow**.
-
-    ![From the left menu, the Develop item is selected. From the Develop blade the + button is expanded with the Data flow item highlighted.](media/develop_newdataflow_menu.png "Create a new data flow")
-
-11. In the **Properties** blade name the data flow by entering **ASAMCW_Exercise_2_Campaign_Analytics_Data** in the **Name** field.
-
-    ![The Properties blade is displayed with ASAMCW_Exercise_2_Campaign_Analytics_Data entered as the name of the data flow.](media/dataflow_campaignanalytics_propertiesblade.png "Naming the data flow")
-
-12. In the data flow designer window, select the **Add Source** box.
-
-    ![The Add source box is highlighted in the data flow designer window.](media/dataflow_addsourcebox.png "Adding a data flow source")
-
-13. Under **Source settings**, configure the following:
-
-    | Field | Value |
-    |-------|-------|
-    | Output stream name  | Enter **campaignanalyticscsv**. |
-    | Source type | **Dataset** |
-    | Dataset | **asamcw_campaignanalytics_csv** |
-    | Skip line count | Enter **1**. |  
-
-    ![The Source settings tab is displayed with a form populated with the values defined in the preceding table.](media/dataflow_campaignanalytics_sourcesettings.png "The data flow configuration form")
-
-14. When you create data flows, certain features are enabled by turning on debug, such as previewing data and importing a schema (projection). Due to the amount of time it takes to enable this option, as well as environmental constraints of the lab environment, we will bypass these features. The data source has a schema we need to set. To do this, select **Script** from the right side of the dataflow designer toolbar menu.
-
-    ![A portion of the dataflow designer toolbar is shown with the Script icon highlighted.](media/dataflow_toolbarscriptmenu.png "The data flow script icon")
-
-15. Replace the script with the following to provide the column mappings (`output`), then select **OK**:
-
+15. スクリプトを以下のテキストで置き換えて列マッピング (`output`) を指定して、**\[OK\]** を選択します。
+    
     ```json
         source(output(
             {_col0_} as string,
@@ -652,1165 +648,1167 @@ Similar to the customer information table, we will also be populating the campai
         validateSchema: false,
         skipLines: 1) ~> campaignanalyticscsv
     ```
-
-    > **Note**: We are changing the mappings as the source file was corrupted with the wrong headers.
-
-16. Select the **campaignanalyticscsv** data source, then select **Projection**. The projection should display the following schema:
-
-    ![The Projection tab is displayed with columns defined as described in the column mapping script.](media/dataflow_campaignanalytics_projectiontab.png "The column mappings of the source")
-
-17. Select the **+** to the bottom right of the **campaignanalyticscsv** source, then select the **Select** schema modifier from the context menu.
-
-    ![The + button on the bottom right of the campaignanalyticscsv source is highlighted.](media/dataflow_campaignanalytics_addstep.png "Adding a Select schema modifier")
-
-18. In the bottom pane, under **Select settings**, configure the following:
-
-    | Field | Value |
-    |-------|-------|
-    | Output stream name  | Enter **mapcampaignanalytics**. |
-
-    For **Input Columns**, under the **Name as** column, enter the following list values in order:
-      - Region
-      - Country
-      - ProductCategory
-      - CampaignName
-      - RevenuePart1
-      - Revenue
-      - RevenueTargetPart1
-      - RevenueTarget
-      - City
-      - State
-
-    ![The Select settings tab is displayed with the form filled as described in the preceding table.](media/dataflow_mapcampaignanalytics_selectsettings.png "Configuring the Select schema modifier")
-
-19. Select the **+** to the right of the **mapCampaignAnalytics** source, then select the **Derived Column** schema modifier from the context menu.
-
-20. Under **Derived column's settings**, configure the following:
-
-    | Field | Value |
-    |-------|-------|
-    | Output stream name  | Enter **convertandaddcolumns**. |
-
-    For **Columns**, add the following (Note you will need to type in the **Analyst** column):
-
-    | Column | Expression | Description |
-    | --- | --- | --- |
-    | Revenue | **toDecimal(replace(concat(toString(RevenuePart1), toString(Revenue)), '\\\\', ''), 10, 2, '$###,###.##')** | Concatenate the **RevenuePart1** and **Revenue** fields, replace the invalid `\` character, then convert and format the data to a decimal type. |
-    | RevenueTarget | **toDecimal(replace(concat(toString(RevenueTargetPart1), toString(RevenueTarget)), '\\\\', ''), 10, 2, '$###,###.##')** | Concatenate the **RevenueTargetPart1** and **RevenueTarget** fields, replace the invalid `\` character, then convert and format the data to a decimal type. |
-    | Analyst | **iif(isNull(City), '',  replace('DataAnalyst'+ City,' ',''))** | If the city field is null, assign an empty string to the Analyst field, otherwise concatenate DataAnalyst to the City value, removing all spaces. |
-
-    ![The derived column's settings are displayed as described.](media/dataflow_campaignanalytics_derivedcolumns.png "Deriving columns based on expressions")
-
-21. Select the **+** to the right of the **convertandaddcolumns** step, then select the **Select** schema modifier from the context menu.
-
-22. Under **Select settings**, configure the following:
-
-    | Field | Value |
-    |-------|-------|
-    | Output stream name  | Enter **selectcampaignanalyticscolumns**. |
-    | Input columns | Delete the **RevenuePart1** and **RevenueTargetPart1** columns. |
-
-    ![The Select settings are displayed showing the updated column mappings.](media/dataflow_campaignanalytics_select2.png "Configuring the Select schema modifier")
-
-23. Select the **+** to the right of the **selectcampaignanalyticscolumns** step, then select the **Sink** destination from the context menu.
-
-24. In the bottom pane, on the **Sink** tab, configure it as follows:
-
-    | Field | Value |
-    |-------|-------|
-    | Output stream name  | Enter **campaignanlyticsasa**. |
-    | Dataset | **asamcw_campaignanalytics_asa** |
-
-    ![The Sink settings form is displayed populated with the values defined in the previous table.](media/dataflow_campaignanalytics_sink.png "Configuring the data flow sink")
-
-25. Select **Settings** tab, and for **Table action** select **Truncate table**.
-
-    ![The sink Settings tab is displayed with the Table action set to Truncate table.](media/dataflow_campaignanalytics_sinksettings.png "Truncate table action")
-
-26. Your completed data flow should look similar to the following:
-
-    ![The completed data flow is displayed.](media/dataflow_campaignanalytics_complete.png "The completed data flow")
-  
-27. Select **Publish all** to save your new data flow.
-
-    ![Publish all is highlighted.](media/publishall_toolbarmenu.png "Publish all")
-
-28. Now that the data flow is published, we can use it in a pipeline. Create a new pipeline by selecting **Orchestrate** from the left menu, then in the **Orchestrate** blade, expand the **+** button and select **Pipeline**.
-
-29. In the **Properties** pane on the right side of the pipeline designer. Enter **ASAMCW - Exercise 2 - Copy Campaign Analytics Data** in the **Name** field.
-
-    ![The pipeline properties blade is displayed with the Name field populated with ASAMCW - Exercise 2 - Copy Campaign Analytics Data.](media/pipeline_properties_blade.png "Naming the pipeline")
-
-30. From the **Activities** menu, expand the **Move & transform** section and drag an instance of **Data flow** to the design surface of the pipeline.
-  
-    ![The Activities menu of the pipeline is displayed with the Move and transform section expanded. An arrow indicating a drag operation shows adding a Data flow activity to the design surface of the pipeline.](media/pipeline_sales_dataflowactivitymenu.png "Adding a data flow activity to the pipeline")
-
-31. In the **Adding data flow** blade, select the data flow **ASAMCW_Exercise_2_Campaign_Analytics_Data**, then **Finish**. Select the Mapping Data Flow activity on the design surface.
-
-32. In the bottom pane, select the **Settings** tab and set the form fields to the following values:
-
-    | Field | Value |
-    |-------|-------|
-    | Data flow  | **ASAMCW_Exercise_2_Campaign_Analytics_Data** |
-    | Staging linked service | **asadatalake{SUFFIX}** |
-    | Staging storage folder - Container | Enter **staging**. |
-    | Staging storage folder - Directory | Enter **mcwcampaignanalytics**. |
-
-    ![The data flow activity Settings tab is displayed with the fields specified in the preceding table highlighted.](media/pipeline_campaigndata_dataflowsettings.png "Configuring the data flow activity")
-
-33. In the top toolbar, select **Publish all** to publish the new pipeline. When prompted, select the **Publish** button to commit the changes.
-
-    ![The top toolbar is displayed with the Publish all button highlighted.](media/publishall_toolbarmenu.png "Publish changes")
-
-34. Once published, expand the **Add trigger** item on the pipeline designer toolbar, and select **Trigger now**. In the **Pipeline run** blade, select **OK** to proceed with the latest published configuration. You will see notification toast window indicating the pipeline is running and when it has completed.
-
-35. View the status of the pipeline run by locating the **ASAMCW - Exercise 2 - Copy Campaign Analytics Data** pipeline in the Orchestrate blade. Expand the actions menu, and select the **Monitor** item.
-
-    ![In the Orchestrate blade, the Action menu is displayed with the Monitor item selected on the ASAMCW - Exercise 2 - Copy Campaign Analytics Data pipeline.](media/orchestrate_pipeline_monitor_copycampaigndata.png "Monitoring the pipeline run")
-
-36. You should see a run of the pipeline we created in the **Pipeline runs** table showing as in progress. You will need to refresh this table from time to time to see updated progress. Once it has completed. You should see the pipeline run displayed with a Status of **Succeeded**.
-
-37. Verify the table has populated by creating a new query. Select the **Develop** item from the left menu, and in the **Develop** blade, expand the **+** button, and select **SQL script**. In the query window, be sure to connect to the SQL Pool database (`SQLPool01`), then paste and run the following query. When complete, select the **Discard all** button from the top toolbar.
-
-  ```sql
-    select count(Region) from wwi_mcw.CampaignAnalytics;
-  ```
-
-### Task 7: Populate the product table
-
-When the lab environment was provisioned, the **wwi_mcw.Product** table and datasets required for its population were created. Throughout this exercise, you have gained experience creating datasets, data flows, and pipelines. The population of the product table would be repetitive, so we will simply trigger an existing pipeline to populate this table.
-
-1. From the left menu, select **Orchestrate**. From the **Orchestrate** blade, expand the **Pipelines** section and locate and select the **ASAMCW - Exercise 2 - Copy Product Information** pipeline.
-
-2. Expand the **Add trigger** item on the pipeline designer toolbar, and select **Trigger now**. In the **Pipeline run** blade, select **OK** to proceed with the latest published configuration. You will see notification toast windows indicating the pipeline is running and when it has completed.
-
-3. View the status of the pipeline run by locating the **ASAMCW - Exercise 2 - Copy Product Information** pipeline in the Orchestrate blade. Expand the actions menu, and select the **Monitor** item.
-
-4. You should see a run of the pipeline we created in the **Pipeline runs** table showing as in progress (or succeeded). Once it has completed. You should see the pipeline run displayed with a Status of **Succeeded**.
-
-5. Verify the table has populated by creating a new query. Select the **Develop** item from the left menu, and in the **Develop** blade, expand the **+** button, and select **SQL script**. In the query window, be sure to connect to the SQL Pool database (`SQLPool01`), then paste and run the following query. When complete, select the **Discard all** button from the top toolbar.
-
-  ```sql
-    select * from wwi_mcw.Product;
-  ```
-
-## Exercise 3: Exploring raw parquet
-
-**Duration**: 30 minutes
-
-Understanding data through data exploration is one of the core challenges faced today by data engineers and data scientists. Depending on the underlying structure of the data as well as the specific requirements of the exploration process, different data processing engines will offer varying degrees of performance, complexity, and flexibility.
-
-In Azure Synapse Analytics, you have the possibility of using either the Synapse SQL Serverless engine, the big-data Spark engine, or both.
-
-In this exercise, you will explore the data lake using both options.
-
-### Task 1: Query sales Parquet data with Synapse SQL Serverless
-
-When you query Parquet files using Synapse SQL Serverless, you can explore the data with T-SQL syntax.
-
-1. From the left menu, select **Data**.
-
-2. From the **Data** blade, select the **Linked** tab.
-
-3. Expand **Storage accounts**. Expand the `asadatalake{SUFFIX}` ADLS Gen2 account and select **wwi-02**.
-
-4. Navigate to the **wwi-02/sale-small/Year=2010/Quarter=Q4/Month=12/Day=20101231** folder. Right-click on the **sale-small-20101231-snappy.parquet** file, select **New SQL script**, then **Select TOP 100 rows**.
-
-    ![The Storage accounts section is expanded with the context menu visible on the asadatalake{SUFFIX} account with the Select TOP 100 rows option highlighted.](media/data-hub-parquet-select-rows.png "Querying parquet data in SQL Serverless")
-
-5. Ensure **SQL on-demand** is selected in the **Connect to** dropdown list above the query window, then run the query. Data is loaded by the Synapse SQL Serverless endpoint and processed as if was coming from any regular relational database.
-
-    ![The SQL on-demand connection is highlighted on the query window toolbar.](media/sql-on-demand-selected.png "SQL on-demand")
-
-6. Modify the SQL query to perform aggregates and grouping operations to better understand the data. Replace the query with the following, making sure that the file path in **OPENROWSET** matches your current file path, be sure to substitute `asadatalake{SUFFIX}` for the appropriate value in your environment:
-
-    ```sql
-    SELECT
-        TransactionDate, ProductId,
-        CAST(SUM(ProfitAmount) AS decimal(18,2)) AS [(sum) Profit],
-        CAST(AVG(ProfitAmount) AS decimal(18,2)) AS [(avg) Profit],
-        SUM(Quantity) AS [(sum) Quantity]
-    FROM
-        OPENROWSET(
-            BULK 'https://asadatalake{SUFFIX}.dfs.core.windows.net/wwi-02/sale-small/Year=2010/Quarter=Q4/Month=12/Day=20101231/sale-small-20101231-snappy.parquet',
-            FORMAT='PARQUET'
-        ) AS [r] GROUP BY r.TransactionDate, r.ProductId;
-    ```
-
-    ![The T-SQL query above is displayed within the query window.](media/sql-serverless-aggregates.png "Query window")
-
-7. Now let's figure out how many records are contained within the Parquet files for 2019 data. This information is important for planning how we optimize for importing the data into Azure Synapse Analytics. To do this, replace your query with the following (be sure to update the name of your data lake in BULK statement, by replacing `asadatalake{SUFFIX}`):
-
-    ```sql
-    SELECT
-        COUNT_BIG(*)
-    FROM
-        OPENROWSET(
-            BULK 'https://asadatalake{SUFFIX}.dfs.core.windows.net/wwi-02/sale-small/Year=2019/*/*/*/*',
-            FORMAT='PARQUET'
-        ) AS [r];
-    ```
-
-    > Notice how we updated the path to include all Parquet files in all subfolders of `sale-small/Year=2019`.
-
-    The output should be **339507246** records.
-
-### Task 2: Query sales Parquet data with Azure Synapse Spark
-
-1. Select **Data** from the left menu, select the **Linked** tab, then browse to the data lake storage account `asadatalake{SUFFIX}` to  **wwi-02/sale-small/Year=2010/Quarter=Q4/Month=12/Day=20101231**, then right-click the Parquet file and select New notebook.
-
-    ![The Parquet file is displayed with the New notebook menu item highlighted.](media/new-spark-notebook-sales.png "New notebook")
-
-2. This will generate a notebook with PySpark code to load the data in a dataframe and display 100 rows with the header.
-
-3. Attach the notebook to a Spark pool.
-
-    ![The Spark pool list is displayed.](media/attach-spark-pool.png "Attach to Spark pool")
-
-4. Select **Run all** on the notebook toolbar to execute the notebook.
-
-    > **Note:** The first time you run a notebook in a Spark pool, Synapse creates a new session. This can take approximately 5 minutes.
     
-    > **Note:** To run just the cell, either hover over the cell and select the _Run cell_ icon to the left of the cell, or select the cell then type **Ctrl+Enter** on your keyboard.
-
-5. Create a new cell underneath by selecting **{} Add code** when hovering over the blank space at the bottom of the notebook.
-
-    ![The Add Code menu option is highlighted.](media/new-cell.png "Add code")
-
-6. The Spark engine can analyze the Parquet files and infer the schema. To do this, enter the following in the new cell:
-
-    ```python
-    data_path.printSchema()
-    ```
-
-    Your output should look like the following:
-
-    ```text
-    root
-        |-- TransactionId: string (nullable = true)
-        |-- CustomerId: integer (nullable = true)
-        |-- ProductId: short (nullable = true)
-        |-- Quantity: short (nullable = true)
-        |-- Price: decimal(29,2) (nullable = true)
-        |-- TotalAmount: decimal(29,2) (nullable = true)
-        |-- TransactionDate: integer (nullable = true)
-        |-- ProfitAmount: decimal(29,2) (nullable = true)
-        |-- Hour: byte (nullable = true)
-        |-- Minute: byte (nullable = true)
-        |-- StoreId: short (nullable = true)
-    ```
+    > **注**: ソース ファイルはヘッダーが間違っていて壊れているので、マッピングを変更しています。
+
+16. **\[campaignanalyticscsv\]** データ ソースを選択して、**\[Projection\]** を選択します。プロジェクトにより、以下のスキーマが表示されます。
+    
+    ![\[Projection\] タブが表示され、列マッピング スクリプトの記述に従って列が定義されています。](media/dataflow_campaignanalytics_projectiontab.png "ソースの列マッピング")
+
+17. **\[campaignanalyticscsv\]** ソースの右下の **\[+\]** を選択して、コンテキスト メニューから **\[Select\]** スキーマ修飾子を選択します。
+    
+    ![\[campaignanalyticscsv\] ソースの右下の \[+\] が強調表示されています。](media/dataflow_campaignanalytics_addstep.png "[Select] スキーマ修飾子の追加")
+
+18. 下側の **\[Select settings\]** で、以下のように構成します。
+    
+    | フィールド| 値
+    |----------|----------
+    | Output stream name| **「mapcampaignanalytics」** と入力
+
+    **\[Input Columns\]** の **\[Name as\]** 列に、以下のリストの値をこの順序で入力します。
+    
+    - Region
+    - Country
+    - ProductCategory
+    - CampaignName
+    - RevenuePart1
+    - Revenue
+    - RevenueTargetPart1
+    - RevenueTarget
+    - City
+    - State
+    
+    ![\[Select settings\] タブが表示され、フォームに前述の表で記述されている値が入力されています。](media/dataflow_mapcampaignanalytics_selectsettings.png "Select スキーマ修飾子の構成")
 
-7. Now let's use the dataframe to perform the same grouping and aggregate query we performed with the SQL Serverless pool. Create a new cell and enter the following:
-
-    ```python
-    from pyspark.sql import SparkSession
-    from pyspark.sql.types import *
-    from pyspark.sql.functions import *
-
-    profitByDateProduct = (data_path.groupBy("TransactionDate", "ProductId")
-    .agg(
-    round(sum("ProfitAmount"),2).alias("(sum)Profit"),
-    round(avg("ProfitAmount"),2).alias("(avg)Profit"),
-    sum("Quantity").alias("(sum)Quantity")
-    ).orderBy("TransactionDate", "ProductId")
-    )
-    profitByDateProduct.show(100)
-    ```
-
- > We import required Python libraries to use aggregation functions and types defined in the schema to successfully execute the query.
-
-## Exercise 4: Exploring raw text based data with Azure Synapse SQL Serverless
-
-**Duration**: 15 minutes
-
-A common format for exporting and storing data is with text based files. These can delimited text files such as CSV as well as JSON structured data files. Azure Synapse Analytics also provides ways of querying into these types of raw files to gain valuable insights into the data without having to wait for them to be processed.
-
-### Task 1: Query CSV data
-
-1. Create a new SQL script by selecting **Develop** from the left menu, then in the **Develop** blade, expanding the **+** button and selecting **SQL script**.
-
-2. Ensure **SQL on-demand** is selected in the **Connect to** dropdown list above the query window.
-
-    ![The SQL on-demand connection is highlighted on the query window toolbar.](media/sql-on-demand-selected.png "SQL on-demand")
-
-3. In this scenario, we will be querying into the CSV file that was used to populate the product table. This file is located in the `asadatalake{SUFFIX}` account at: **wwi-02/data-generators/generator-product.csv**. We will select all data from this file. Copy and paste the following query into the query window and select **Run** from the query window toolbar menu. Remember to replace `asadatalake{SUFFIX}` with your storage account name.
-
-    ```sql
-    SELECT
-       csv.*
-    FROM
-        OPENROWSET(
-            BULK 'https://asadatalake{SUFFIX}.dfs.core.windows.net/wwi-02/data-generators/generator-product/generator-product.csv',
-            FORMAT='CSV',
-            FIRSTROW = 1
-        ) WITH (
-            ProductID INT,
-            Seasonality INT,
-            Price DECIMAL(10,2),
-            Profit DECIMAL(10,2)
-        ) as csv
-    ```
+19. **\[mapCampaignAnalytics**\] ソースの右側の \[+\] を選択して、コンテキスト メニューから **\[Derived Column\]** スキーマ修飾子を選択します。
 
-    > **Note**: In this query we are querying only a single file. Azure Synapse Analytics allows you to query across a series of CSV files (structured identically) by using wildcards in the path to the file(s).
+20. **\[**Derived column's settings**\]** で、以下のように構成します。
+    
+    | フィールド| 値
+    |----------|----------
+    | Output stream name| 「**convertandaddcolumns**」と入力
 
-4. You are also able to perform aggregations on this data. Replace the query with the following, and select **Run** from the toolbar menu. Remember to replace `asadatalake{SUFFIX}` with your storage account name.
+    **\[Columns\]** で以下の値を追加します (**「Analyst」** 列を入力する必要があることに注意してください)。
+    
+    | 列| 式| 説明
+    |----------|----------|----------
+    | Revenue| **toDecimal(replace(concat(toString(RevenuePart1), toString(Revenue)), '\\\\', ''), 10, 2, '$###,###.##')**| **RevenuePart1** フィールドと **Revenue** フィールドを連結して無効な `\` 文字を置き換え、データを decimal 型に変換およびフォーマットします。
+    | RevenueTarget| **toDecimal(replace(concat(toString(RevenueTargetPart1), toString(RevenueTarget)), '\\\\', ''), 10, 2, '$###,###.##')**| **RevenueTargetPart1** フィールドと **RevenueTarget** フィールドを連結して無効な `\` 文字を置き換え、データを decimal 型に変換およびフォーマットします。
+    | Analyst| **iif(isNull(City), '',  replace('DataAnalyst'+ City,' ',''))**| City フィールドが null の場合、空文字列を Analyst フィールドに代入します。それ以外の場合、DataAnalyst と City 値を連結して、すべてのスペースを削除します。
 
-    ```sql
-    SELECT
-        Seasonality,
-        SUM(Price) as TotalSalesPrice,
-        SUM(Profit) as TotalProfit
-    FROM
-        OPENROWSET(
-            BULK 'https://asadatalake{SUFFIX}.dfs.core.windows.net/wwi-02/data-generators/generator-product/generator-product.csv',
-            FORMAT='CSV',
-            FIRSTROW = 1
-        ) WITH (
-            ProductID INT,
-            Seasonality INT,
-            Price DECIMAL(10,2),
-            Profit DECIMAL(10,2)
-        ) as csv
-    GROUP BY
-        csv.Seasonality
-    ```
+    ![派生列の設定が、記述されたとおりに表示されています。](media/dataflow_campaignanalytics_derivedcolumns.png "式に基づく列の派生")
 
-5. After you have run the previous query, switch the view on the **Results** tab to **Chart** to see a visualization of the aggregation of this data. Feel free to experiment with the chart settings to obtain the best visualization!
+21. **\[convertandaddcolumns\]** ステップの右側の **\[+\]** を選択して、コンテキスト メニューから **\[Select\]** スキーマ修飾子を選択します。
 
-    ![The result of the previous aggregation query is displayed as a chart in the Results pane.](media/querycsv_serverless_chart.png "Aggregation query results")
+22. **\[Select settings\]** で、以下のように構成します。
+    
+    | フィールド| 値
+    |----------|----------
+    | Output stream name| **「selectcampaignanalyticscolumns」** と入力
+    | Input columns| **\[RevenuePart1\]** 列と **\[RevenueTargetPart1\]** 列を削除
 
-6. From the top toolbar, select the **Discard all** button as we will not be saving this query. When prompted, choose to **Discard changes**.
+    ![\[Select settings\] が表示され、更新された列マッピングが表示されています。](media/dataflow_campaignanalytics_select2.png "Select スキーマ修飾子の構成")
 
-   ![The top toolbar menu is displayed with the Discard all button highlighted.](media/toptoolbar_discardall.png "Discard changes")
+23. **\[selectcampaignanalyticscolumns\]** ステップの右側の **\[+\]** を選択して、コンテキスト メニューから **\[**Sink**\]** 保存先を選択します。
 
-### Task 2: Query JSON data
+24. 下側の **\[Sink\]** タブで、以下のように構成します。
+    
+    | フィールド| 値
+    |----------|----------
+    | Output stream name| **「campaignanlyticsasa」** と入力
+    | Dataset| **asamcw\_campaignanalytics\_asa**
 
-1. Create a new SQL script by selecting **Develop** from the left menu, then in the **Develop** blade, expanding the **+** button and selecting **SQL script**.
+    ![\[Sink settings\] フォームが表示され、前述の表で定義されている値が入力されています。](media/dataflow_campaignanalytics_sink.png "データ フロー シンクの構成")
 
-2. Ensure **SQL on-demand** is selected in the **Connect to** dropdown list above the query window.
+25. **\[Settings\]** タブを選択して、**\[Table action\]** で **\[Truncate table\]** を選択します。
+    
+    ![\[sink Settings\] タブが表示され、\[Table action\] が \[Truncate table\] に設定されています。](media/dataflow_campaignanalytics_sinksettings.png "[Truncate table] アクション")
 
-    ![The SQL on-demand connection is highlighted on the query window toolbar.](media/sql-on-demand-selected.png "SQL on-demand")
+26. 完成したデータ フローは、以下のようになります。
+    
+    ![完成したデータ フローが表示されています。](media/dataflow_campaignanalytics_complete.png "完成したデータ フロー")
 
-3. Replace the query with the following, remember to replace `asadatalake{SUFFIX}` with the name of your storage account:
+27. **\[Publish all\]** を選択して、新しいデータ フローを保存します。
+    
+    ![\[Publish all\] が強調表示されています。](media/publishall_toolbarmenu.png "Publish all")
 
-    ```sql
-    SELECT
-        products.*
-    FROM
-        OPENROWSET(
-            BULK 'https://asadatalake{SUFFIX}.dfs.core.windows.net/wwi-02/product-json/json-data/*.json',
-            FORMAT='CSV',
-            FIELDTERMINATOR ='0x0b',
-            FIELDQUOTE = '0x0b',
-            ROWTERMINATOR = '0x0b'
-        )
-        WITH (
-            jsonContent NVARCHAR(200)
-        ) AS [raw]
-    CROSS APPLY OPENJSON(jsonContent)
-    WITH (
-        ProductId INT,
-        Seasonality INT,
-        Price DECIMAL(10,2),
-        Profit DECIMAL(10,2)
-    ) AS products
-    ```
+28. データ フローが公開されたので、それをパイプラインで使用できます。左側メニューから **\[Orchestrate\]** を選択し、**\[Orchestrate\]** ブレードで **\[+\]** を展開して **\[Pipeline\]** を選択することによって、新しいパイプラインを作成します。
 
-4. From the top toolbar, select the **Discard all** button as we will not be saving this query. When prompted, choose to **Discard changes**.
+29. パイプライン デザイナーの右側にある **\[Properties\]** ペインで、**\[Name\]** フィールドに **「ASAMCW - Exercise 2 - Copy Campaign Analytics Data」** と入力します。
+    
+    ![パイプライン プロパティ ブレードが表示され、\[Name\] フィールドに「ASAMCW - Exercise 2 - Copy Campaign Analytics Data」と入力されています。](media/pipeline_properties_blade.png "パイプラインの命名")
 
-   ![The top toolbar menu is displayed with the Discard all button highlighted.](media/toptoolbar_discardall.png "Discard changes")
+30. **\[Activities\]** メニューで **\[Move \& transform\]** セクションを展開して、**\[Data flow\]** のインスタンスをパイプラインのデザイン サーフェイスにドラッグします。
+    
+    ![パイプラインの \[Activities\] メニューが表示され、\[Move and transform\] セクションが展開されています。ドラッグ操作を示す矢印によって、\[Data flow\] アクティビティをパイプラインのデザイン サーフェイスに追加する操作が示されています。](media/pipeline_sales_dataflowactivitymenu.png "パイプラインに対するデータ フロー アクティビティの追加")
 
-## Exercise 5: Synapse Pipelines and Cognitive Search
+31. **\[Adding data flow\]** ブレードで、データ フローの **\[ASAMCW\_Exercise\_2\_Campaign\_Analytics\_Data\]** を選択し、**\[OK\]** を選択します。デザイン サーフェイスで \[Mapping Data Flow\] アクティビティを選択します。
 
-**Duration**: 45 minutes
+32. 下側で **\[Settings\]** タブを選択して、フォームのフィールドに以下の値を設定します。
+    
+    | フィールド| 値
+    |----------|----------
+    | Data flow| **ASAMCW\_Exercise\_2\_Campaign\_Analytics\_Data**
+    | Staging linked service| **asadatalake{SUFFIX}**
+    | Staging storage folder - コンテナー| **「staging」** と入力
+    | Staging storage folder - ディレクトリ| **「mcwcampaignanalytics」** と入力
 
-In this exercise you will create a Synapse Pipeline that will orchestrate updating the part prices from a supplier invoice. You will accomplish this by a combination of a Synapse Pipeline with an Azure Cognitive Search Skillset that invokes the Form Recognizer service as a custom skill. The pipeline will work as follows:
+    ![データ フロー アクティビティの \[Settings\] タブが表示され、前述の表で指定されているフィールドが強調表示されています。](media/pipeline_campaigndata_dataflowsettings.png "データ フロー アクティビティの構成")
 
-- Invoice is uploaded to Azure Storage.
-- An Azure Cognitive Search index is started
-- The index of any new or updated invoices invokes an Azure Cognitive Search skillset.
-- The first skill in the skillset invokes an Azure Function, passing it the URL to the PDF invoice.
-- The Azure Function invokes the Form Recognizer service, passing it the URL and SAS token to the PDF invoice. Forms recognizer returns the OCR results to the function.
-- The Azure Function returns the results to skillset. The skillset then extracts only the product names and costs and sends that to a configure knowledge store that writes the extracted data to JSON files in Azure Blob Storage.
-- The Synapse pipeline reads these JSON files from Azure Storage in a Data Flow activity and performs an upsert against the product catalog table in the Synapse SQL Pool.
+33. 上部のツールバーで **\[Publish all\]** を選択して、新しいパイプラインを公開します。確認を求められたら **\[Publish\]** を選択して、変更をコミットします。
+    
+    ![上部のツールバーが表示され、\[Publish all\] が強調表示されています。](media/publishall_toolbarmenu.png "変更の発行")
 
-### Task 1: Create the invoice storage container
+34. 公開されたら、パイプライン デザイナーのツールバーで **\[Add trigger\]** 項目を展開して、**\[Trigger now\]** を選択します。**\[Pipeline run\]** ブレードで **\[OK\]** を選択して、最後に公開した構成で先に進みます。パイプラインが動作していることおよびパイプラインの完了時を示すトースト通知ウィンドウが表示されます。
 
-1. In the Azure Portal, navigate to the lab resource group and select the **asastore{suffix}** storage account.
+35. \[Orchestrate\] ブレードで **\[**ASAMCW - Exercise 2 - Copy Campaign Analytics Data**\]** パイプラインを特定して、パイプラインの実行のステータスを表示します。アクション メニューを展開して、**\[Monitor\]** 項目を選択します。
+    
+    ![\[Orchestrate\] ブレードで、\[ASAMCW - Exercise 2 - Copy Campaign Analytics Data\] パイプラインのアクション メニューが表示され、\[Monitor\] 項目が選択されています。](media/orchestrate_pipeline_monitor_copycampaigndata.png "パイプライン実行の監視")
 
-    ![The lab resources list is shown with the asastore storage account highlighted.](media/ex5-task1a-000.png "Lab resource group listing")
-  
-2. From the left menu, beneath **Blob service**, select **Containers**. From the top toolbar menu of the **Containers** screen, select **+ Container**.
-  
-    ![The Containers screen is displayed with Containers selected from the left menu, and + Container selected from the toolbar.](media/ex5-task1a-001.png "Azure Storage Container screen")
+36. **\[Pipeline runs\]** テーブルで、作成したパイプラインの実行が進行中と表示されます。最新の進行状況を確認するには、ときどきこのテーブルを最新の情報に更新する必要があります。パイプライン操作が完了したら、パイプラインの実行の \[Status\] が **\[Succeeded\]** と表示されます。
 
-3. On the **New container** blade, name the container **invoices**, and select **Create**, we will keep the default values for the remaining fields.
+37. 新しいクエリを作成することによって、テーブルにデータが読み込まれていることを検証します。左側メニューから **\[Develop\]** 項目を選択し、**\[Develop\]** ブレードで **\[+\]** を展開して **\[SQL script\]** を選択します。クエリ ウィンドウで、SQL プール データベース (`SQLPool01`) に接続していることを確認して、以下のクエリを貼り付けて実行します。完了したら、上部のツールバーから **\[Discard all\]** を選択します。
 
-4. Repeat steps 2 and 3, and create two additional containers named **invoices-json** and **invoices-staging**.
+```sql
+  select count(Region) from wwi_mcw.CampaignAnalytics;
+```
 
-5. From the left menu, select **Storage Explorer (preview)**. Then, in the hierarchical menu, expand the **BLOB CONTAINERS** item.
+### タスク 7: 製品テーブルへのデータの読み込み
 
-6. Beneath **BLOB CONTAINERS**, select the **invoices** container, then from the taskbar menu, select **+ New Folder**
+ラボの環境をプロビジョニングしたときに、**wwi\_mcw.Product** テーブルおよびそのデータの読み込みに必要なデータセットを作成済みです。この演習を通じて、データセット、データ フロー、およびパイプラインの作成を経験しました。製品テーブルへのデータの読み込みは繰り返しになるので、ここでは単に、既存のパイプラインをトリガーしてこのテーブルにデータを読み込みます。
 
-    ![The Storage Explorer (preview) screen is shown with Storage Explorer selected from the left menu. In the hierarchical menu, the BLOB CONTAINERS item expanded with the invoices item selected. The + New Folder button is highlighted in the taskbar menu.](media/storageexplorer_invoicesnewfolder.png "Azure Storage Explorer")
+1. 左側メニューから **\[Orchestrate\]** を選択します。**\[Orchestrate\]** ブレードで **\[Pipelines\]** セクションを展開し、**\[ASAMCW - Exercise 2 - Copy Product Information\]** パイプラインを特定して選択します。
 
-7. In the **Create New Virtual Directory** blade, name the directory **Test**, then select **OK**. This will automatically move you into the new **Test** folder.
+2. パイプライン デザイナーのツールバーで **\[Add trigger\]** 項目を展開して、**\[Trigger now\]** を選択します。**\[Pipeline run\]** ブレードで **\[OK\]** を選択して、最後に公開した構成で先に進みます。パイプラインが動作していることおよびパイプラインの完了時を示すトースト通知ウィンドウが表示されます。
 
-    ![The Create New Virtual Directory form is displayed with Test entered in the name field.](media/storageexplorer_createnewvirtualdirectoryblade.png "Create New Virtual Directory form")
+3. \[Orchestrate\] ブレードで **\[**ASAMCW - Exercise 2 - Copy Product Information**\]** パイプラインを特定して、パイプラインの実行のステータスを表示します。アクション メニューを展開して、**\[Monitor\]** 項目を選択します。
 
-8. From the taskbar, select **Upload**. Upload all invoices located in **Hands-on lab/artifacts/sample_invoices/Test**. These files are Invoice_6.pdf and Invoice_7.pdf.
+4. **\[Pipeline runs\]** テーブルで、作成したパイプラインの実行が進行中 (または正常終了) と表示されます。パイプライン操作が完了したら、パイプラインの実行の \[Status\] が **\[Succeeded\]** と表示されます。
 
-9. Return to the root **invoices** folder by selecting the **invoices** breadcrumb from the location textbox found beneath the taskbar.
+5. 新しいクエリを作成することによって、テーブルにデータが読み込まれていることを検証します。左側メニューから **\[Develop\]** 項目を選択し、**\[Develop\]** ブレードで **\[+\]** を展開して **\[SQL script\]** を選択します。クエリ ウィンドウで、SQL プール データベース (`SQLPool01`) に接続していることを確認して、以下のクエリを貼り付けて実行します。完了したら、上部のツールバーから **\[Discard all\]** を選択します。
 
-    ![A portion of the Storage Explorer window is displayed with the invoices breadcrumb selected from the location textbox.](media/storageexplorer_breadcrumbnav.png "Storage Explorer breadcrumb navigation")
+```sql
+  select * from wwi_mcw.Product;
+```
 
-10. From the taskbar, select **+ New Folder** once again. This time creating a folder named **Train**. This will automatically move you into the new **Train** folder.
+## 演習 3: 生 Parquet の調査
 
-11. From the taskbar, select **Upload**. Upload all invoices located in **Hands-on lab/artifacts/sample_invoices/Train**. These files are Invoice_1.pdf, Invoice_2.pdf, Invoice_3.pdf, Invoice_4.pdf and Invoice_5.pdf.
-
-12. From the left menu, select **Access keys**.
-
-    ![The left menu is displayed with the Access keys link highlighted.](media/ex5-task1a-003.png "The Access keys menu item")
-
-13. Copy the Connection string under **key1**. Save it to notepad, Visual Studio Code, or another text file. We'll use this several times
-
-    ![The copy button is selected next to the key1 connection string.](media/ex5-task1a-004.png "Copying the key1 connection string value")
-
-14. From the left menu, beneath **Settings**, select **Shared access signature**.
-
-15. Make sure all the checkboxes are selected and choose **Generate SAS and connection string**.
-
-    ![The configuration form is displayed for SAS generation.](media/ex5-task1a-012.png "SAS Configuration form")
-
-16. Copy the generated **Blob service SAS URL** to the same text file as above.
-
-    ![The SAS form is shown with the shared access signature blob service SAS URL highlighted.](media/ex5-task1a-013.png "The SAS URL")
-
-17. Modify the SAS URL that you just copied and add the **invoices** container name just before the **?** character.
-
-    >**Example**: https://asastore{{suffix}.blob.core.windows.net/**invoices**?sv=2019-12-12&ss=bfqt&srt ...
-
-### Task 2: Create and train an Azure Forms Recognizer model and setup Cognitive Search
-
-1. Browse to your Azure Portal homepage, select **+ Create a resource**, then search for and select **Form Recognizer** from the search results.
-
-    ![The New resource screen is shown with Form Recognizer entered into the search text boxes and selected from the search results.](media/ex5-task2a-01.png "New resource search form")
-
-2. Select **Create**.
-
-    ![The Form Recognizer overview screen is displayed with the Create button highlighted.](media/ex5-task2a-02.png "The Form Recognizer overview form")
-
-3. Enter the following configuration settings, then select **Create**:
-
-    | Field | Value |
-    |-------|-------|
-    | Name  | Enter a unique name (denoted by the green checkmark indicator) for the form recognition service. |
-    | Subscription | Select the lab subscription. |
-    | Location | Select  the lab region. |
-    | Pricing | Select **Free F0**. |
-    | Confirmation checkbox | Checked. |
-  
-    ![The Form Recognizer configuration screen is displayed populated with the preceding values.](media/ex5-task2a-03.png "Form Recognizer configuration screen")
-
-4. Wait for the service to provision then navigate to the resource.
-
-5. From the left menu, select **Keys and Endpoint**.
-
-    ![The left side navigation is shown with the Keys and Endpoint item highlighted.](media/ex5-task2a-04.png "Left menu navigation")
-
-6. Copy and Paste both KEY 1 and the ENDPOINT values. Put these in the same location as the storage connection string you copied earlier
-
-    ![The Keys and Endpoint screen is shown with KEY 1 and ENDPOINT values highlighted.](media/ex5-task2a-05.png "The Keys and Endpoint screen")
-
-7. Browse to your Azure Portal homepage, select **+ Create a new resource**, then search for and create a new instance of **Azure Cognitive Search**.
-
-    ![The Azure Cognitive Search overview screen is displayed.](media/ex5-task1-006.png "Azure Cognititve Search Overview screen")
-
-8. Choose the subscription and the resource group you've been using for this lab. Set the URL of the Cognitive Search Service to a unique value, relating to search. Then, switch the pricing tier to **Free**.
-
-    ![The configuration screen for Cognitive Search is displayed populated as described above.](media/ex5-task1-007.png "Cognitive Search service configuration")
-
-9. Select **Review + create**.
-
-    ![displaying the review + create button](media/ex5-task1-008.png "The review and create button")
-
-10. Select **Create**.
-
-11. Wait for the Search service to be provisioned then navigate to the resource.
-
-12. From the left menu, select **Keys**, copy the **Primary admin key** and paste it into your text document. Also make note of the name of your search service resource.
-
-    ![They Keys page of the Search service resource is shown with the Primary admin key value highlighted.](media/ex5-task3-010.png "Cognitive search keys")
-
-13. Also make note of the name of your search service in the text document.
-
-    ![The Search Service name is highlighted on the Keys screen.](media/ex5-task3-011.png "Search service name")
-
-14. Open Visual Studio Code.
-
-15. From the **File** menu, select **Open file** then choose to open **Hands-on lab/artifacts/pocformreader.py**.
-
-16. Update Lines 7, 9, and 17 with the appropriate values indicated below:
-
-    - Line 7: The endpoint of Azure Cognitive Services.
-
-    - Line 9: The Blob Service SAS URL storage account with your Train and Test invoice folders.
-
-    - Line 17: The key for your Azure Cognitive Service endpoint.
-
-    ![The source code listing of pocformreader.py is displayed with the lines mentioned above highlighted.](media/ex5-task2a-06.png "The source listing of pocofrmreader.py")
-
-17. Save the file.
-
-18. Select Run, then Start Debugging.
-
-    ![The VS Code File menu is shown with Run selected and Start Debugging highlighted.](media/ex5-task2a-07.png "The VS Code File menu")
-
-19. In the **Debug Configuration**, select to debug the **Python File - Debug the currently active Python File** value.
-
-    ![The Debug Configuration selection is shown with Python File - Debug the currently active Python File highlighted.](media/ex5-task2a-08.png "Debug Configuration selection")
-
-20. When it completes, you should see an output similar to what is seen in the screenshot below. The output should also contain a modelID. Copy and paste this into your text file to use later
-
-    ![A sample output of the python script is shown with a modelID value highlighted.](media/ex5-task2a-09.png "Visual Studio Code output window")
-
-    >**Note**: If you receive an error stating the **requests** module is not found, from the terminal window in Visual Studio code, execute: **pip install requests**
-
-### Task 3: Configure a skillset with Form Recognizer
-
-1. Open a new instance of Visual Studio Code.
-
-2. In Visual Studio Code open the folder **Hands-on lab/environment-setup/functions**.
-
-   ![The file structure of the /environment-setup/functions folder is shown.](media/ex5-task1-001.png "The file structure of the functions folder")
-
-3. In the **GetInvoiceData/\_\_init\_\_.py** file, update lines 66, 68, 70, and 73 with the appropriate values for your environment, the values that need replacing are located between **\<\<** and **\>\>** values.
-
-   ![The __init__.py code listing is displayed.](media/ex5-task1-step2.png "The __init__.py code listing")
-
-4. Use the Azure Functions extension to publish to a new Azure function. If you don't see the Azure Functions panel, go to the **View** menu, select **Open View...** and choose **Azure**. If the panel shows the **Sign-in to Azure** link, select it and log into Azure. Select the **Publish** button at the top of the panel.
-
-   ![The Azure Functions extension panel in VS Code is displayed highlighting the button to publish the function.](media/ex5-task1-002.png "The Azure Function panel")
-
-    - Select the same subscription as your Synapse workspace.
-
-    - Choose to **Create new Function App in Azure...**.
-
-    - Give this function a unique name, relative to form recognition.
-
-        ![The Create new function App in Azure dialog is shown with the name populated.](media/ex5-task1-003.png "The Create new function App in Azure dialog")
-
-    - For the runtime select Python 3.7.
-
-        ![The python runtime version selection dialog is shown with Python 3.7 highlighted.](media/ex5-task1-004.png "Setting the Python runtime version")
-
-    - Deploy the function to the same region as your Synapse workspace.
-
-        ![The Region selection dialog is shown.](media/ex5-task1-005.png "The region selection dialog")
-
-5. Once publishing has completed, return to the Azure Portal and search for a resource group that was created with the same name as the Azure Function App.
-
-6. Within this resource group, open the **App Service** resource with the same name.
-
-   ![A resource listing is shown with the App Service highlighted.](media/formrecognizerresourcelist.png "Resource group listing")
-
-7. From the left menu, beneath the **Functions** heading, select **Functions**.
-
-8. From the Functions listing, select **GetInvoiceData**.
-
-9. From the toolbar menu of the **GetInvoiceData** screen, select the **Get Function Url** item, then copy this value to your text document for later reference.
-
-    ![The GetInvoiceData function screen is shown with the Get Function Url button highlighted in the taskbar and the URL displayed in a textbox.](media/azurefunctionurlvalue.png "GetInvoiceData function screen")
-
-10. Now that we have the function published and all our resources created, we can create the skillset. This will be accomplished using **Postman**. Open Postman.
-
-11. From the **File** menu, select **Import** and choose to import the postman collection from **Hands-on lab/environment-setup/skillset**.
-
-    ![The Postman File menu is expanded with the Import option selected.](media/ex5-task3-004.png "Postman File menu")
-
-    ![The Postman file import screen is displayed with the Upload files button highlighted.](media/ex5-task3-005.png "The Postman Import Screen")
-
-    ![The file selection dialog is shown with the file located in the skillset folder highlighted.](media/ex5-task3-006.png "File selection dialog")
-
-12. Select Import.
-
-13. In Postman, the Collection that was imported will give you 4 items in the **Create a KnowledgeStore** collection. These are: Create Index, Create Datasource, Create the skillset, and Create the Indexer.
-
-    ![The Collections pane is shown with the Create a KnowledgeStore collection expanded with the four items indicated above.](media/ex5-task3-007.png "The Postman Collections Pane")
-
-14. The first thing we need to do, is edit some properties that will affect each of the calls in the collection. Hover over the **Create a KnowledgeStore** collection, and select the ellipsis button **...**, and then select **Edit**.
-
-    ![In Postman, the ellipsis is expanded next to the Create a KnowledgeStore collection with the edit menu option selected.](media/ex5-task3-008.png "Editing the Postman Collection")
-
-15. In the Edit Collection screen, select the **Variables** tab.
-
-    ![In the Edit Collection screen, the Variables tab is selected.](media/ex5-task3-009.png "Edit Collection variables screen")
-
-16. We are going to need to edit each one of these variables to match the following:
-
-    | Variable | Value |
-    |-------|-------|
-    | admin-key  | The key from the search service you created. |
-    | search-service-name | The name of the search service. |
-    | storage-account-name | asastore{{suffix}} |
-    | storage-connection-string | The connection string from the asastore{{suffix}} storage account. |
-    | datasourcename | Enter **invoices** |
-    | indexer-name | Enter **invoice-indexer** |
-    | index-name | Enter **invoice-index** |
-    | skillset-name | Enter **invoice-skillset** |
-    | storage-container-name | Enter **invoices** |
-    | skillset-function | Enter function URL from the function you published.|
-
-17. Select **Update** to update the collection with the modified values.
-
-    ![The Edit Collection Variables screen is shown with a sampling of modified values.](media/ex5-task3-014.png "The Edit Collection Values screen")
-
-18. Select the **Create Index** call from the collection, then select the **Body** tab and review the content.
-
-    ![The Create Index call is selected from the collection, and the Body tab is highlighted.](media/ex5-task3-015.png "The Create Index Call")
-
-19. Select "Send".
-
-    ![The Postman send button is selected.](media/ex5-task3-016.png "Send button")
-
-20. You should get a response that the index was created.
-
-    ![The Create Index response is displayed in Postman with the Status of 201 Created highlighted.](media/ex5-task3-017.png "The Create Index call response")
-
-21. Do the same steps for the **Create Datasource, Create the Skillset, and Create the indexer** calls.
-
-22. After you Send the Indexer request, if you navigate to your search service you should see your indexer running, indicated by the in-progress indicator. It will take a couple of minutes to run.
-
-    ![The invoice-indexer is shown with a status of in-progress.](media/ex5-task3-018.png "The invoice-indexer status")
-
-23. Once the indexer has run, it will show two successful documents. If you go to your Blob storage account, **asastore{suffix}** and look in the **invoices-json** container you will see two folders with .json documents in them.
-
-    ![The execution history of the invoice-indexer is shown as successful.](media/ex5-task3-019.png "The execution history of the invoice-indexer")
-
-    ![The invoices-json container is shown with two folders. A JSON file is shown in the blob window.](media/ex5-task3-020.png "Contents of the invoices-json container")
-
-### Task 4: Create the Synapse Pipeline
-
-1. Open your Synapse workspace.
-
-    ![The Azure Synapse Workspace resource screen is shown with the Launch Synapse Studio button highlighted.](media/ex5-task4-001.png)
-
-2. Expand the left menu and select the **Develop** item. From the **Develop** blade, expand the **+** button and select the **SQL script** item.
-
-    ![The left menu is expanded with the Develop item selected. The Develop blade has the + button expanded with the SQL script item highlighted.](media/develop_newsqlscript_menu.png "Creating a new SQL script")
-
-3. In the query tab toolbar menu, ensure you connect to your SQL Pool, `SQLPool01`.
-
-    ![The query tab toolbar menu is displayed with the Connect to set to the SQL Pool.](media/querytoolbar_connecttosqlpool.png "Connecting to the SQL Pool")
-
-4. In the query window, copy and paste the following query to create the invoice information table. Then select the **Run** button in the query tab toolbar.
-
-    ```sql
-      CREATE TABLE [wwi_mcw].[Invoices]
-      (
-        [TransactionId] [uniqueidentifier]  NOT NULL,
-        [CustomerId] [int]  NOT NULL,
-        [ProductId] [smallint]  NOT NULL,
-        [Quantity] [tinyint]  NOT NULL,
-        [Price] [decimal](9,2)  NOT NULL,
-        [TotalAmount] [decimal](9,2)  NOT NULL
-      );
-    ```
-
-5. From the top toolbar, select the **Discard all** button as we will not be saving this query. When prompted, choose to **Discard changes**.
-
-   ![The top toolbar menu is displayed with the Discard all button highlighted.](media/toptoolbar_discardall.png "Discard changes")
-
-6. Select the **Orchestrate** hub from the left navigation.
-
-    ![The Orchestrate hub is selected from the left navigation.](media/ex5-task4-012.png "The Orchestrate hub")
-
-7. In the Orchestrate blade, expand the **+** button and then select **Pipeline** to create a new pipeline.
-
-    ![The + button is expanded with the pipeline option selected.](media/ex5-task4-013.png "Create a new pipeline")
-
-8. Name your pipeline **InvoiceProcessing**.
-
-    ![The new pipeline properties are shown with InvoiceProcessing entered as the name of the pipeline.](media/ex5-task4-014.png "Naming the pipeline")
-
-9. On the pipeline taskbar, select **Add trigger** then choose **New/Edit** to create an event to start the pipeline.
-
-    ![The Add trigger button is expanded with the New/Edit option selected.](media/ex5-task4-015.png "New Trigger menu item")
-
-10. On the Add triggers form, select  **+New** from the **Choose trigger** dropdown.
-
-    ![The Add triggers form is displayed with the Choose trigger dropdown expanded and the +New item is selected.](media/ex5-task4-016.png "Choosing to create a new trigger")
-
-11. For this exercise, we're going to do a schedule. However, in the future you'll also be able to use an event-based trigger that would fire off new JSON files being added to blob storage. Set the trigger to start every 5 minutes, then select **OK**.
-
-    ![The new trigger form is displayed with the trigger set to start every 5 minutes.](media/ex5-task4-017.png "New trigger form")
-
-12. Select **OK** on the Run Parameters form, nothing needs to be done here.
-
-13. Next we need to add a Data Flow to the pipeline. Under Activities, expand **Move & transform** then drag and drop a **Data flow** onto the designer canvas.
-
-    ![The pipeline designer is shown with an indicator of a drag and drop operation of the data flow activity.](media/ex5-task4-018.png "The Data flow activity")
-
-14. On the **Adding data flow** form, select **Create new data flow** and name it **NewInvoicesProcessing**.
-
-    ![The Adding data flow form is displayed populated with the preceding values.](media/ex5-task4-019.png)
-
-15. On the **NewInvoicesProcessing** data flow design canvas. Select the **Add source** box.
-
-    ![The NewInvoicesProcessing designer is shown with the Add source box selected.](media/ex5-task4-020.png "The NewInvoicesProcessing designer")
-
-16. In the bottom pane, name the output stream **jsonInvoice**, leave the source type as **Dataset**, and keep all the remaining options set to their defaults. Select **+New** next to the Dataset field.
-
-    ![The Source settings tab is displayed populated with the name of jsonInvoice and the +New button next to the Dataset field is selected.](media/ex5-task4-021.png "Source Settings")
-
-17. In the **New dataset blade**, select **Azure Blob Storage** then select **Continue**.
-
-    ![The New dataset blade is displayed with Azure Blob Storage selected.](media/ex5-task4-022.png "Azure Blob Storage dataset")
-
-18. On the **Select format** blade, select **Json** then select **Continue**.
-
-    ![The select format screen is displayed with Json selected as the type.](media/ex5-task4-023.png "Select format form")
-
-19. On the **Set properties** screen, name the dataset **InvoicesJson** then for the linked service field, choose the Azure Storage linked service **asastore{suffix}**.
-
-    ![A portion of the Set properties form is displayed populated with the above values.](media/ex5-task4-024.png "Dataset Set properties form")
-
-20. For the file path field, enter **invoices-json** and set the import schema field to **From sample file**.
-
-    ![The set properties form is displayed with the file path and import schema fields populated as described.](media/ex5-task4-025.png "Data set properties form")
-
-21. Select **Browse** and select the file located at **Hands-on lab/environment-setup/synapse/sampleformrecognizer.json** and select **OK**.
-
-    ![The Set properties form is displayed with the sampleformrecognizer.json selected as the selected file.](media/ex5-task4-026.png "Data set properties form")
-
-22. Select the **Source options** tab on the bottom pane. Add \*/\* to the Wildcard paths field.
-
-    ![The Source options tab is shown with the Wildcard paths field populated as specified.](media/ex5-task4-048.png "Source options tab")
-
-23. On the Data flow designer surface, select **+** to the lower right of the source activity to add another step in your data flow.
-
-    ![The + button is highlighted to the lower right of the source activity.](media/ex5-task4-028.png "Adding a data flow step")
-
-24. From the list of options, select **Derived column** from beneath the **Schema modifier** section.
-
-    ![With the + button expanded, Derived column is selected from the list of options.](media/ex5-task4-029.png "Adding a derived column activity")
-
-25. On the **Derived column's settings** tab, provide the output stream name of **RemoveCharFromStrings**. Then for the Columns field, add 3 columns and configure them as follows:
-
-    | Column | Expression |
-    |--------|------------|
-    | productprice | toDecimal(replace(productprice,'$','')) |
-    | totalcharges | toDecimal(replace(replace(totalcharges,'$',''),',','')) |
-    | quantity | toInteger(replace(quantity,',','')) |
-
-     ![The Derived column's settings tab is shown with the fields populated as described.](media/ex5-task4-030.png "The derived column's settings tab")
-
-26. Return to the Data flow designer, select the **+** next to the derived column activity to add another step to your data flow.
-
-27. This time select the **Alter Row** from beneath the **Row modifier** section.
-
-    ![In the Row modifier section, the Alter Row option is selected.](media/ex5-task4-031.png "The Alter row activity")
-
-28. On the **Alter row settings** tab on the bottom pane, Name the Output stream **AlterTransactionID**, and leave the incoming stream set to the default value. Change **Alter row conditions** field to **Upsert If** and then set the expression to **notEquals(transactionid,"")**
-
-    ![The Alter row settings tab is shown populated with the values described above.](media/ex5-task4-032.png "The Alter row settings tab")
-
-29. Return to the Data flow designer, select the **+** to the lower right of the **Alter Row** activity to add another step into your data flow.
-
-30. Within the **Destination** section, select **Sink**.
-
-    ![In the activity listing, the sink option is selected from within the Destination section.](media/ex5-task4-033.png "The Sink Activity")
-
-31. On the bottom pane, with the **Sink** tab selected, name the Output stream name **SQLDatabase** and leave everything else set to the default values. Next to the **Dataset** field, select **+New** to add a new Dataset.
-
-    ![The sink tab is shown with the output stream name set to SQLDatabase and the +New button selected next to the Dataset field.](media/ex5-task4-034.png "The Sink tab")
-
-32. On the **New dataset** blade, select the **Azure** tab. Select **Azure Synapse Analytics (formerly SQL DW)** and select **Continue**.
-
-    ![Azure Synapse Analytics is selected in a list of dataset types.](media/ex5-task4-035.png "Selecting the Azure Synapse Analytics dataset type")
-
-33. Set the name of the Dataset to **InvoiceTable** and choose the **sqlpool01** Linked service. Choose **Select from existing table** and choose the **wwi_mcw.Invoices** table. If you don't see it in the list of your table names, select the **Refresh** button and it should show up. Select **OK**.
-
-    ![The Dataset Set properties form is displayed populated as described.](media/ex5-task4-036.png "Set properties form")
-
-34. In the bottom pane, with the Sink activity selected on the data flow designer, select the **Settings** tab and check the box to **Allow upsert**. Set the **Key columns** field to **transactionid**.
-
-    ![The Settings tab of the Sink activity is shown and is populated as described.](media/ex5-task4-037.png "Sink Settings tab")
-
-35. Select the **Mapping** tab, disable the **Auto mapping** setting and configure the mappings between the json file and the database. Select **+ Add mapping** then choose **Fixed mapping** to add the following mappings:
-
-    | Input column | Output column |
-    |--------------|---------------|
-    | transactionid | TransactionId |
-    | productid | ProductId |
-    | customerid | CustomerId |
-    | productprice | Price |
-    | quantity  | Quantity |
-    | totalcharges | TotalAmount |
-
-    ![The Mapping tab is displayed with Auto Mapping disabled and the column mappings from the table above are defined.](media/ex5-task4-038.png "The Mapping tab")
-
-36. Return to the **InvoiceProcessing** pipeline by selecting its tab at the top of the workspace.
-
-    ![The InvoiceProcessing tab is selected at the top of the workspace.](media/ex5-task4-039.png "The InvoiceProcessing pipeline tab")
-
-37. Select the data flow activity on the pipeline designer surface, then in the bottom pane, select the **Settings** tab.
-
-    ![The data flow activity Settings tab is displayed.](media/ex5-task4-040.png "The Settings tab")
-
-38. Under the **PolyBase** settings, set the **Staging linked service** to the **asastore{suffix}** linked service. Enter **invoices-staging** as the **Storage staging folder**.
-
-    ![The data flow activity Settings tab is displayed with its form populated as indicated above.](media/ex5-task4-041.png "The Settings tab")
-
-39. Select **Publish All** from the top toolbar.
-
-    ![The Publish All button is selected from the top toolbar.](media/ex5-task4-042.png "The Publish all button")
-
-40. Select **Publish**.
-
-41. Within a few moments, you should see a notification that Publishing completed.
-
-    ![The Publishing completed notification is shown.](media/ex5-task4-043.png "The Publishing Completed notification")
-
-42. From the left menu, select the **Monitor** hub, then ensure the **Pipeline runs** option is selected from the hub menu.
-
-    ![The Monitor hub is selected from the left menu.](media/ex5-task4-044.png "The Monitor Hub menu option")
-
-43. In approximately 5 minutes, you should see the **InvoiceProcessing** pipeline begin processing. You may need to refresh this list to see it appear, a refresh button is located in the toolbar.
-
-    ![On the Pipeline runs list, the InvoiceProcessing pipeline is shown as in-progress.](media/ex5-task4-045.png "The Pipeline runs list")
-
-44. After about 3 or 4 minutes it will complete. You may need to refresh the list to see the completed pipeline.
-
-    ![The Pipeline runs list is displayed with the InvoiceProcessing pipeline shown as succeeded.](media/ex5-task4-046.png "The pipeline runs list")
-
-45. From the left menu, select the **Develop** hub, then expand the **+** button an choose **SQL Script**. Ensure the proper database is selected, then run the following query to verify the data from the two test invoices.
-
+**所要時間**: 30 分
+
+データ調査を通じてデータを理解することは、データ エンジニアとデータ サイエンティストが今日直面している大きな課題の 1 つです。データの基本構造および調査プロセスの特定の要件に応じて、さまざまなデータ処理エンジンがさまざまなレベルのパフォーマンス、複雑さ、および柔軟性を示します。
+
+Azure Synapse Analytics では、Synapse SQL サーバーレス エンジンまたはビッグデータ Spark エンジンの一方または両方を使用する可能性があります。
+
+この演習では、両方のオプションを使用して、データ レイクを調査します。
+
+### タスク 1: Synapse SQL サーバーレスによる販売 Parquet データに対するクエリの実行
+
+Synapse SQL サーバーレスを使用して Parquet ファイルに対してクエリを実行する際、T-SQL 構文を使用してデータを調査できます。
+
+1. 左側メニューから **\[Data\]** を選択します。
+
+2. **\[Data\]** ブレードで、**\[Linked\]** タブを選択します。
+
+3. **\[Storage accounts\]** を展開します。\[`asadatalake{SUFFIX}`\] ADLS Gen2 アカウントを展開して、**\[wwi-02\]** を選択します。
+
+4. **\[wwi-02/sale-small/Year=2010/Quarter=Q4/Month=12/Day=20101231\]** フォルダーに移動します。**\[sale-small-20101231-snappy.parquet\]** ファイルを右クリックして、**\[New SQL script\]**、**\[Select TOP 100 rows\]** の順に選択します。
+   
+   ![\[Storage accounts\] セクションが展開され、\[asadatalake{SUFFIX}\] アカウントのコンテキスト メニューの \[Select TOP 100 rows\] オプションが強調表示されています。](media/data-hub-parquet-select-rows.png "SQL サーバーレス内の Parquet データのクエリ")
+
+5. クエリ ウィンドウの上の **\[Connect to\]** ドロップダウン リストで **\[SQL on-demand\]** が選択されていることを確認して、クエリを実行します。Synapse SQL サーバーレス エンドポイントによってデータが読み込まれ、標準のリレーショナル データベースからの読み込みのように処理されます。
+   
+   ![クエリ ウィンドウのツールバーで \[SQL on-demand\] 接続が強調表示されています。](media/sql-on-demand-selected.png "SQL on-demand")
+
+6. データの理解を深めるために、集計操作とグループ化操作を実行するように SQL クエリを変更します。クエリを以下のテキストで置き換えて、**OPENROWSET** のファイル パスが各自の現在のファイル パスと一致していることを確認します。必ず `asadatalake{SUFFIX}` を各自の環境に適した値に置き換えてください。
+   
+   ```sql
+   SELECT
+       TransactionDate, ProductId,
+       CAST(SUM(ProfitAmount) AS decimal(18,2)) AS [(sum) Profit],
+       CAST(AVG(ProfitAmount) AS decimal(18,2)) AS [(avg) Profit],
+       SUM(Quantity) AS [(sum) Quantity]
+   FROM
+       OPENROWSET(
+           BULK 'https://asadatalake{SUFFIX}.dfs.core.windows.net/wwi-02/sale-small/Year=2010/Quarter=Q4/Month=12/Day=20101231/sale-small-20101231-snappy.parquet',
+           FORMAT='PARQUET'
+       ) AS [r] GROUP BY r.TransactionDate, r.ProductId;
+   ```
+   
+   ![クエリ ウィンドウ内に上記の T-SQL クエリが表示されています。](media/sql-serverless-aggregates.png "クエリ ウィンドウ")
+
+7. 次に、2019 年のデータの Parquet ファイルに含まれるレコード数を調べます。この情報は、Azure Synapse Analytics へのデータのインポートを最適化する方法を計画するために重要です。それには、クエリを以下のテキストで置き換えます (必ず `asadatalake{SUFFIX}` を置き換えて、BULK ステートメントの自分のデータ レイクの名前を更新してください)。
+   
+   ```sql
+   SELECT
+       COUNT_BIG(*)
+   FROM
+       OPENROWSET(
+           BULK 'https://asadatalake{SUFFIX}.dfs.core.windows.net/wwi-02/sale-small/Year=2019/*/*/*/*',
+           FORMAT='PARQUET'
+       ) AS [r];
+   ```
+   
+   > `sale-small/Year=2019` のすべてのサブフォルダーのすべての Parquet ファイルを含めるためのパスの更新方法に注意してください。
+   
+   レコード数は **339507246** と出力されます。
+
+### タスク 2: Azure Synapse Spark による販売 Parquet データに対するクエリの実行
+
+1. 左側メニューから **\[Data\]** を選択し、**\[Linked\]** タブを選択し、データ レイク ストレージ アカウント `asadatalake{SUFFIX}` の **wwi-02/sale-small/Year=2010/Quarter=Q4/Month=12/Day=20101231** を参照します。Parquet ファイルを右クリックして、\[New notebook\] を選択します。
+   
+   ![Parquet ファイルが表示され、\[New notebook\] メニュー項目が強調表示されています。](media/new-spark-notebook-sales.png "New notebook")
+
+2. これにより、データフレームにデータを読み込んでヘッダー付きで 100 行を表示する PySpark コードを含むノートブックが生成されます。
+
+3. このノートブックを Spark プールにアタッチします。
+   
+   ![Spark プール リストが表示されています。](media/attach-spark-pool.png "Spark プールへのアタッチ")
+
+4. ノートブックのツールバーで **\[Run all\]** を選択して、ノートブックを実行します。
+   
+   > **注:** Spark プールで初めてノートブックを実行する際、Synapse が新しいセッションを作成します。これには約 5 分かかる可能性があります。
+   
+   > **注:** 特定のセルだけを実行するには、そのセルをポイントして、セルの左側の "セルの実行" アイコンを選択するか、またはセルを選択してキーボードで **Ctrl + Enter** キーを押します。
+
+5. ノートブックの下方の空白スペースをポイントして **\[{} Add code\]** を選択することによって、すぐ下に新しいセルを作成します。
+   
+   ![\[Add Code\] メニュー オプションが強調表示されています。](media/new-cell.png "Add code")
+
+6. Spark エンジンは、Parquet ファイルを解析して、そのスキーマを推測できます。それには、新しいセルに以下のテキストを入力します。
+   
+   ```python
+   data_path.printSchema()
+   ```
+   
+   以下のような出力が得られます。
+   
+   ```text
+   root
+       |-- TransactionId: string (nullable = true)
+       |-- CustomerId: integer (nullable = true)
+       |-- ProductId: short (nullable = true)
+       |-- Quantity: short (nullable = true)
+       |-- Price: decimal(29,2) (nullable = true)
+       |-- TotalAmount: decimal(29,2) (nullable = true)
+       |-- TransactionDate: integer (nullable = true)
+       |-- ProfitAmount: decimal(29,2) (nullable = true)
+       |-- Hour: byte (nullable = true)
+       |-- Minute: byte (nullable = true)
+       |-- StoreId: short (nullable = true)
+   ```
+
+7. 次に、データフレームを使用して、SQL サーバーレス プールを使用して実行したのと同じグループ化と集計のクエリを実行します。新しいセルを作成して、以下のテキストを入力します。
+   
+   ```python
+   from pyspark.sql import SparkSession
+   from pyspark.sql.types import *
+   from pyspark.sql.functions import *
+   
+   profitByDateProduct = (data_path.groupBy("TransactionDate", "ProductId")
+   .agg(
+   round(sum("ProfitAmount"),2).alias("(sum)Profit"),
+   round(avg("ProfitAmount"),2).alias("(avg)Profit"),
+   sum("Quantity").alias("(sum)Quantity")
+   ).orderBy("TransactionDate", "ProductId")
+   )
+   profitByDateProduct.show(100)
+   ```
+
+> クエリを正常に実行するために、スキーマで定義されている集計関数と型を使用するために必要な Python ライブラリをインポートしています。
+
+## 演習 4: Azure Synapse SQL サーバーレスによるテキストベースの生データの調査
+
+**所要時間**: 15 分
+
+データをエクスポートおよび保存するための共通フォーマットは、テキストベースのファイルです。たとえば、CSV ファイルや JSON 構造化データ ファイルなどの区切り記号付きテキスト ファイルです。Azure Synapse Analytics は、これらの種類の生ファイルに対してクエリを実行する方法も提供しており、それらのファイルが処理されるのを待つことなく、データに対する価値ある洞察を得られます。
+
+### タスク 1: CSV データに対するクエリの実行
+
+1. 左側メニューから **\[Develop\]** を選択し、**\[Develop\]** ブレードで **\[+\]** を展開して **\[SQL script\]** を選択することによって、新しい SQL スクリプトを作成します。
+
+2. クエリ ウィンドウの上の **\[Connect to\]** ドロップダウン リストで **\[SQL on-demand\]** が選択されていることを確認します。
+   
+   ![クエリ ウィンドウのツールバーで \[SQL on-demand\] 接続が強調表示されています。](media/sql-on-demand-selected.png "SQL on-demand")
+
+3. このシナリオでは、製品テーブルへのデータの読み込みに使用した CSV ファイルに対してクエリを実行します。このファイルは、`asadatalake{SUFFIX}` アカウントの **wwi-02/data-generators/generator-product.csv** にあります。このファイルからすべてのデータを選択します。以下のクエリをコピーしてクエリ ウィンドウに貼り付けて、クエリ ウィンドウのツールバー メニューで **\[Run\]** を選択します。必ず `asadatalake{SUFFIX}` を各自のストレージ アカウント名で置き換えてください。
+   
+   ```sql
+   SELECT
+      csv.*
+   FROM
+       OPENROWSET(
+           BULK 'https://asadatalake{SUFFIX}.dfs.core.windows.net/wwi-02/data-generators/generator-product/generator-product.csv',
+           FORMAT='CSV',
+           FIRSTROW = 1
+       ) WITH (
+           ProductID INT,
+           Seasonality INT,
+           Price DECIMAL(10,2),
+           Profit DECIMAL(10,2)
+       ) as csv
+   ```
+   
+   > **注**: このクエリでは、1 つのファイルに対してのみクエリを実行しています。Azure Synapse Analytics では、ファイルのパスにワイルドカードを使用することによって、(一様に構造化された) 一連の CSV ファイルにわたってクエリを実行できます。
+
+4. このデータに対して集計を実行することもできます。クエリを以下のテキストで置き換えて、ツールバー メニューで **\[Run\]** を実行します。必ず `asadatalake{SUFFIX}` を各自のストレージ アカウント名で置き換えてください。
+   
+   ```sql
+   SELECT
+       Seasonality,
+       SUM(Price) as TotalSalesPrice,
+       SUM(Profit) as TotalProfit
+   FROM
+       OPENROWSET(
+           BULK 'https://asadatalake{SUFFIX}.dfs.core.windows.net/wwi-02/data-generators/generator-product/generator-product.csv',
+           FORMAT='CSV',
+           FIRSTROW = 1
+       ) WITH (
+           ProductID INT,
+           Seasonality INT,
+           Price DECIMAL(10,2),
+           Profit DECIMAL(10,2)
+       ) as csv
+   GROUP BY
+       csv.Seasonality
+   ```
+
+5. 前出のクエリを実行した後で、**\[Results\]** タブでビューを **\[Chart\]** に切り替えて、このデータの集計を可視化したものを表示します。最適な可視化が得られるように、遠慮なくチャート設定を試してください。
+   
+   ![前出の集計クエリの結果が、\[Results\] ペインでチャートとして表示されています。](media/querycsv_serverless_chart.png "集計クエリの結果")
+
+6. このクエリは保存しないので、上部のツールバーから **\[Discard all\]** を選択します。確認を求められたら **\[Discard changes\]** を選択します。
+   
+   ![上部のツールバー メニューが表示され、\[Discard all\] が強調表示されています。](media/toptoolbar_discardall.png "変更の破棄")
+
+### タスク 2: JSON データに対するクエリの実行
+
+1. 左側メニューから **\[Develop\]** を選択し、**\[Develop\]** ブレードで **\[+\]** を展開して **\[SQL script\]** を選択することによって、新しい SQL スクリプトを作成します。
+
+2. クエリ ウィンドウの上の **\[Connect to\]** ドロップダウン リストで **\[SQL on-demand\]** が選択されていることを確認します。
+   
+   ![クエリ ウィンドウのツールバーで \[SQL on-demand\] 接続が強調表示されています。](media/sql-on-demand-selected.png "SQL on-demand")
+
+3. クエリを以下のテキストで置き換えます。必ず `asadatalake{SUFFIX}` を各自のストレージ アカウントの名前で置き換えてください。
+   
+   ```sql
+   SELECT
+       products.*
+   FROM
+       OPENROWSET(
+           BULK 'https://asadatalake{SUFFIX}.dfs.core.windows.net/wwi-02/product-json/json-data/*.json',
+           FORMAT='CSV',
+           FIELDTERMINATOR ='0x0b',
+           FIELDQUOTE = '0x0b',
+           ROWTERMINATOR = '0x0b'
+       )
+       WITH (
+           jsonContent NVARCHAR(200)
+       ) AS [raw]
+   CROSS APPLY OPENJSON(jsonContent)
+   WITH (
+       ProductId INT,
+       Seasonality INT,
+       Price DECIMAL(10,2),
+       Profit DECIMAL(10,2)
+   ) AS products
+   ```
+
+4. このクエリは保存しないので、上部のツールバーから **\[Discard all\]** を選択します。確認を求められたら **\[Discard changes\]** を選択します。
+   
+   ![上部のツールバー メニューが表示され、\[Discard all\] が強調表示されています。](media/toptoolbar_discardall.png "変更の破棄")
+
+## 演習 5: Synapse パイプラインと Cognitive Search
+
+**所要時間**: 45 分
+
+この演習では、サプライヤーの請求書から部品価格の更新を調整する Synapse パイプラインを作成します。これは、カスタム スキルとして、Form Recognizer サービスを呼び出す Azure Cognitive Search スキルセットと Synapse パイプラインを組み合わせることによって達成されます。このパイプラインは、以下のように動作します。
+
+- 請求書が、Azure Storage にアップロードされます。
+- Azure Cognitive Search インデックスが開始されます。
+- 新しい請求書または更新された請求書のインデックスによって、Azure Cognitive Search スキルセットが呼び出されます。
+- スキルセット内の最初のスキルは、Azure Function を呼び出し、それに PDF 請求書の URL を渡します。
+- Azure Function は、Form Recognizer サービスを呼び出し、それに PDF 請求書の URL と SAS トークンを渡します。Forms Recognizer は、OCR の結果をこの関数に返します。
+- Azure Function は、その結果をスキルセットに返します。次に、そのスキルセットは、製品名とコストのみを抽出し、それを構成ナレッジ ストアに送信します。このナレッジ ストアは、Azure Blob Storage の JSON ファイルに、抽出されたデータを書き込みます。
+- Synapse パイプラインは、データ フロー アクティビティで Azure Storage からこれらの JSON ファイルを読み取り、Synapse SQL プール内の製品カタログ テーブルに対して更新/挿入 (upsert) を実行します。
+
+### タスク 1: 請求書のストレージ コンテナーの作成
+
+1. Azure Portal で、ラボ リソース グループに移動し、**asastore{suffix}** ストレージ アカウントを選択します。
+   
+   ![ラボ リソース リストが表示され、asastore ストレージ アカウントが強調表示されています。](media/ex5-task1a-000.png "Lab リソース グループのリスト")
+
+2. 左側メニューから、**\[Blob service\]** の下にある **\[Containers\]** を選択します。**\[Containers\]** 画面の上部のツールバー メニューから **\[+ Container\]** を選択します。
+   
+   ![\[Containers\] 画面が表示され、左側メニューで \[Containers\] が選択され、ツールバーで \[+ Container\] が選択されています。](media/ex5-task1a-001.png "Azure Storage Container 画面")
+
+3. **\[New container\]** ブレードで、コンテナーに **invoices** という名前を付け、**\[Create\]** を選択します。残りのフィールドは、既定値のままにします。
+
+4. ステップ 2 と 3 を繰り返し、**invoices-json** および **invoices-staging** という名前の 2 つの追加コンテナーを作成します。
+
+5. 左側メニューから **\[Storage Explorer (preview)\]** を選択します。次に、階層メニューで **\[BLOB CONTAINERS\]** 項目を展開します。
+
+6. **\[BLOB CONTAINERS\]** の下で、**\[invoices\]** コンテナーを選択し、タスクバー メニューから **\[+ New Folder\]** を選択します。
+   
+   ![左側メニューから \[Storage Explorer\] が選択された状態で、\[Storage Explorer (preview)\] 画面が表示されています。階層メニューで \[BLOB CONTAINERS\] 項目が展開され、請求書項目が選択されています。タスクバー メニューの \[+ New Folder\] ボタンが強調表示されています。](media/storageexplorer_invoicesnewfolder.png "Azure Storage Explorer")
+
+7. **\[Create New Virtual Directory\]** ブレードで、ディレクトリに **Test** という名前を付け、**\[OK\]** を選択します。これにより、新しい **\[Test\]** フォルダーに自動的に移動します。
+   
+   ![\[Create New Virtual Directory\] フォームが表示され、\[name\] フィールドに「Test」が入力されています。](media/storageexplorer_createnewvirtualdirectoryblade.png "[Create New Virtual Directory] フォーム")
+
+8. タスクバーから **\[Upload\]** を選択します。**Hands-on lab/artifacts/sample\_invoices/Test** にあるすべての請求書をアップロードします。ファイル名は、Invoice\_6.pdf と Invoice\_7.pdf です。
+
+9. タスクバーの下にある \[location\] テキストボックスから **\[invoices\]** ブレッドクラムを選択して、**invoices** ルート フォルダーに戻ります。
+   
+   ![\[Storage Explorer\] ウィンドウの一部が、\[location\] テキストボックスから選択した \[invoices\] ブレッドクラムとともに表示されています。](media/storageexplorer_breadcrumbnav.png "[Storage Explorer] ブレッドクラムのナビゲーション")
+
+10. タスクバーから **\[+ New Folder\]** を再び選択します。今回は、**Train** という名前のフォルダーを作成します。これにより、新しい **\[Train\]** フォルダーに自動的に移動します。
+
+11. タスクバーから **\[Upload\]** を選択します。**Hands-on lab/artifacts/sample\_invoices/Train** にあるすべての請求書をアップロードします。これらのファイルの名前は、Invoice\_1.pdf、Invoice\_2.pdf、Invoice\_3.pdf, Invoice\_4.pdf および Invoice\_5.pdf です。
+
+12. 左側メニューから **\[Access keys\]** を選択します。
+    
+    ![左側メニューが表示され、\[Access keys\] リンクが強調表示されています。](media/ex5-task1a-003.png "[Access keys] メニュー項目")
+
+13. **\[Key1\]** の接続文字列をコピーします。その文字列をメモ帳、Visual Studio Code、またはその他のテキスト ファイルに保存します。これは何度も使用します。
+    
+    ![key1 接続文字列の横にある \[copy\] ボタンが選択されています。](media/ex5-task1a-004.png "key1 接続文字列値のコピー")
+
+14. 左側メニューの **\[Settings\]** の下で、**\[Shared access signature\]** を選択します。
+
+15. すべてのチェック ボックスがオンになっていることを確認し、**\[Generate SAS and connection string\]** を選択します。
+    
+    ![SAS の生成のための \[configuration\] フォームが表示されています。](media/ex5-task1a-012.png "SAS の [Configuration] フォーム")
+
+16. 上記と同じテキスト ファイルに、生成された **Blob service SAS URL** をコピーします。
+    
+    ![SAS フォームが表示され、共有アクセス署名の Blob service SAS URL が強調表示されています。](media/ex5-task1a-013.png "SAS URL")
+
+17. コピーした SAS URL を修正し、**?** 文字の直前に **invoices** コンテナー名を追加します。
+    
+    > **例**: https://asastore{{suffix}.blob.core.windows.net/**invoices**?sv=2019-12-12\&ss=bfqt\&srt ...
+
+### タスク 2: Azure Forms Recognizer モデルの作成およびトレーニングと Cognitive Search のセットアップ
+
+1. Azure Portal ホームページに移動し、**\[+ Create a resource\]** を選択し、「**Form Recognizer**」を検索し、その検索結果から **\[Form Recognizer\]** を選択します。
+   
+   ![\[New\] リソース画面が表示され、「Form Recognizer」が検索テキストボックスに入力され、検索結果から選択されています。](media/ex5-task2a-01.png "[New] リソース検索フォーム")
+
+2. **\[Create\]** を選択します。
+   
+   ![\[Form Recognizer overview\] 画面が表示され、\[Create\] ボタンが強調表示されています。](media/ex5-task2a-02.png "[Form Recognizer overview] フォーム")
+
+3. 以下の構成設定を入力し、**\[Create\]** を選択します。
+   
+   | フィールド| 値
+   |----------|----------
+   | Name| フォーム認識サービスに対して一意の名前 (緑のチェック マーク インジケーターによって示されます) を入力します。
+   | Subscription| ラボ サブスクリプションを選択します。
+   | Location| ラボ リージョンを選択します。
+   | Pricing| **\[Free F0\]** を選択します。
+   | \[Confirmation\] チェックボックス| オン
+
+   ![Form Recognizer の構成画面が表示され、前述の値が入力されています。](media/ex5-task2a-03.png "Form Recognizer の構成画面")
+
+4. サービスのプロビジョニングを待機し、リソースに移動します。
+
+5. 左側メニューから **\[Keys and Endpoint\]** を選択します。
+   
+   ![左側のナビゲーションが表示され、\[Keys and Endpoint\] 項目が強調表示されています。](media/ex5-task2a-04.png "左側メニューのナビゲーション")
+
+6. KEY 1 と ENDPOINT の両方の値をコピーして貼り付けます。以前にコピーしたストレージ接続文字列と同じ場所にこれらの値を貼り付けます。
+   
+   ![\[Keys and Endpoint\] 画面が表示され、KEY 1 と ENDPOINT の値が強調表示されています。](media/ex5-task2a-05.png "[Keys and Endpoint] 画面")
+
+7. Azure Portal ホームページに移動し、**\[+ Create a new resource\]** を選択し、**Azure Cognitive Search** の新しいインスタンスを検索し、作成します。
+   
+   ![\[Azure Cognitive Search overview\] 画面が表示されています。](media/ex5-task1-006.png "[Azure Cognitive Search Overview] 画面")
+
+8. このラボで使用しているサブスクリプションとリソース グループを選択します。検索に関連して、Cognitive Search Service の URL を一意の値に設定します。次に、価格レベルを **\[Free\]** に切り替えます。
+   
+   ![Cognitive Search の構成画面が表示され、前述のように値が入力されています。](media/ex5-task1-007.png "Cognitive Search サービスの構成")
+
+9. \[**Review + create**\] を選択します。
+   
+   ![\[Review + create\] ボタンが表示されています。](media/ex5-task1-008.png "[Review and create] ボタン")
+
+10. **\[Create\]** を選択します。
+
+11. Search サービスのプロビジョニングを待機し、リソースに移動します。
+
+12. 左側メニューから **\[Keys\]** を選択し、**\[Primary admin key\]** をコピーしてテキスト ドキュメントに貼り付けます。Search サービス リソースの名前もメモしてください。
+    
+    ![Search サービス リソースの \[Keys\] ページが表示され、\[Primary admin key\] 値が強調表示されています。](media/ex5-task3-010.png "Cognitive Search キー")
+
+13. Search サービスの名前もテキスト ドキュメントにメモしてください。
+    
+    ![Search サービス名が \[Keys\] 画面で強調表示されています。](media/ex5-task3-011.png "Search サービス名")
+
+14. Visual Studio Code を開きます。
+
+15. **\[File\]** メニューから **\[Open file\]** を選択し、**Hands-on lab/artifacts/pocformreader.py** を開きます。
+
+16. 以下に示す適切な値で行 7、9、および 17 を更新します。
+    
+    - 行 7: Azure Cognitive Services (Form Recognizer) のエンドポイント。
+    
+    - 行 9: Blob Service SAS URL ストレージ アカウントと Train および Test の各請求書フォルダー。
+    
+    - 行 17: Azure Cognitive Service (Form Recognizer) エンドポイントのキー。
+    
+    ![pocformreader.py のソース コード リストが表示され、前述の行が強調表示されています。](media/ex5-task2a-06.png "Pocofrmreader.py のソース リスト")
+
+17. ファイルを保存します。
+
+18. \[Run\]、\[Start Debugging\] の順に選択します。
+    
+    ![\[VS Code File\] メニューが表示され、\[Run\] が選択され、\[Start Debugging\] が強調表示されています。](media/ex5-task2a-07.png "[VS Code File] メニュー")
+
+19. **\[Debug Configuration\]** で、**Python File - Debug the currently active Python File** 値のデバッグを選択します。
+    
+    ![\[Debug Configuration\] での選択が表示され、Python File - Debug the currently active Python File が強調表示されています。](media/ex5-task2a-08.png "[Debug Configuration] での選択")
+
+20. 完了すると、以下のスクリーンショットに似ている出力が表示されます。出力には、modelID も含まれます。後で使用するために、これをコピーして、テキスト ファイルに貼り付けてください。
+    
+    ![Python スクリプトのサンプル出力が表示され、modelID 値が強調表示されています。](media/ex5-task2a-09.png "Visual Studio Code 出力ウィンドウ")
+    
+    > **注**: **requests** モジュールが見つかりませんというエラーが表示された場合は、Visual Studio Code のターミナル ウィンドウで、**pip install requests** を実行してください。
+
+### タスク 3: Form Recognizer でのスキルセットの構成
+
+1. Visual Studio Code の新しいインスタンスを開きます。
+
+2. Visual Studio Code で、フォルダー **Hands-on lab/environment-setup/functions** を開きます。
+   
+   ![/environment-setup/functions フォルダーのファイル構造が表示されています。](media/ex5-task1-001.png "functions フォルダーのファイル構造")
+
+3. **GetInvoiceData/\_\_init\_\_.py** ファイル内で、行 66、68、70、および 73 を、環境に適した値で更新します。置き換える必要がある値は、**\<\<** と **>>** の値の間にあります。
+   
+   ![__Init.py__. コードのリストが表示されています。](media/ex5-task1-step2.png "__init__.py コードのリスト")
+
+4. Azure Functions 拡張機能を使用して、新しい Azure 関数を公開します。\[Azure Functions\] パネルが表示されない場合は、**\[View\]** メニューで、**\[Open View...\]** を選択してから **\[Azure\]** を選択します。パネルに **\[Sign-in to Azure\]** リンクが表示されたら、そのリンクを選択して、Azure にログインします。パネルの上部にある **\[Publish\]** ボタンを選択します。
+   
+   ![VS Code に \[Azure Functions\] 拡張機能パネルが表示され、関数を公開するボタンが強調表示されています。](media/ex5-task1-002.png "[Azure Function] パネル")
+   
+   - Synapse ワークスペースと同じサブスクリプションを選択します。
+   
+   - **\[Create new Function App in Azure...\]** を選択します。
+   
+   - フォーム認識に関連して、この関数に一意の名前を付けます。
+     
+     ![\[Create new function App in Azure\] ダイアログが表示され、名前が入力されています。](media/ex5-task1-003.png "[Create new function App in Azure] ダイアログ")
+   
+   - ランタイムに対して、Python 3.7 を選択します。
+     
+     ![Python ランタイム バージョンの選択ダイアログが表示され、Python 3.7 が強調表示されています。](media/ex5-task1-004.png "Python ランタイム バージョンの設定")
+   
+   - Synapse ワークスペースと同じリージョンに関数を展開します。
+     
+     ![リージョン選択ダイアログが表示されています。](media/ex5-task1-005.png "リージョン選択ダイアログ")
+
+5. 公開が完了したら、Azure Portal に戻り、Azure Function App と同じ名前で作成されたリソース グループを検索します。
+
+6. このリソース グループ内で、同じ名前の **App Service** リソースを開きます。
+   
+   ![リソース リストが表示され、App Service が強調表示されています。](media/formrecognizerresourcelist.png "リソース グループのリスト")
+
+7. 左側メニューから、**\[Functions\]** という見出しの下にある **\[Functions\]** を選択します。
+
+8. Functions リストから **\[GetInvoiceData\]** を選択します。
+
+9. **\[GetInvoiceData\]** 画面のツールバー メニューから **\[Get Function Url\]** 項目を選択し、後で参照するためにテキスト ドキュメントにこの値をコピーします。
+   
+   ![\[GetInvoiceData function\] 画面が表示され、\[Get Function Url\] ボタンがタスクバーで強調表示され、URL がテキスト ボックスに表示されています。](media/azurefunctionurlvalue.png "[GetInvoiceData function] 画面")
+
+10. 関数を公開し、すべてのリソースを作成したため、次にスキルセットを作成できます。これは、**Postman** を使用して実行できます。Postman を開きます。
+
+11. **\[File\]** メニューで **\[Import\]** を選択し、**Hands-on lab/environment-setup/skillset** から Postman コレクションのインポートを選択します。
+    
+    ![Postman の \[File\] メニューが展開され、\[Import\] オプションが選択されています。](media/ex5-task3-004.png "Postman の [File] メニュー")
+    
+    ![Postman の \[file import\] 画面が表示され、\[Upload files\] ボタンが強調表示されています。](media/ex5-task3-005.png "Postman のインポート画面")
+    
+    ![ファイル選択ダイアログが表示され、skillset フォルダーにあるファイルが強調表示されています。](media/ex5-task3-006.png "ファイル選択ダイアログ")
+
+12. \[Import\] を選択します。
+
+13. Postman では、インポートしたコレクションによって、**Create a KnowledgeStore** コレクション内に 4 つの項目が生じます。Create Index、Create Datasource、Create the skillset、および Create the Indexer です。
+    
+    ![\[Collections\] ペインが表示され、\[Create a KnowledgeStore\] コレクションが展開されて、前述の 4 つの項目が表示されます。](media/ex5-task3-007.png "Postman の [Collections] ペイン")
+
+14. 初めに、コレクション内の各呼び出しに影響を及ぼす一部のプロパティを編集する必要があります。**Create a KnowledgeStore** コレクションをポイントして、省略記号ボタン **\[...\]** を選択してから **\[Edit\]** を選択します。
+    
+    ![Postman で、Create a KnowledgeStore コレクションの横にある省略記号が展開され、\[Edit\] メニュー オプションが選択されています。](media/ex5-task3-008.png "Postman コレクションの編集")
+
+15. \[Edit Collection\] 画面で、**\[Variables\]** タブを選択します。
+    
+    ![\[Edit Collection\] 画面で、\[Variables\] タブが選択されています。](media/ex5-task3-009.png "[Edit Collection] 変数画面")
+
+16. 以下に合わせて、各変数を編集する必要があります。
+    
+    | 変数| 値
+    |----------|----------
+    | admin-key| 作成した検索サービスのキー
+    | search-service-name| 検索サービスの名前
+    | Storage account name| asastore{{suffix}}
+    | storage-connection-string| asastore{{suffix}} ストレージ アカウントの接続文字列
+    | datasourcename| **「invoices」** を入力
+    | indexer-name| **「invoice-indexer」** を入力
+    | index-name| **「invoice-index」** を入力
+    | skillset-name| **「invoice-skillset」** を入力
+    | storage-container-name| **「invoices」** を入力
+    | skillset-function| 公開した関数の関数 URL を入力
+
+
+17. **\[Update\]** を選択して、修正した値でコレクションを更新します。
+    
+    ![\[Edit Collection Variables\] 画面が表示され、修正した値のサンプリングが示されています。](media/ex5-task3-014.png "[Edit Collection Variables] 画面")
+
+18. コレクションから **Create Index** の呼び出しを選択し、**\[Body\]** タブを選択して、コンテンツをレビューします。
+    
+    ![コレクションから Create Index の呼び出しが選択され、\[Body\] タブが強調表示されています。](media/ex5-task3-015.png "Create Index の呼び出し")
+
+19. \[Send\] を選択します。
+    
+    ![Postman の \[Send\] ボタンが選択されています。](media/ex5-task3-016.png "[Send] ボタン")
+
+20. インデックスが作成されたというレスポンスを受け取ります。
+    
+    ![Create Index レスポンスが Postman に表示され、201 Created のステータスが強調表示されています。](media/ex5-task3-017.png "Create Index の呼び出しのレスポンス")
+
+21. **Create Datasource、Create the Skillset、および Create the indexer** の呼び出しに対して同じステップを実行します。
+
+22. インデクサー リクエストの送信後に検索サービスに移動すると、インデクサーが実行中で、進行中インジケーターが表示されていることを確認できます。その実行には数分かかります。
+    
+    ![invoice-indexer が表示され、進行中のステータスが示されています。](media/ex5-task3-018.png "invoice-indexer のステータス")
+
+23. インデクサーの実行が終了すると、成功したことを示す 2 つのドキュメントが表示されます。Blob ストレージ アカウント、**asastore{suffix}** に移動し、**invoices-json** コンテナー内を確認すると、.json ドキュメントが含まれている 2 つのフォルダーがあります。
+    
+    ![invoice-indexer の実行履歴に、成功したことが表示されています。](media/ex5-task3-019.png "invoice-indexer の実行履歴")
+    
+    ![Invoices-json コンテナーが、2 つのフォルダーとともに表示されています。JSON ファイルが、\[Blob\] ウィンドウに表示されています。](media/ex5-task3-020.png "Invoices-json コンテナーの内容")
+
+### タスク 4: Synapse パイプラインの作成
+
+1. Synapse ワークスペースを開きます。
+   
+   ![\[Azure Synapse Workspace resource\] 画面が表示され、\[Launch Synapse Studio\] ボタンが強調表示されています。](media/ex5-task4-001.png)
+
+2. 左側のメニューを展開して、**\[Develop\]** 項目を選択します。**\[Develop\]** ブレードで **\[+\]** ボタンを展開して、**\[SQL script\]** 項目を選択します。
+   
+   ![左側メニューが展開され、\[Develop\] 項目が選択されています。\[Develop\] ブレードで \[+\] ボタンが展開され、\[SQL script\] 項目が強調表示されています。](media/develop_newsqlscript_menu.png "新しい SQL スクリプトの作成")
+
+3. クエリ タブのツールバー メニューで、SQL プールの `SQLPool01` に接続していることを確認します。
+   
+   ![クエリ タブのツールバー メニューが表示され、\[Connect to\] が SQL プールに設定されています。](media/querytoolbar_connecttosqlpool.png "SQL プールへの接続")
+
+4. 以下のクエリをコピーしてクエリ ウィンドウに貼り付けて、請求書情報テーブルを作成します。クエリ タブのツールバーで **\[Run\]** を選択します。
+   
+   ```sql
+     CREATE TABLE [wwi_mcw].[Invoices]
+     (
+       [TransactionId] [uniqueidentifier]  NOT NULL,
+       [CustomerId] [int]  NOT NULL,
+       [ProductId] [smallint]  NOT NULL,
+       [Quantity] [tinyint]  NOT NULL,
+       [Price] [decimal](9,2)  NOT NULL,
+       [TotalAmount] [decimal](9,2)  NOT NULL
+     );
+   ```
+
+5. このクエリは保存しないので、上部のツールバーから **\[Discard all\]** を選択します。確認を求められたら **\[Discard changes\]** を選択します。
+   
+   ![上部のツールバー メニューが表示され、\[Discard all\] が強調表示されています。](media/toptoolbar_discardall.png "変更の破棄")
+
+6. 左側のナビゲーションから **\[Orchestrate\]** ハブを選択します。
+   
+   ![左側のナビゲーションで \[Orchestrate\] ハブが選択されています。](media/ex5-task4-012.png "[Orchestrate] ハブ")
+
+7. \[Orchestrate\] ブレードで、**\[+\]** ボタンを展開し、**\[Pipeline\]** を選択して、新しいパイプラインを作成します。
+   
+   ![\[+\] ボタンが展開され、\[pipelines\] オプションが選択されています。](media/ex5-task4-013.png "新しいパイプラインの作成")
+
+8. パイプラインに **「InvoiceProcessing」** という名前を付けます。
+   
+   ![新しいパイプラインのプロパティが表示され、パイプラインの名前として「InvoiceProcessing」が入力されています。](media/ex5-task4-014.png "パイプラインの命名")
+
+9. パイプライン タスクバーで **\[Add trigger\]** を選択してから **\[New/Edit\]** を選択して、パイプラインを開始するイベントを作成します。
+   
+   ![\[Add trigger\] ボタンが展開され、\[New/Edit\] オプションが選択されています。](media/ex5-task4-015.png "[New Trigger] メニュー項目")
+
+10. \[Add triggers\] フォームで、**\[Choose trigger\]** ドロップダウンから **\[+New\]** を選択します。
+    
+    ![\[Add triggers\] フォームが表示され、\[Choose trigger\] ドロップダウンが展開され、\[+New\] 項目が選択されています。](media/ex5-task4-016.png "新しいトリガーの作成の選択")
+
+11. この演習では、スケジュールを使用します。しかし、今後、Blob ストレージに追加された新しい JSON ファイルを起動するイベントベースのトリガーも使用できるようになります。5 分ごとに起動するようにトリガーを設定し、**\[OK\]** を選択します。
+    
+    ![\[new trigger\] フォームが表示され、5 分ごとに起動するようにトリガーが設定されています。](media/ex5-task4-017.png "[New trigger] フォーム")
+
+12. \[Run Parameters\] フォームで **\[OK\]** を選択します。ここでは何も実行する必要がありません。
+
+13. 次に、パイプラインにデータ フローを追加する必要があります。\[Activities\] の下で **\[Move \& transform\]** を展開し、デザイナー キャンバスに **\[Data flow\]** をドラッグ アンド ドロップします。
+    
+    ![パイプライン デザイナーが、データ フロー アクティビティのドラッグ アンド ドロップ操作のインジケーターとともに表示されています。](media/ex5-task4-018.png "データ フロー アクティビティ")
+
+14. **\[Adding data flow\]** フォームで、**\[Create new data flow\]** を選択し、それに **「NewInvoicesProcessing」** という名前を付けます。
+    
+    ![\[Adding data flow\] フォームが表示され、前述の値が入力されています。](media/ex5-task4-019.png)
+
+15. **\[NewInvoicesProcessing\]** データ フロー デザイン キャンバスで、**\[Add source\]** ボックスを選択します。
+    
+    ![NewInvoicesProcessing デザイナーが表示され、\[Add source\] ボックスが選択されています。](media/ex5-task4-020.png "NewInvoicesProcessing デザイナー")
+
+16. 下側で出力ストリームに **「jsonInvoice」** という名前を付け、ソース タイプを **\[Dataset\]** のままにし、すべての他のオプションを既定値に設定されたままにします。\[Dataset\] フィールドの横にある **\[+New\]** を選択します。
+    
+    ![\[Source settings\] タブが表示され、「jsonInvoice」という名前が入力され、\[Dataset\] フィールドの横にある \[+New\] ボタンが選択されています。](media/ex5-task4-021.png "ソースの設定")
+
+17. **\[New dataset\]** ブレードで、**\[Azure Blob Storage\]** を選択ししてから **\[Continue\]** を選択します。
+    
+    ![\[New dataset\] ブレードが表示され、\[Azure Blob Storage\] が選択されています。](media/ex5-task4-022.png "Azure Blob Storage データセット")
+
+18. **\[Select format\]** ブレードで、**\[Json\]** を選択してから **\[Continue\]** を選択します。
+    
+    ![\[select format\] 画面が表示され、タイプとして \[Json\] が選択されています。](media/ex5-task4-023.png "[Select format] フォーム")
+
+19. **\[Set properties\]** 画面で、データセットに **「InvoicesJson」** という名前を付けます。次に、\[linked service\] フィールドで、Azure Storage にリンクされたサービス **asastore{suffix}** を選択します。
+    
+    ![\[Set properties\] フォームの一部が表示され、前述の値が入力されています。](media/ex5-task4-024.png "データセットの [Set properties] フォーム")
+
+20. \[file path\] フィールドに **「invoices-json」** と入力し、\[import schema\] フィールドを **\[From sample file\]** に設定します。
+    
+    ![\[set properties\] フォームが表示され、前述のように \[file path\] フィールドと \[import schema\] フィールドに前述の値が入力されています。](media/ex5-task4-025.png "データの [Set properties] フォーム")
+
+21. **\[Browse\]** を選択し、**Hands-on lab/environment-setup/synapse/sampleformrecognizer.json** のファイルを選択してから **\[OK\]** を選択します。
+    
+    ![\[Set properties\] フォームが表示され、選択されたファイルとして sampleformrecognizer.json が選択されています。](media/ex5-task4-026.png "データの [Set properties] フォーム")
+
+22. 下側で **\[Source options\]** タブを選択します。\[Wildcard paths\] フィールドに「\*/\*」を追加します。
+    
+    ![\[Source options\] タブが表示され、\[Wildcard paths\] フィールドに指定した文字が入力されています。](media/ex5-task4-048.png "[Source options] タブ")
+
+23. データ フロー デザイナー サーフェイスで、ソース アクティビティの右下にある **\[+\]** を選択し、データ フローに別のステップを追加します。
+    
+    ![ソース アクティビティの右下にある \[+\] ボタンが強調表示されています。](media/ex5-task4-028.png "データ フロー ステップの追加")
+
+24. オプションのリストから **\[Schema modifier\]** セクションの下で **Derived Column**を選択します。
+    
+    ![\[+\] ボタンが展開され、オプションのリストから Derived 列が選択されています。](media/ex5-task4-029.png "Derived 列のアクティビティの追加")
+
+25. **\[Derived column's settings\]** タブで、出力ストリーム名として **\[RemoveCharFromStrings\]** を指定します。次に、\[Columns\] フィールドで、3 つの列を追加し、以下のように構成します。
+    
+    | 列| 式
+    |----------|----------
+    | productprice| toDecimal(replace(productprice,'$',''))
+    | totalcharges| toDecimal(replace(replace(totalcharges,'$',''),',',''))
+    | quantity| toInteger(replace(quantity,',',''))
+
+    ![Derived 列の \[settings\] タブが表示され、前述のようにフィールドに前述の値が入力されています。](media/ex5-task4-030.png "Derived 列の [settings] タブ")
+
+26. データ フロー デザイナーに戻り、derived columnのアクティビティの横にある **\[+\]** を選択して、データ フローに別のステップを追加します。
+
+27. 今回は、**\[Row modifier\]** セクションの下で **\[Alter Row\]** を選択します。
+    
+    ![\[Row modifier\] セクションで、\[Alter Row\] オプションが選択されています。](media/ex5-task4-031.png "[Alter row] アクティビティ")
+
+28. 下側の **\[Alter row settings\]** タブで、出力ストリームに **「AlterTransactionID」**という名前を付け、着信ストリームの設定は既定値のままにします。**\[Alter row conditions\]** フィールドを **\[Upsert If\]** に変更し、式を **「notEquals(transactionid,"")」** に設定します。
+    
+    ![\[Alter row settings\] タブが表示され、前述の値が入力されています。](media/ex5-task4-032.png "[Alter row settings] タブ")
+
+29. データ フロー デザイナーに戻り、**\[**Alter Row**\]** アクティビティの右下にある **\[+\]** を選択し、データ フローに別のステップを追加します。
+
+30. **\[Destination\]** セクション内で **\[Sink\]** を選択します。
+    
+    ![アクティビティ リストで、\[Destination\] セクション内の \[Sink\] オプションが選択されています。](media/ex5-task4-033.png "シンク アクティビティ")
+
+31. 下側で **\[Sink\]** タブを選択し、出力ストリーム名に **「SQLDatabase」**という名前を付け、他のすべての設定は既定値のままにします。**\[Dataset\]** フィールドの横にある **\[+New\]** を選択して、新しいデータセットを追加します。
+    
+    ![\[sink\] タブが表示され、出力ストリーム名が「SQLDatabase」に設定され、\[Dataset\] フィールドの横にある \[+New\] ボタンが選択されています。](media/ex5-task4-034.png "[Sink] タブ")
+
+32. **\[New dataset\]** ブレードで **\[Azure\]** タブを選択します。**\[Azure Synapse Analytics\] (旧称 SQL DW)** を選択してから **\[Continue\]** を選択します。
+    
+    ![データセット タイプのリストで \[Azure Synapse Analytics\] が選択されています。](media/ex5-task4-035.png "[Azure Synapse Analytics] データセット タイプの選択")
+
+33. データセットの名前を **「InvoiceTable」**に設定し、リンクされたサービス **sqlpool01** を選択します。**\[Select from existing table\]** を選択してから **wwi\_mcw.Invoices** テーブルを選択します。テーブル名のリストにこのテーブルが表示されない場合は、**\[Refresh\]** ボタンを選択すると表示されます。**\[OK\]** を選択します。
+    
+    ![データセットの \[Set properties\] フォームが表示され、前述のように値が入力されています。](media/ex5-task4-036.png "[Set properties] フォーム")
+
+34. 下側のデータ フロー デザイナーでシンク アクティビティを選択し、**\[Settings\]** タブを選択して **\[Allow upsert\]** ボックスをオンにします。**\[Key columns\]** フィールドを **\[transactionid\]** に設定します。
+    
+    ![シンク アクティビティの \[Settings\] タブが表示され、前述のように値が入力されています。](media/ex5-task4-037.png "シンクの [Settings] タブ")
+
+35. **\[Mapping\]** タブを選択し、**\[Auto mapping\]** 設定を無効にし、json ファイルとデータベース間のマッピングを構成します。**\[+ Add mapping\]** を選択してから **\[Fixed mapping\]** を選択して、以下のマッピングを追加します。もし既存のものがあり警告が表示されている場合は、いったん既存のマッピングを削除してから作り直すとうまくいく場合があります。
+    
+    | 入力列| 出力列
+    |----------|----------
+    | transactionid| TransactionId
+    | productid| ProductId
+    | customerid| CustomerId
+    | productprice| Price
+    | quantity| Quantity
+    | totalcharges| TotalAmount
+
+    ![\[Mapping\] タブが表示され、\[Auto Mapping\] が無効になり、前述の表の列マッピングが定義されています。](media/ex5-task4-038.png "[Mapping] タブ")
+
+36. ワークスペースの上部にあるタブを選択して、**\[InvoiceProcessing\]** パイプラインに戻ります。
+    
+    ![ワークスペースの上部で \[InvoiceProcessing\] タブが選択されています。](media/ex5-task4-039.png "[InvoiceProcessing] パイプライン タブ")
+
+37. パイプライン デザイナー サーフェイスでデータ フロー アクティビティを選択し、下側で **\[Settings\]** タブを選択します。
+    
+    ![データ フロー アクティビティの \[Settings\] タブが表示されています。](media/ex5-task4-040.png "[Settings] タブ")
+
+38. **\[PolyBase\]** 設定の下で、**\[Staging linked service\]** をリンクされたサービス **asastore{suffix}** に設定します。**Storage staging フォルダー**として **「invoices-staging」** と入力します。
+    
+    ![データ フロー アクティビティの \[Settings\] タブが表示され、前述のようにそのフォームに値が入力されています。](media/ex5-task4-041.png "[Settings] タブ")
+
+39. 上部のツールバーで \[**Publish All**\] を選択します。
+    
+    ![上部のツールバーで \[Publish All\] ボタンが選択されています。](media/ex5-task4-042.png "[Publish all] ボタン")
+
+40. **\[Publish\]** を選択します。
+
+41. 数分以内に、公開が完了したことを示す通知が表示されます。
+    
+    ![公開完了通知が表示されています。](media/ex5-task4-043.png "公開完了通知")
+
+42. 左側メニューから **\[Monitor\]** ハブを選択し、ハブ メニューから **\[Pipeline runs\]** オプションを確実に選択します。
+    
+    ![左側メニューで \[Monitor\] ハブが選択されています。](media/ex5-task4-044.png "[Monitor] ハブ メニューのオプション")
+
+43. 約 5 分で、**InvoiceProcessing** パイプライン処理が開始されます。このリストを表示するために、更新が必要になることがあります。更新ボタンはツールバーにあります。
+    
+    ![パイプライン実行リストで、InvoiceProcessing パイプラインが実行中として表示されています。](media/ex5-task4-045.png "パイプライン実行リスト")
+
+44. これは約 3 ～ 4 分後に完了します。パイプラインの完了を確認するために、リストの更新が必要になることがあります。
+    
+    ![パイプライン実行リストが表示され、InvoiceProcessing パイプラインが成功したことが示されています。](media/ex5-task4-046.png "パイプライン実行リスト")
+
+45. 左側メニューから **\[Develop\]** ハブを選択し、**\[+\]** ボタンを展開して **\[SQL Script\]** を選択します。適切なデータベースを確実に選択し、以下のクエリを実行して、2 つのテスト請求書からのデータを検証してください。
+    
     ```SQL
     SELECT * FROM wwi_mcw.Invoices
     ```
+    
+    ![データベース内のデータの表示](media/ex5-task4-047.png)
 
-    ![show the data in the databases](media/ex5-task4-047.png)
+## 演習 6: セキュリティ
 
-## Exercise 6: Security
+**所要時間**: 30 分
 
-**Duration**: 30 minutes
+### タスク 1: 列レベルのセキュリティ
 
-### Task 1: Column level security
+機密情報を保持するデータ列を特定することは重要です。機密情報の種類には、社会保障番号、電子メール アドレス、クレジット カード番号、財務合計などがあります。Azure Synapse Analytics では、特定の列に対するユーザーまたはロールの select 権限を阻止するアクセス許可を定義できます。
 
-It is important to identify data columns of that hold sensitive information. Types of sensitive information could be social security numbers, email addresses, credit card numbers, financial totals, and more. Azure Synapse Analytics allows you define permissions that prevent users or roles select privileges on specific columns.
+1. 左側メニューから **\[Develop\]** を選択し、**\[Develop\]** ブレードで **\[+\]** を展開して **\[SQL script\]** を選択することによって、新しい SQL スクリプトを作成します。
 
-1. Create a new SQL script by selecting **Develop** from the left menu, then in the **Develop** blade, expanding the **+** button and selecting **SQL script**.
+2. 以下のクエリをコピーしてクエリ ウィンドウに貼り付けます。クエリ ウィンドウで各コメント ブロック間のすべてのクエリを強調表示して、クエリ ウィンドウのツールバー メニューで **\[Run\]** を選択することによって、各ステートメント グループを実行します。クエリは、インラインで記述されています。クエリを実行する場合は、**SQLPool01** に確実に接続してください。
+   
+   ```sql
+       /*  Column-level security feature in Azure Synapse simplifies the design and coding of security in applications.
+       It ensures column level security by restricting column access to protect sensitive data. */
+   
+   /* Scenario: In this scenario we will be working with two users. The first one is the CEO, he has access to all
+       data. The second one is DataAnalystMiami, this user doesn't have access to the confidential Revenue column
+       in the CampaignAnalytics table. Follow this lab, one step at a time to see how Column-level security removes access to the
+       Revenue column to DataAnalystMiami */
+   
+   --Step 1: Let us see how this feature in Azure Synapse works. Before that let us have a look at the Campaign Analytics table.
+   select  Top 100 * from wwi_mcw.CampaignAnalytics
+   where City is not null and state is not null
+   
+   /*  Consider a scenario where there are two users.
+       A CEO, who is an authorized  personnel with access to all the information in the database
+       and a Data Analyst, to whom only required information should be presented.*/
+   
+   -- Step:2 Verify the existence of the “CEO” and “DataAnalystMiami” users in the Datawarehouse.
+   SELECT Name as [User1] FROM sys.sysusers WHERE name = N'CEO';
+   SELECT Name as [User2] FROM sys.sysusers WHERE name = N'DataAnalystMiami';
+   
+   
+   -- Step:3 Now let us enforcing column level security for the DataAnalystMiami.
+   /*  The CampaignAnalytics table in the warehouse has information like ProductID, Analyst, CampaignName, Quantity, Region, State, City, RevenueTarget and Revenue.
+       The Revenue generated from every campaign is classified and should be hidden from DataAnalystMiami.
+   */
+   
+   REVOKE SELECT ON wwi_mcw.CampaignAnalytics FROM DataAnalystMiami;
+   GRANT SELECT ON wwi_mcw.CampaignAnalytics([Analyst], [CampaignName], [Region], [State], [City], [RevenueTarget]) TO DataAnalystMiami;
+   -- This provides DataAnalystMiami access to all the columns of the Sale table but Revenue.
+   
+   -- Step:4 Then, to check if the security has been enforced, we execute the following query with current User As 'DataAnalystMiami', this will result in an error
+   --  since DataAnalystMiami doesn't have select access to the Revenue column
+   EXECUTE AS USER ='DataAnalystMiami';
+   select TOP 100 * from wwi_mcw.CampaignAnalytics;
+   ---
+   -- The following query will succeed since we are not including the Revenue column in the query.
+   EXECUTE AS USER ='DataAnalystMiami';
+   select [Analyst],[CampaignName], [Region], [State], [City], [RevenueTarget] from wwi_mcw.CampaignAnalytics;
+   
+   -- Step:5 Whereas, the CEO of the company should be authorized with all the information present in the warehouse.To do so, we execute the following query.
+   Revert;
+   GRANT SELECT ON wwi_mcw.CampaignAnalytics TO CEO;  --Full access to all columns.
+   
+   -- Step:6 Let us check if our CEO user can see all the information that is present. Assign Current User As 'CEO' and the execute the query
+   EXECUTE AS USER ='CEO'
+   select * from wwi_mcw.CampaignAnalytics
+   Revert;
+   ```
+   
+   ![クエリ タブのツールバーが表示され、\[Run\] が選択されています。](media/querytoolbar_run.png "SQL クエリの実行")
 
-2. Copy and paste the following query into the query window. Then, step through each statement group by highlighting all queries between each comment block in the query window, and selecting **Run** from the query window toolbar menu. The query is documented inline. Ensure you are connected to **SQLPool01** when running the queries.
+3. このクエリは保存しないので、上部のツールバーから **\[Discard all\]** を選択します。確認を求められたら **\[Discard changes\]** を選択します。
+   
+   ![上部のツールバー メニューが表示され、\[Discard all\] が強調表示されています。](media/toptoolbar_discardall.png "変更の破棄")
 
-    ```sql
-        /*  Column-level security feature in Azure Synapse simplifies the design and coding of security in applications.
-        It ensures column level security by restricting column access to protect sensitive data. */
+### タスク 2: 行レベルのセキュリティ
 
-    /* Scenario: In this scenario we will be working with two users. The first one is the CEO, he has access to all
-        data. The second one is DataAnalystMiami, this user doesn't have access to the confidential Revenue column
-        in the CampaignAnalytics table. Follow this lab, one step at a time to see how Column-level security removes access to the
-        Revenue column to DataAnalystMiami */
+多くの組織では、ユーザー別に特定のデータ行をフィルターすることが重要です。WWI は、データ アナリストに、各自のデータのみが表示されるようにしたいと考えています。キャンペーン分析テーブルには、各データ行が属するアナリストを示す Analyst 列があります。以前は、組織はアナリストごとのビューを作成していましたが、作業量が多く、不要なオーバーヘッドになっていました。Azure Synapse Analytics を使用すると、クエリを実行したユーザーを Analyst 列と比較して、そのユーザーに属するデータのみが表示されるようにデータをフィルターする、行レベルのセキュリティを定義できます。
 
-    --Step 1: Let us see how this feature in Azure Synapse works. Before that let us have a look at the Campaign Analytics table.
-    select  Top 100 * from wwi_mcw.CampaignAnalytics
-    where City is not null and state is not null
+1. 左側メニューから **\[Develop\]** を選択し、**\[Develop\]** ブレードで **\[+\]** を展開して **\[SQL script\]** を選択することによって、新しい SQL スクリプトを作成します。
 
-    /*  Consider a scenario where there are two users.
-        A CEO, who is an authorized  personnel with access to all the information in the database
-        and a Data Analyst, to whom only required information should be presented.*/
+2. 以下のクエリをコピーしてクエリ ウィンドウに貼り付けます。クエリ ウィンドウで各コメントブロック間のすべてのクエリを強調表示して、クエリ ウィンドウのツールバー メニューで **\[Run\]** を選択することによって、各ステートメント グループを実行します。クエリは、インラインで記述されています。
+   
+   ```sql
+   /* Row level Security (RLS) in Azure Synapse enables us to use group membership to control access to rows in a table.
+   Azure Synapse applies the access restriction every time the data access is attempted from any user.
+   Let see how we can implement row level security in Azure Synapse.*/
+   
+   -- Row-Level Security (RLS), 1: Filter predicates
+   -- Step:1 The Sale table has two Analyst values: DataAnalystMiami and DataAnalystSanDiego.
+   --     Each analyst has jurisdiction across a specific Region. DataAnalystMiami on the South East Region
+   --      and DataAnalystSanDiego on the Far West region.
+   SELECT DISTINCT Analyst, Region FROM wwi_mcw.CampaignAnalytics order by Analyst ;
+   
+   /* Scenario: WWI requires that an Analyst only see the data for their own data from their own region. The CEO should see ALL data.
+       In the Sale table, there is an Analyst column that we can use to filter data to a specific Analyst value. */
+   
+   /* We will define this filter using what is called a Security Predicate. This is an inline table-valued function that allows
+       us to evaluate additional logic, in this case determining if the Analyst executing the query is the same as the Analyst
+       specified in the Analyst column in the row. The function returns 1 (will return the row) when a row in the Analyst column is the same as the user executing the query (@Analyst = USER_NAME()) or if the user executing the query is the CEO user (USER_NAME() = 'CEO')
+       whom has access to all data.
+   */
+   
+   -- Review any existing security predicates in the database
+   SELECT * FROM sys.security_predicates
+   
+   --Step:2 Create a new Schema to hold the security predicate, then define the predicate function. It returns 1 (or True) when
+   --  a row should be returned in the parent query.
+   GO
+   CREATE SCHEMA Security
+   GO
+   CREATE FUNCTION Security.fn_securitypredicate(@Analyst AS sysname)  
+       RETURNS TABLE  
+   WITH SCHEMABINDING  
+   AS  
+       RETURN SELECT 1 AS fn_securitypredicate_result
+       WHERE @Analyst = USER_NAME() OR USER_NAME() = 'CEO'
+   GO
+   -- Now we define security policy that adds the filter predicate to the Sale table. This will filter rows based on their login name.
+   CREATE SECURITY POLICY SalesFilter  
+   ADD FILTER PREDICATE Security.fn_securitypredicate(Analyst)
+   ON wwi_mcw.CampaignAnalytics
+   WITH (STATE = ON);
+   
+   ------ Allow SELECT permissions to the Sale Table.------
+   GRANT SELECT ON wwi_mcw.CampaignAnalytics TO CEO, DataAnalystMiami, DataAnalystSanDiego;
+   
+   -- Step:3 Let us now test the filtering predicate, by selecting data from the Sale table as 'DataAnalystMiami' user.
+   EXECUTE AS USER = 'DataAnalystMiami'
+   SELECT * FROM wwi_mcw.CampaignAnalytics;
+   revert;
+   -- As we can see, the query has returned rows here Login name is DataAnalystMiami
+   
+   -- Step:4 Let us test the same for  'DataAnalystSanDiego' user.
+   EXECUTE AS USER = 'DataAnalystSanDiego';
+   SELECT * FROM wwi_mcw.CampaignAnalytics;
+   revert;
+   -- RLS is working indeed.
+   
+   -- Step:5 The CEO should be able to see all rows in the table.
+   EXECUTE AS USER = 'CEO';  
+   SELECT * FROM wwi_mcw.CampaignAnalytics;
+   revert;
+   -- And he can.
+   
+   --Step:6 To disable the security policy we just created above, we execute the following.
+   ALTER SECURITY POLICY SalesFilter  
+   WITH (STATE = OFF);
+   
+   DROP SECURITY POLICY SalesFilter;
+   DROP FUNCTION Security.fn_securitypredicate;
+   DROP SCHEMA Security;
+   ```
+   
+   ![クエリ タブのツールバーが表示され、\[Run\] が選択されています。](media/querytoolbar_run.png "クエリの実行")
 
-    -- Step:2 Verify the existence of the “CEO” and “DataAnalystMiami” users in the Datawarehouse.
-    SELECT Name as [User1] FROM sys.sysusers WHERE name = N'CEO';
-    SELECT Name as [User2] FROM sys.sysusers WHERE name = N'DataAnalystMiami';
+3. このクエリは保存しないので、上部のツールバーから **\[Discard all\]** を選択します。確認を求められたら **\[Discard changes\]** を選択します。
+   
+   ![上部のツールバー メニューが表示され、\[Discard all\] が強調表示されています。](media/toptoolbar_discardall.png "変更の破棄")
 
+### タスク 3: 動的データ マスク
 
-    -- Step:3 Now let us enforcing column level security for the DataAnalystMiami.
-    /*  The CampaignAnalytics table in the warehouse has information like ProductID, Analyst, CampaignName, Quantity, Region, State, City, RevenueTarget and Revenue.
-        The Revenue generated from every campaign is classified and should be hidden from DataAnalystMiami.
-    */
+SQL 管理者は、列レベルのセキュリティの代用として、機密データをマスクするオプションも使用できます。この場合、クエリで返されたデータが難読化されます。しかし、テーブル自体には、データが元の状態のままで保存されています。SQL 管理者は、このデータを表示するアクセス許可を持つユーザーに、マスク解除権限を付与できます。
 
-    REVOKE SELECT ON wwi_mcw.CampaignAnalytics FROM DataAnalystMiami;
-    GRANT SELECT ON wwi_mcw.CampaignAnalytics([Analyst], [CampaignName], [Region], [State], [City], [RevenueTarget]) TO DataAnalystMiami;
-    -- This provides DataAnalystMiami access to all the columns of the Sale table but Revenue.
+1. 左側メニューから **\[Develop\]** を選択し、**\[Develop\]** ブレードで **\[+\]** を展開して **\[SQL script\]** を選択することによって、新しい SQL スクリプトを作成します。
 
-    -- Step:4 Then, to check if the security has been enforced, we execute the following query with current User As 'DataAnalystMiami', this will result in an error
-    --  since DataAnalystMiami doesn't have select access to the Revenue column
-    EXECUTE AS USER ='DataAnalystMiami';
-    select TOP 100 * from wwi_mcw.CampaignAnalytics;
-    ---
-    -- The following query will succeed since we are not including the Revenue column in the query.
-    EXECUTE AS USER ='DataAnalystMiami';
-    select [Analyst],[CampaignName], [Region], [State], [City], [RevenueTarget] from wwi_mcw.CampaignAnalytics;
-
-    -- Step:5 Whereas, the CEO of the company should be authorized with all the information present in the warehouse.To do so, we execute the following query.
-    Revert;
-    GRANT SELECT ON wwi_mcw.CampaignAnalytics TO CEO;  --Full access to all columns.
-
-    -- Step:6 Let us check if our CEO user can see all the information that is present. Assign Current User As 'CEO' and the execute the query
-    EXECUTE AS USER ='CEO'
-    select * from wwi_mcw.CampaignAnalytics
-    Revert;
-    ```
-
-    ![The query tab toolbar is displayed with the Run button selected.](media/querytoolbar_run.png "Running a SQL Query")
-
-3. From the top toolbar, select the **Discard all** button as we will not be saving this query. When prompted, choose to **Discard changes**.
-
-   ![The top toolbar menu is displayed with the Discard all button highlighted.](media/toptoolbar_discardall.png "Discard changes")
-
-### Task 2: Row level security
-
-In many organizations it is important to filter certain rows of data by user. In the case of WWI, they wish to have data analysts only see their data. In the campaign analytics table, there is an Analyst column that indicates to which analyst that row of data belongs. In the past, organizations would create views for each analyst - this was a lot of work and unnecessary overhead. Using Azure Synapse Analytics, you can define row level security that compares the user executing the query to the Analyst column, filtering the data so they only see the data destined for them.
-
-1. Create a new SQL script by selecting **Develop** from the left menu, then in the **Develop** blade, expanding the **+** button and selecting **SQL script**.
-
-2. Copy and paste the following query into the query window. Then, step through each statement group by highlighting all queries between each comment block in the query window, and selecting **Run** from the query window toolbar menu. The query is documented inline.
-
-    ```sql
-    /* Row level Security (RLS) in Azure Synapse enables us to use group membership to control access to rows in a table.
-    Azure Synapse applies the access restriction every time the data access is attempted from any user.
-    Let see how we can implement row level security in Azure Synapse.*/
-
-    -- Row-Level Security (RLS), 1: Filter predicates
-    -- Step:1 The Sale table has two Analyst values: DataAnalystMiami and DataAnalystSanDiego.
-    --     Each analyst has jurisdiction across a specific Region. DataAnalystMiami on the South East Region
-    --      and DataAnalystSanDiego on the Far West region.
-    SELECT DISTINCT Analyst, Region FROM wwi_mcw.CampaignAnalytics order by Analyst ;
-
-    /* Scenario: WWI requires that an Analyst only see the data for their own data from their own region. The CEO should see ALL data.
-        In the Sale table, there is an Analyst column that we can use to filter data to a specific Analyst value. */
-
-    /* We will define this filter using what is called a Security Predicate. This is an inline table-valued function that allows
-        us to evaluate additional logic, in this case determining if the Analyst executing the query is the same as the Analyst
-        specified in the Analyst column in the row. The function returns 1 (will return the row) when a row in the Analyst column is the same as the user executing the query (@Analyst = USER_NAME()) or if the user executing the query is the CEO user (USER_NAME() = 'CEO')
-        whom has access to all data.
-    */
-
-    -- Review any existing security predicates in the database
-    SELECT * FROM sys.security_predicates
-
-    --Step:2 Create a new Schema to hold the security predicate, then define the predicate function. It returns 1 (or True) when
-    --  a row should be returned in the parent query.
-    GO
-    CREATE SCHEMA Security
-    GO
-    CREATE FUNCTION Security.fn_securitypredicate(@Analyst AS sysname)  
-        RETURNS TABLE  
-    WITH SCHEMABINDING  
-    AS  
-        RETURN SELECT 1 AS fn_securitypredicate_result
-        WHERE @Analyst = USER_NAME() OR USER_NAME() = 'CEO'
-    GO
-    -- Now we define security policy that adds the filter predicate to the Sale table. This will filter rows based on their login name.
-    CREATE SECURITY POLICY SalesFilter  
-    ADD FILTER PREDICATE Security.fn_securitypredicate(Analyst)
-    ON wwi_mcw.CampaignAnalytics
-    WITH (STATE = ON);
-
-    ------ Allow SELECT permissions to the Sale Table.------
-    GRANT SELECT ON wwi_mcw.CampaignAnalytics TO CEO, DataAnalystMiami, DataAnalystSanDiego;
-
-    -- Step:3 Let us now test the filtering predicate, by selecting data from the Sale table as 'DataAnalystMiami' user.
-    EXECUTE AS USER = 'DataAnalystMiami'
-    SELECT * FROM wwi_mcw.CampaignAnalytics;
-    revert;
-    -- As we can see, the query has returned rows here Login name is DataAnalystMiami
-
-    -- Step:4 Let us test the same for  'DataAnalystSanDiego' user.
-    EXECUTE AS USER = 'DataAnalystSanDiego';
-    SELECT * FROM wwi_mcw.CampaignAnalytics;
-    revert;
-    -- RLS is working indeed.
-
-    -- Step:5 The CEO should be able to see all rows in the table.
-    EXECUTE AS USER = 'CEO';  
-    SELECT * FROM wwi_mcw.CampaignAnalytics;
-    revert;
-    -- And he can.
-
-    --Step:6 To disable the security policy we just created above, we execute the following.
-    ALTER SECURITY POLICY SalesFilter  
-    WITH (STATE = OFF);
-
-    DROP SECURITY POLICY SalesFilter;
-    DROP FUNCTION Security.fn_securitypredicate;
-    DROP SCHEMA Security;
-    ```
-
-    ![The query tab toolbar is displayed with the Run button selected.](media/querytoolbar_run.png "Running a query")
-
-3. From the top toolbar, select the **Discard all** button as we will not be saving this query. When prompted, choose to **Discard changes**.
-
-   ![The top toolbar menu is displayed with the Discard all button highlighted.](media/toptoolbar_discardall.png "Discard changes")
-
-### Task 3: Dynamic data masking
-
-As an alternative to column level security, SQL Administrators also have the option of masking sensitive data. This will result in data being obfuscated when returned in queries. The data is still stored in a pristine state in the table itself. SQL Administrators can grant unmask privileges to users that have permissions to see this data.
-
-1. Create a new SQL script by selecting **Develop** from the left menu, then in the **Develop** blade, expanding the **+** button and selecting **SQL script**.
-
-2. Copy and paste the following query into the query window. Then, step through each statement group by highlighting all queries between each comment block in the query window, and selecting **Run** from the query window toolbar menu. The query is documented inline.
-
-    ```sql
-    ----- Dynamic Data Masking (DDM) ---------
-    /*  Dynamic data masking helps prevent unauthorized access to sensitive data by enabling customers
-        to designate how much of the sensitive data to reveal with minimal impact on the application layer.
-        Let see how */
-
-    /* Scenario: WWI has identified sensitive information in the CustomerInfo table. They would like us to
-        obfuscate the CreditCard and Email columns of the CustomerInfo table to DataAnalysts */
-
-    -- Step:1 Let's first get a view of CustomerInfo table.
-    SELECT TOP (100) * FROM wwi_mcw.CustomerInfo;
-
-    -- Step:2 Let's confirm that there are no Dynamic Data Masking (DDM) applied on columns.
-    SELECT c.name, tbl.name as table_name, c.is_masked, c.masking_function  
-    FROM sys.masked_columns AS c  
-    JOIN sys.tables AS tbl
-        ON c.[object_id] = tbl.[object_id]  
-    WHERE is_masked = 1
-        AND tbl.name = 'CustomerInfo';
-    -- No results returned verify that no data masking has been done yet.
-
-    -- Step:3 Now let's mask 'CreditCard' and 'Email' Column of 'CustomerInfo' table.
-    ALTER TABLE wwi_mcw.CustomerInfo  
-    ALTER COLUMN [CreditCard] ADD MASKED WITH (FUNCTION = 'partial(0,"XXXX-XXXX-XXXX-",4)');
-    GO
-    ALTER TABLE wwi_mcw.CustomerInfo
-    ALTER COLUMN Email ADD MASKED WITH (FUNCTION = 'email()');
-    GO
-    -- The columns are successfully masked.
-
-    -- Step:4 Let's see Dynamic Data Masking (DDM) applied on the two columns.
-    SELECT c.name, tbl.name as table_name, c.is_masked, c.masking_function  
-    FROM sys.masked_columns AS c  
-    JOIN sys.tables AS tbl
-        ON c.[object_id] = tbl.[object_id]  
-    WHERE is_masked = 1
-        AND tbl.name ='CustomerInfo';
-
-    -- Step:5 Now, let's grant SELECT permission to 'DataAnalystMiami' on the 'CustomerInfo' table.
+2. 以下のクエリをコピーしてクエリ ウィンドウに貼り付けます。クエリ ウィンドウで各コメントブロック間のすべてのクエリを強調表示して、クエリ ウィンドウのツールバー メニューで **\[Run\]** を選択することによって、各ステートメント グループを実行します。クエリは、インラインで記述されています。
+   
+   ```sql
+   ----- Dynamic Data Masking (DDM) ---------
+   /*  Dynamic data masking helps prevent unauthorized access to sensitive data by enabling customers
+       to designate how much of the sensitive data to reveal with minimal impact on the application layer.
+       Let see how */
+   
+   /* Scenario: WWI has identified sensitive information in the CustomerInfo table. They would like us to
+       obfuscate the CreditCard and Email columns of the CustomerInfo table to DataAnalysts */
+   
+   -- Step:1 Let's first get a view of CustomerInfo table.
+   SELECT TOP (100) * FROM wwi_mcw.CustomerInfo;
+   
+   -- Step:2 Let's confirm that there are no Dynamic Data Masking (DDM) applied on columns.
+   SELECT c.name, tbl.name as table_name, c.is_masked, c.masking_function  
+   FROM sys.masked_columns AS c  
+   JOIN sys.tables AS tbl
+       ON c.[object_id] = tbl.[object_id]  
+   WHERE is_masked = 1
+       AND tbl.name = 'CustomerInfo';
+   -- No results returned verify that no data masking has been done yet.
+   
+   -- Step:3 Now let's mask 'CreditCard' and 'Email' Column of 'CustomerInfo' table.
+   ALTER TABLE wwi_mcw.CustomerInfo  
+   ALTER COLUMN [CreditCard] ADD MASKED WITH (FUNCTION = 'partial(0,"XXXX-XXXX-XXXX-",4)');
+   GO
+   ALTER TABLE wwi_mcw.CustomerInfo
+   ALTER COLUMN Email ADD MASKED WITH (FUNCTION = 'email()');
+   GO
+   -- The columns are successfully masked.
+   
+   -- Step:4 Let's see Dynamic Data Masking (DDM) applied on the two columns.
+   SELECT c.name, tbl.name as table_name, c.is_masked, c.masking_function  
+   FROM sys.masked_columns AS c  
+   JOIN sys.tables AS tbl
+       ON c.[object_id] = tbl.[object_id]  
+   WHERE is_masked = 1
+       AND tbl.name ='CustomerInfo';
+   
+   -- Step:5 Now, let's grant SELECT permission to 'DataAnalystMiami' on the 'CustomerInfo' table.
    GRANT SELECT ON wwi_mcw.CustomerInfo TO DataAnalystMiami;  
+   
+   -- Step:6 Logged in as  'DataAnalystMiami' let's execute the select query and view the result.
+   EXECUTE AS USER = 'DataAnalystMiami';  
+   SELECT * FROM wwi_mcw.CustomerInfo;
+   
+   -- Step:7 Let's remove the data masking using UNMASK permission
+   GRANT UNMASK TO DataAnalystMiami;
+   EXECUTE AS USER = 'DataAnalystMiami';  
+   SELECT *
+   FROM wwi_mcw.CustomerInfo;
+   revert;
+   REVOKE UNMASK TO DataAnalystMiami;  
+   
+   ----step:8 Reverting all the changes back to as it was.
+   ALTER TABLE wwi_mcw.CustomerInfo
+   ALTER COLUMN CreditCard DROP MASKED;
+   GO
+   ALTER TABLE wwi_mcw.CustomerInfo
+   ALTER COLUMN Email DROP MASKED;
+   GO
+   ```
+   
+   ![クエリ タブのツールバーが表示され、\[Run\] が選択されています。](media/querytoolbar_run.png "クエリの実行")
 
-    -- Step:6 Logged in as  'DataAnalystMiami' let's execute the select query and view the result.
-    EXECUTE AS USER = 'DataAnalystMiami';  
-    SELECT * FROM wwi_mcw.CustomerInfo;
+3. このクエリは保存しないので、上部のツールバーから **\[Discard all\]** を選択します。確認を求められたら **\[Discard changes\]** を選択します。
+   
+   ![上部のツールバー メニューが表示され、\[Discard all\] が強調表示されています。](media/toptoolbar_discardall.png "変更の破棄")
 
-    -- Step:7 Let's remove the data masking using UNMASK permission
-    GRANT UNMASK TO DataAnalystMiami;
-    EXECUTE AS USER = 'DataAnalystMiami';  
-    SELECT *
-    FROM wwi_mcw.CustomerInfo;
-    revert;
-    REVOKE UNMASK TO DataAnalystMiami;  
+## 演習 7: 機械学習
 
-    ----step:8 Reverting all the changes back to as it was.
-    ALTER TABLE wwi_mcw.CustomerInfo
-    ALTER COLUMN CreditCard DROP MASKED;
-    GO
-    ALTER TABLE wwi_mcw.CustomerInfo
-    ALTER COLUMN Email DROP MASKED;
-    GO
-    ```
+**所要時間**: 60 分
 
-    ![The query tab toolbar is displayed with the Run button selected.](media/querytoolbar_run.png "Running a query")
+Azure Synapse Analytics を使用すると、データ サイエンティストは機械学習モデルを作成し、展開するために、別のツールを使用する必要がなくなります。
 
-3. From the top toolbar, select the **Discard all** button as we will not be saving this query. When prompted, choose to **Discard changes**.
+この演習では、複数の機械学習モデルを作成します。ノートブックでこれらのモデルを利用する方法についても学習します。また、Azure Synapse Analytics ワークスペースを離れる必要なく、Web サービスとして Azure Container Instance にモデルを展開し、そのサービスを利用します。
 
-   ![The top toolbar menu is displayed with the Discard all button highlighted.](media/toptoolbar_discardall.png "Discard changes")
+### タスク 1: モデルのトレーニング、利用、および展開
 
-## Exercise 7: Machine Learning
+1. **\[ASAMCW - Exercise 7 - Machine Learning\]** ノートブックを開きます (左側メニューから **\[Develop\]** を選択して、**\[Develop\]** メニューの **\[Notebooks\]** セクションを展開してノートブックを選択します)。
 
-**Duration**: 60 minutes
+2. ノートブックを段階的に実行 (\[`RUN ALL`\] を選択しないでください) して、この演習を完了します。この後で実行する最も重要なタスクの一部を以下に示します。
 
-Using Azure Synapse Analytics, data scientists are no longer required to use separate tooling to create and deploy machine learning models.
+- 探索的データ分析 (基本的統計データ)
+- PCA による次元縮退
+- ツリーによる分類子群のトレーニング (XGBoost を使用)
+- Auto ML による分類子のトレーニング
+- 最適な実行モデルの登録
+- Web サービスとしてモデルを Azure Container Instances に展開
+- サンプル データに基づいて予測を行うための Web サービスの利用
 
-In this exercise, you will create multiple machine learning models. You will learn how to consume these models in your notebook. You will also deploy a model as a web service to Azure Container Instances and consume the service - without ever having to leave the Azure Synapse Analytics workspace.
+> **注**: これらのタスクはそれぞれ、ノートブックの複数のセルを通じて対処されることに注意してください。
 
-### Task 1: Training, consuming, and deploying models
+## 演習 8: 監視
 
-1. Open the **ASAMCW - Exercise 7 - Machine Learning** notebook (select **Develop** from the left menu, from the **Develop** menu, expand the **Notebooks** section and select the notebook)
+**所要時間**: 45 分
 
-2. Run the notebook step by step (DO NOT `RUN ALL`) to complete this exercise. Some of the most important tasks you will perform are:
+Azure Synapse Analytics は、Azure Portal 内で充実した監視エクスペリエンスを提供して、データ ウェアハウスのワークロードに関する洞察を明らかにします。
 
-- Exploratory data analysis (basic stats)
-- Use PCA for dimensionality reduction
-- Train ensemble of trees classifier (using XGBoost)
-- Train classifier using Auto ML
-- Register the best run model
-- Deploy the model as a web service to Azure Container Instances
-- Consume the web service to make predictions on sample data
-  
-> **Note**: Please note that each of these tasks will be addressed through several cells in the notebook.
+\[Monitor\] ハブの SQL 要求領域を使用して、アクティブな SQL 要求を監視できます。監視内容には、プール、送信者、所要時間、キューに入れられている時間、割り当てられているワークロード グループ、重要度、要求コンテンツなどの詳細が含まれます。
 
-## Exercise 8: Monitoring
+パイプラインの実行は、\[Monitor\] ハブでパイプラインの実行を選択することで監視できます。そこで、特定のパイプラインの実行に関連付けられているアクティビティの実行を表示するために複数のパイプラインの実行をフィルターして掘り下げることや、進行中のパイプラインの実行を監視することができます。
 
-**Duration**: 45 minutes
+### タスク 1: ワークロードの重要度
 
-Azure Synapse Analytics provides a rich monitoring experience within the Azure portal to surface insights regarding your data warehouse workload.
+混合ワークロードを実行すると、ビジー状態のシステムでリソースの問題が発生する可能性があります。ソリューション アーキテクトは、従来のデータ ウェアハウス アクティビティ (データの読み込み、変換、クエリなど) を分離して、SLA の準拠に十分なリソースが確保されるようにするための方法を模索しています。
 
-You can monitor active SQL requests using the SQL requests area of the Monitor Hub. This includes details like the pool, submitter, duration, queued duration, workload group assigned, importance, and the request content.
+Azure Synapse の Synapse SQL プール ワークロード管理は、ワークロードの分類、ワークロードの重要度、およびワークロードの分離の 3 つの上位概念で構成されています。これらの機能により、ワークロードによるシステム リソースの活用方法をより細かく制御できます。
 
-Pipeline runs can be monitored using the Monitor Hub and selecting Pipeline runs. Here you can filter pipeline runs and drill in to view the activity runs associated with the pipeline run and monitor the running of in-progress pipelines.
+ワークロードの重要度は、要求がリソースにアクセスする順序に影響します。ビジー状態のシステムでは、重要度の高い要求がリソースに最初にアクセスします。重要度によって、ロックへの順次アクセスも保証されます。
 
-### Task 1: Workload importance
+Azure Synapse の Synapse SQL で重要度を設定すると、クエリのスケジュール設定に影響を与えることができます。重要度の高いクエリが、重要度の低いクエリよりも先に実行されるようスケジュールされます。重要度をクエリに割り当てるには、ワークロード分類子を作成する必要があります。
 
-Running mixed workloads can pose resource challenges on busy systems. Solution architects seek ways to separate classic data warehousing activities (such as loading, transforming, and querying data) to ensure that enough resources exist to hit SLAs.
+1. **\[Develop\]** ハブに移動します。
+   
+   ![\[Develop\] メニュー項目が強調表示されています。](media/develop-hub.png "[Develop] ハブ")
 
-Synapse SQL pool workload management in Azure Synapse consists of three high-level concepts: workload classification, workload importance and workload isolation. These capabilities give you more control over how your workload utilizes system resources.
+2. **\[Develop\]** メニューから \[+\] を選択して、コンテキスト メニューから **\[SQL Script\]** を選択します。
+   
+   ![\[SQL script\] コンテキスト メニュー項目が強調表示されています。](media/synapse-studio-new-sql-script.png "新しい SQL スクリプト")
 
-Workload importance influences the order in which a request gets access to resources. On a busy system, a request with higher importance has first access to resources. Importance can also ensure ordered access to locks.
+3. ツールバー メニューで、クエリを実行する **SQL Pool** データベースに接続します。
+   
+   ![クエリのツールバーで \[connect to\] オプションが強調表示されています。](media/synapse-studio-query-toolbar-connect.png "クエリのツールバー")
 
-Setting importance in Synapse SQL for Azure Synapse allows you to influence the scheduling of queries. Queries with higher importance will be scheduled to run before queries with lower importance. To assign importance to queries, you need to create a workload classifier.
+4. クエリ ウィンドウでスクリプトを以下のテキストで置き換えて、組織の CEO を表す `asa.sql.workload01` またはプロジェクトに取り組んでいるデータ アナリストを表す `asa.sql.workload02` としてログインしているユーザーが現在実行しているクエリが存在しないことを確認します。
+   
+   ```sql
+   --First, let's confirm that there are no queries currently being run by users logged in as CEONYC or AnalystNYC.
+   
+   SELECT s.login_name, r.[Status], r.Importance, submit_time,
+   start_time ,s.session_id FROM sys.dm_pdw_exec_sessions s
+   JOIN sys.dm_pdw_exec_requests r ON s.session_id = r.session_id
+   WHERE s.login_name IN ('asa.sql.workload01','asa.sql.workload02') and Importance
+   is not NULL AND r.[status] in ('Running','Suspended')
+   --and submit_time>dateadd(minute,-2,getdate())
+   ORDER BY submit_time ,s.login_name
+   ```
 
-1. Navigate to the **Develop** hub.
+5. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。
+   
+   ![クエリのツールバーで \[run\] が強調表示されています。](media/synapse-studio-query-toolbar-run.png "Run")
 
-    ![The Develop menu item is highlighted.](media/develop-hub.png "Develop hub")
+6. 次に、システムで大量にクエリを実行して、`asa.sql.workload01` と `asa.sql.workload02` に何が起こるかを確認します。そのために、多数のクエリを実行する Azure Synapse パイプラインを実行します。
 
-2. From the **Develop** menu, select the + button and choose **SQL Script** from the context menu.
+7. \[`Orchestrate`\] タブを選択します。
 
-    ![The SQL script context menu item is highlighted.](media/synapse-studio-new-sql-script.png "New SQL script")
+8. **\[Exercise 8 - Execute Data Analyst and CEO Queries\]** パイプラインを実行します。このパイプラインは、`asa.sql.workload01` と `asa.sql.workload02` のクエリを実行します。統合ランタイムのインスタンスを実行している場合、デバッグ オプション付きでパイプラインを実行できます。
 
-3. In the toolbar menu, connect to the **SQL Pool** database to execute the query.
+9. **\[Add trigger\]**、**\[Trigger now\]** の順に選択します。表示されるダイアログで **\[OK\]** を選択します。**このパイプラインを 30 秒から 1 分間実行し、次のステップに進みます**。
+   
+   ![\[add trigger\] メニュー項目と \[trigger now\] メニュー項目が強調表示されています。](media/trigger-data-analyst-and-ceo-queries-pipeline.png "Add trigger")
 
-    ![The connect to option is highlighted in the query toolbar.](media/synapse-studio-query-toolbar-connect.png "Query toolbar")
+10. 左側メニューから **\[Monitor\]** ハブを選択します。進行中のパイプラインのリンクをポイントし、表示される **\[Cancel recursive\]** アイコンを選択します。
+    
+    ![\[Monitor Hub\] アイコンが左側メニューから選択され、\[Cancel recursive\] ボタンが進行中のパイプラインで選択されています。](media/cancel_running_pipeline_monitor_hub.png)
 
-4. In the query window, replace the script with the following to confirm that there are no queries currently being run by users logged in as `asa.sql.workload01`, representing the CEO of the organization or `asa.sql.workload02` representing the data analyst working on the project:
-
-    ```sql
-    --First, let's confirm that there are no queries currently being run by users logged in as CEONYC or AnalystNYC.
-
-    SELECT s.login_name, r.[Status], r.Importance, submit_time,
-    start_time ,s.session_id FROM sys.dm_pdw_exec_sessions s
-    JOIN sys.dm_pdw_exec_requests r ON s.session_id = r.session_id
-    WHERE s.login_name IN ('asa.sql.workload01','asa.sql.workload02') and Importance
-    is not NULL AND r.[status] in ('Running','Suspended')
-    --and submit_time>dateadd(minute,-2,getdate())
-    ORDER BY submit_time ,s.login_name
-    ```
-
-5. Select **Run** from the toolbar menu to execute the SQL command.
-
-    ![The run button is highlighted in the query toolbar.](media/synapse-studio-query-toolbar-run.png "Run")
-
-6. Next, you will flood the system with queries and see what happens for `asa.sql.workload01` and `asa.sql.workload02`. To do this, we'll run a Azure Synapse Pipeline that executes a large number of queries.
-
-7. Select the `Orchestrate` Tab.
-
-8. **Run** the **Exercise 8 - Execute Data Analyst and CEO Queries** Pipeline, which will run the `asa.sql.workload01` and `asa.sql.workload02` queries. You can run the pipeline with the Debug option if you have an instance of the Integration Runtime running.
-
-9. Select **Add trigger**, then **Trigger now**. In the dialog that appears, select **OK**. **Let this pipeline run for 30 seconds to 1 minute, then proceed to the next step**.
-
-    ![The add trigger and trigger now menu items are highlighted.](media/trigger-data-analyst-and-ceo-queries-pipeline.png "Add trigger")
-
-10. From the left menu, select the **Monitor** hub. Hover over the link of the in-progress pipeline, and select the **Cancel recursive** icon that displays.
-
-    ![The Monitor Hub icon is selected from the left menu, and the Cancel recursive button is selected on the in progress pipeline.](media/cancel_running_pipeline_monitor_hub.png)
-
-11. From the left menu, select the **Develop** hub and return to your SQL script. Let's see what happened to all the queries that flooded the system. In the query window, replace the script with the following:
-
+11. 左側メニューから **\[Develop\]** ハブを選択し、SQL スクリプトに戻ります。システムで大量に動作しているすべてのクエリに何が起きているかを確認してみましょう。クエリ ウィンドウのスクリプトを以下のテキストで置き換えます。
+    
     ```sql
     SELECT s.login_name, r.[Status], r.Importance, submit_time, start_time ,s.session_id FROM sys.dm_pdw_exec_sessions s
     JOIN sys.dm_pdw_exec_requests r ON s.session_id = r.session_id
@@ -1819,14 +1817,14 @@ Setting importance in Synapse SQL for Azure Synapse allows you to influence the 
     ORDER BY submit_time ,status
     ```
 
-12. Select **Run** from the toolbar menu to execute the SQL command. You should see an output similar to the following:
+12. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。以下のような出力が表示されます。
+    
+    ![SQL クエリの結果。](media/sql-query-2-results.png "SQL スクリプト")
 
-    ![SQL query results.](media/sql-query-2-results.png "SQL script")
+13. すべてのクエリが実行され、結果が返されなくなるまで、前述のクエリを断続的に実行します。
 
-13. Intermittently perform the preceding query until all queries have been run and no results are returned.
-
-14. We will give our `asa.sql.workload01` user queries priority by implementing the **workload importance** feature. In the query window, replace the script with the following:
-
+14. **ワークロードの重要度**機能を実装して、`asa.sql.workload01` ユーザーのクエリの優先度を設定します。クエリ ウィンドウのスクリプトを以下のテキストで置き換えます。
+    
     ```sql
     IF EXISTS (SELECT * FROM sys.workload_management_workload_classifiers WHERE name = 'CEO')
     BEGIN
@@ -1837,16 +1835,16 @@ Setting importance in Synapse SQL for Azure Synapse allows you to influence the 
       ,MEMBERNAME = 'asa.sql.workload01',IMPORTANCE = High);
     ```
 
-15. Select **Run** from the toolbar menu to execute the SQL command.
+15. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。
 
-16. Let's flood the system again with queries and see what happens this time for `asa.sql.workload01` and `asa.sql.workload02` queries. To do this, we'll run an Azure Synapse Pipeline that runs a large number queries. **Similar to before, run this pipeline for about 30 seconds to 1 minute**.
+16. 再度システムで大量にクエリを実行して、`asa.sql.workload01` と `asa.sql.workload02` のクエリに今度は何が起こるかを確認します。そのために、多数のクエリを実行する Azure Synapse パイプラインを実行します。**前回と同様に、このパイプラインを約 30 秒から 1 分間実行します**。
+    
+    - \[`Orchestrate`\] タブを**選択**します。
+    
+    - **\[Run\]** を選択して **\[Exercise 8 - Execute Data Analyst and CEO Queries\]** パイプラインを実行します。このパイプラインは、`asa.sql.workload01` と `asa.sql.workload02` のクエリを実行します。
 
-    - **Select** the `Orchestrate` Tab.
-
-    - **Run** the **Exercise 8 - Execute Data Analyst and CEO Queries** Pipeline, which will run the `asa.sql.workload01` and `asa.sql.workload02` queries.
-
-17. In the query window, replace the script with the following to see what happens to the `asa.sql.workload01` queries this time:
-
+17. クエリ ウィンドウのスクリプトを以下のテキストで置き換えて、`asa.sql.workload01` のクエリに今度は何が起きるかを確認します。
+    
     ```sql
     SELECT s.login_name, r.[Status], r.Importance, submit_time, start_time ,s.session_id FROM sys.dm_pdw_exec_sessions s
     JOIN sys.dm_pdw_exec_requests r ON s.session_id = r.session_id
@@ -1855,63 +1853,76 @@ Setting importance in Synapse SQL for Azure Synapse allows you to influence the 
     ORDER BY submit_time ,status desc
     ```
 
-18. Select **Run** from the toolbar menu to execute the SQL command. You should see an output similar to the following that shows query executions for the `asa.sql.workload01` user having a **high** importance. Also note that the 'asa.sql.workload02' queries are in **Suspended** status while the high priority queries are being run.
+18. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。以下のような出力が表示されます。`asa.sql.workload01` ユーザーのクエリ実行の重要度が **\[high\]** になっています。‘asa.sql.workload02’ クエリは、優先度の高いクエリが実行されている間、**Suspended** ステータスになることにも注意してください。
+    
+    ![Asa.sql.workload02 からのクエリよりも重要性の高い asa.sql.workload01 クエリを表示している SQL クエリ結果。](media/sql-query-4-results.png "SQL スクリプト")
 
-    ![SQL query results showing asa.sql.workload01 queries with a higher importance than those queries from asa.sql.workload02.](media/sql-query-4-results.png "SQL script")
+### タスク 2: ワークロードの分離
 
-### Task 2: Workload isolation
+ワークロードの分離とは、リソースがワークロード グループ専用で予約されることを意味します。ワークロード グループは、一連の要求のコンテナーであり、ワークロードの分離などのワークロードの管理をシステム上で構成するための基礎となります。単純なワークロード管理構成では、データの読み込みとユーザー クエリを管理できます。
 
-Workload isolation means resources are reserved, exclusively, for a workload group. Workload groups are containers for a set of requests and are the basis for how workload management, including workload isolation, is configured on a system. A simple workload management configuration can manage data loads and user queries.
+ワークロードの分離がされない場合、要求はリソースの共有プールで動作します。共有プール内のリソースへのアクセスは保証されず、重要度基準で割り当てられます。
 
-In the absence of workload isolation, requests operate in the shared pool of resources. Access to resources in the shared pool is not guaranteed and is assigned on an importance basis.
+ワークロード グループにアクティブな要求がない場合でもワークロード グループにはリソースが割り当てられるため、ワークロードの分離の構成は慎重に行う必要があります。必要以上に分離するよう構成すると、システム全体の使用率が低下する可能性があります。
 
-Configuring workload isolation should be done with caution as the resources are allocated to the workload group even if there are no active requests in the workload group. Over-configuring isolation can lead to diminished overall system utilization.
+100% のワークロードの分離を構成するワークロード管理ソリューションは使用しないでください。100% の分離は、すべてのワークロード グループで構成されている `min_percentage_resource` の合計が 100% である状態です。この種類の構成は非常に限定的で厳格であり、誤って分類されたリソース要求を扱う余裕がほとんどなくなってしまいます。分離用に構成されていないワークロード グループから要求を 1 つ実行することを許可するプロビジョニングがあります。
 
-Users should avoid a workload management solution that configures 100% workload isolation: 100% isolation is achieved when the sum of `min_percentage_resource` configured across all workload groups equals 100%. This type of configuration is overly restrictive and rigid, leaving little room for resource requests that are accidentally misclassified. There is a provision to allow one request to execute from workload groups not configured for isolation.
+1. **\[Develop\]** ハブに移動します。
+   
+   ![\[Develop\] メニュー項目が強調表示されています。](media/develop-hub.png "[Develop] ハブ")
 
-1. Navigate to the **Develop** hub.
+2. **\[Develop\]** メニューから \[+\] を選択して、コンテキスト メニューから **\[SQL Script\]** を選択します。
+   
+   ![\[SQL script\] コンテキスト メニュー項目が強調表示されています。](media/synapse-studio-new-sql-script.png "新しい SQL スクリプト")
 
-    ![The Develop menu item is highlighted.](media/develop-hub.png "Develop hub")
+3. ツールバー メニューで、クエリを実行する **SQL Pool** データベースに接続します。
+   
+   ![クエリのツールバーで \[connect to\] オプションが強調表示されています。](media/synapse-studio-query-toolbar-connect.png "クエリのツールバー")
 
-2. From the **Develop** menu, select the + button and choose **SQL Script** from the context menu.
+4. クエリ ウィンドウのスクリプトを以下のテキストで置き換えます。
+   
+   ```sql
+   IF NOT EXISTS (SELECT * FROM sys.workload_management_workload_groups where name = 'CEODemo')
+   BEGIN
+       Create WORKLOAD GROUP CEODemo WITH  
+       ( MIN_PERCENTAGE_RESOURCE = 50        -- integer value
+       ,REQUEST_MIN_RESOURCE_GRANT_PERCENT = 25 --  
+       ,CAP_PERCENTAGE_RESOURCE = 100
+       )
+   END
+   ```
+   
+   このコードは、`CEODemo` という名前のワークロード グループを作成して、このワークロード グループ専用にリソースを予約します。この例では、`MIN_PERCENTAGE_RESOURCE` が 50%、`REQUEST_MIN_RESOURCE_GRANT_PERCENT` が 25% に設定されているワークロード グループは同時クエリが 2 であることが保証されます。
 
-    ![The SQL script context menu item is highlighted.](media/synapse-studio-new-sql-script.png "New SQL script")
+5. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。
 
-3. In the toolbar menu, connect to the **SQL Pool** database to execute the query.
+6. クエリ ウィンドウのスクリプトを以下のテキストで置き換えて、受信要求にワークロード グループと重要度を割り当てる `CEODreamDemo` という名前のワークロード分類子を作成します。
+   
+   ```sql
+   IF NOT EXISTS (SELECT * FROM sys.workload_management_workload_classifiers where  name = 'CEODreamDemo')
+   BEGIN
+       Create Workload Classifier CEODreamDemo with
+       ( Workload_Group ='CEODemo',MemberName='asa.sql.workload02',IMPORTANCE = BELOW_NORMAL);
+   END
+   ```
 
-    ![The connect to option is highlighted in the query toolbar.](media/synapse-studio-query-toolbar-connect.png "Query toolbar")
+7. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。
 
-4. In the query window, replace the script with the following:
+8. クエリ ウィンドウのスクリプトを以下のテキストで置き換えて、`asa.sql.workload02` が実行しているアクティブなクエリが存在しないことを確認します。
+   
+   ```sql
+   SELECT s.login_name, r.[Status], r.Importance, submit_time,
+   start_time ,s.session_id FROM sys.dm_pdw_exec_sessions s
+   JOIN sys.dm_pdw_exec_requests r ON s.session_id = r.session_id
+   WHERE s.login_name IN ('asa.sql.workload02') and Importance
+   is not NULL AND r.[status] in ('Running','Suspended')
+   ORDER BY submit_time, status
+   ```
 
-    ```sql
-    IF NOT EXISTS (SELECT * FROM sys.workload_management_workload_groups where name = 'CEODemo')
-    BEGIN
-        Create WORKLOAD GROUP CEODemo WITH  
-        ( MIN_PERCENTAGE_RESOURCE = 50        -- integer value
-        ,REQUEST_MIN_RESOURCE_GRANT_PERCENT = 25 --  
-        ,CAP_PERCENTAGE_RESOURCE = 100
-        )
-    END
-    ```
+9. システムで大量にクエリを実行して、`asa.sql.workload02` に何が起こるかを確認してみましょう。そのために、多数のクエリを実行する Azure Synapse パイプラインを実行します。\[`Orchestrate`\] タブを選択します。**\[Run\]** を選択して **\[Exercise 8 - Execute Business Analyst Queries\]** パイプラインを実行します。このパイプラインは、`asa.sql.workload02` のクエリを実行します。**このパイプラインを 30 秒から 1 分間実行し、実行を再帰的にキャンセルします**。
 
-    The code creates a workload group called `CEODemo` that reserves resources exclusively for the workload group. In this example, a workload group with a `MIN_PERCENTAGE_RESOURCE` set to 50% and `REQUEST_MIN_RESOURCE_GRANT_PERCENT` set to 25% is guaranteed 2 concurrent queries.
-
-5. Select **Run** from the toolbar menu to execute the SQL command.
-
-6. In the query window, replace the script with the following to create a workload Classifier called `CEODreamDemo` that assigns a workload group and importance to incoming requests:
-
-    ```sql
-    IF NOT EXISTS (SELECT * FROM sys.workload_management_workload_classifiers where  name = 'CEODreamDemo')
-    BEGIN
-        Create Workload Classifier CEODreamDemo with
-        ( Workload_Group ='CEODemo',MemberName='asa.sql.workload02',IMPORTANCE = BELOW_NORMAL);
-    END
-    ```
-
-7. Select **Run** from the toolbar menu to execute the SQL command.
-
-8. In the query window, replace the script with the following to confirm that there are no active queries being run by `asa.sql.workload02`:
-
+10. クエリ ウィンドウのスクリプトを以下のテキストで置き換えて、システムで大量に動作していたすべての `asa.sql.workload02` クエリに何が起きるかを確認します。
+    
     ```sql
     SELECT s.login_name, r.[Status], r.Importance, submit_time,
     start_time ,s.session_id FROM sys.dm_pdw_exec_sessions s
@@ -1921,25 +1932,12 @@ Users should avoid a workload management solution that configures 100% workload 
     ORDER BY submit_time, status
     ```
 
-9. Let's flood the system with queries and see what happens for `asa.sql.workload02`. To do this, we will run an Azure Synapse Pipeline that runs a large number of queries. Select the `Orchestrate` Tab. **Run** the **Exercise 8 - Execute Business Analyst Queries** Pipeline, which will run the  `asa.sql.workload02` queries. **Let this pipeline run for 30 seconds to 1 minute, then cancel the run recursively**.
+11. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。以下のような出力が表示されます。これは、各セッションの重要度が `below_normal` に設定され、2 つのクエリが並列に実行されていることを示しています。
+    
+    ![スクリプトの結果で、各セッションが通常以下の重要度で実行され、2 つのクエリが並列に実行されていることが示されています。](media/sql-result-below-normal.png "SQL スクリプト")
 
-10. In the query window, replace the script with the following to see what happened to all the `asa.sql.workload02` queries that were flooded into the system:
-
-    ```sql
-    SELECT s.login_name, r.[Status], r.Importance, submit_time,
-    start_time ,s.session_id FROM sys.dm_pdw_exec_sessions s
-    JOIN sys.dm_pdw_exec_requests r ON s.session_id = r.session_id
-    WHERE s.login_name IN ('asa.sql.workload02') and Importance
-    is not NULL AND r.[status] in ('Running','Suspended')
-    ORDER BY submit_time, status
-    ```
-
-11. Select **Run** from the toolbar menu to execute the SQL command. You should see an output similar to the following that shows the importance for each session set to `below_normal` and two queries being run in parallel:
-
-    ![The script results show that each session was executed with below normal importance with two queries being run in parallel.](media/sql-result-below-normal.png "SQL script")
-
-12. In the query window, replace the script with the following to set 3.25% minimum resources per request:
-
+12. クエリ ウィンドウのスクリプトを以下のテキストで置き換えて、要求あたりの最小リソースを 3.25% に設定します。
+    
     ```sql
     IF  EXISTS (SELECT * FROM sys.workload_management_workload_classifiers where group_name = 'CEODemo')
     BEGIN
@@ -1956,15 +1954,15 @@ Users should avoid a workload management solution that configures 100% workload 
         (Workload_Group ='CEODemo',MemberName='asa.sql.workload02',IMPORTANCE = BELOW_NORMAL);
     END
     ```
+    
+    > **注**: ワークロードの包含の構成では、コンカレンシーの最大レベルが暗黙的に定義されます。CAP\_PERCENTAGE\_RESOURCE を 60% に設定し、REQUEST\_MIN\_RESOURCE\_GRANT\_PERCENT を 1% に設定した場合、ワークロード グループにレベル 60 までのコンカレンシーが許容されます。コンカレンシーの最大数を決定するには、以下の方法を検討してください。
+    > 
+    > \[Max Concurrency\] = \[CAP\_PERCENTAGE\_RESOURCE\] / \[REQUEST\_MIN\_RESOURCE\_GRANT\_PERCENT\]
 
-    > **Note**: Configuring workload containment implicitly defines a maximum level of concurrency. With a CAP_PERCENTAGE_RESOURCE set to 60% and a REQUEST_MIN_RESOURCE_GRANT_PERCENT set to 1%, up to a 60-concurrency level is allowed for the workload group. Consider the method included below for determining the maximum concurrency:
-    >
-    > [Max Concurrency] = [CAP_PERCENTAGE_RESOURCE] / [REQUEST_MIN_RESOURCE_GRANT_PERCENT]
+13. 再度システムで大量にクエリを実行して、`asa.sql.workload02` に何が起こるかを確認してみましょう。そのために、多数クエリを実行する Azure Synapse パイプラインを実行します。\[`Orchestrate`\] タブを選択します。**\[Run\]** を選択して **\[Exercise 8 - Execute Business Analyst Queries\]** パイプラインを実行します。このパイプラインは、`asa.sql.workload02` のクエリを実行します。
 
-13. Let's flood the system again and see what happens for `asa.sql.workload02`. To do this, we will run an Azure Synapse Pipeline that runs a large number of queries. Select the `Orchestrate` Tab. **Run** the **Exercise 8 - Execute Business Analyst Queries** Pipeline, which will run the `asa.sql.workload02` queries.
-
-14. In the query window, replace the script with the following to see what happened to all of the `asa.sql.workload02` queries that flooded the system, note that many more queries are now being performed in parallel for asa.sql.workload02:
-
+14. クエリ ウィンドウのスクリプトを以下のテキストで置き換えて、システムで大量に動作しているすべての `asa.sql.workload02` クエリに何が起きるかを確認します。現在、asa.sql.workload02 に対して、さらに多くのクエリが並列に実行されていることに注意してください。
+    
     ```sql
     SELECT s.login_name, r.[Status], r.Importance, submit_time,
     start_time ,s.session_id FROM sys.dm_pdw_exec_sessions s
@@ -1974,74 +1972,74 @@ Users should avoid a workload management solution that configures 100% workload 
     ORDER BY submit_time, status
     ```
 
-15. Select **Run** from the toolbar menu to execute the SQL command.
+15. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。
 
-  ![The SQL results pane is shown with multiple queries being run in parallel.](media/multiple_parallel_queries_workload02.png "More than 2 queries being run in parallel")
+![SQL 結果ペインに、並列に実行されている複数のクエリが表示されています。](media/multiple_parallel_queries_workload02.png "並列に実行されている複数のクエリ")
 
-### Task 3: Monitoring with Dynamic Management Views
+### タスク 3: 動的管理ビューによる監視
 
-For a programmatic experience when monitoring SQL Analytics via T-SQL, the service provides a set of Dynamic Management Views (DMVs). These views are useful when actively troubleshooting and identifying performance bottlenecks with your workload.
+T-SQL を使用して SQL Analytics を監視する場合のプログラミングを経験するために、一連の動的管理ビュー (DMV) が提供されています。これらのビューは、積極的にトラブルシューティングする場合やワークロードのパフォーマンスのボトルネックを特定する場合に役に立ちます。
 
-All logins to your data warehouse are logged to `sys.dm_pdw_exec_sessions`. This DMV contains the last 10,000 logins. The `session_id` is the primary key and is assigned sequentially for each new logon.
+データ ウェアハウスへのすべてのログインは、`sys.dm_pdw_exec_sessions` に記録されます。この DMV には、過去 10,000 件のログインが含まれています。主キーである `session_id` が、新規ログオンのたびに順次割り当てられます。
 
-1. Navigate to the **Develop** hub.
+1. **\[Develop\]** ハブに移動します。
+   
+   ![\[Develop\] メニュー項目が強調表示されています。](media/develop-hub.png "[Develop] ハブ")
 
-    ![The Develop menu item is highlighted.](media/develop-hub.png "Develop hub")
+2. **\[Develop\]** メニューから \[+\] を選択して、コンテキスト メニューから **\[SQL Script\]** を選択します。
+   
+   ![\[SQL script\] コンテキスト メニュー項目が強調表示されています。](media/synapse-studio-new-sql-script.png "新しい SQL スクリプト")
 
-2. From the **Develop** menu, select the + button and choose **SQL Script** from the context menu.
+3. ツールバー メニューで、クエリを実行する **SQL プール** データベースに接続します。
+   
+   ![クエリのツールバーで \[connect to\] オプションが強調表示されています。](media/synapse-studio-query-toolbar-connect.png "クエリのツールバー")
 
-    ![The SQL script context menu item is highlighted.](media/synapse-studio-new-sql-script.png "New SQL script")
+4. クエリ ウィンドウのスクリプトを以下のテキストで置き換えます。
+   
+   ```sql
+   SELECT * FROM sys.dm_pdw_exec_sessions where status <> 'Closed' and session_id <> session_id();
+   ```
+   
+   SQL プールで実行されるすべてのクエリは、`sys.dm_pdw_exec_requests` に記録されます。この DMV には、実行された過去 10,000 件のクエリが含まれています。`request_id` により各クエリが一意に識別されます。これはこの DMV の主キーです。`request_id` は、新しいクエリごとに順番に割り当てられ、クエリ ID を表す `QID` がプレフィックスとして付加されます。特定の `session_id` を指定してこの DMV に対してクエリを実行すると、特定のログオンのすべてのクエリが表示されます。
 
-3. In the toolbar menu, connect to the **SQL Pool** database to execute the query.
+5. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。
 
-    ![The connect to option is highlighted in the query toolbar.](media/synapse-studio-query-toolbar-connect.png "Query toolbar")
+6. システムで大量にクエリを実行して、監視する操作を作成しましょう。そのために、クエリをトリガーする Azure Synapse パイプラインを実行します。\[`Orchestrate`\] タブを選択します。**\[Run\]** を選択して **\[Exercise 8 - Execute Business Analyst Queries\]** パイプラインを実行します。このパイプラインは、`asa.sql.workload02` のクエリを実行/トリガーします。**このパイプラインを 30 秒から 1 分間実行し、実行を再帰的にキャンセルします**。
 
-4. In the query window, replace the script with the following:
+7. クエリ ウィンドウのスクリプトを以下のテキストで置き換えます。
+   
+   ```sql
+   SELECT *
+   FROM sys.dm_pdw_exec_requests
+   WHERE status not in ('Completed','Failed','Cancelled')
+     AND session_id <> session_id()
+   ORDER BY submit_time DESC;
+   ```
 
-    ```sql
-    SELECT * FROM sys.dm_pdw_exec_sessions where status <> 'Closed' and session_id <> session_id();
-    ```
+8. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。クエリ結果に、以下のようなセッションのリストが表示されます。この結果で調査する**クエリの `Request_ID` に注目します** (この値は後のステップで使用するのでテキスト エディターに書き留めてください)。
+   
+   ![アクティブなクエリの結果。](media/query-active-requests-results.png "クエリ結果")
 
-    All queries executed on SQL pool are logged to `sys.dm_pdw_exec_requests`. This DMV contains the last 10,000 queries executed. The `request_id` uniquely identifies each query and is the primary key for this DMV. The `request_id` is assigned sequentially for each new query and is prefixed with `QID`, which stands for query ID. Querying this DMV for a given `session_id` shows all queries for a given logon.
+9. 代わりに、以下の SQL コマンドを実行して、長時間動作しているクエリの上位 10 件を見つけることもできます。
+   
+   ```sql
+   SELECT TOP 10 *
+   FROM sys.dm_pdw_exec_requests
+   ORDER BY total_elapsed_time DESC;
+   ```
 
-5. Select **Run** from the toolbar menu to execute the SQL command.
-
-6. Let's flood the system with queries to create operations to monitor. To do this, we will run a Azure Synapse Pipeline which triggers queries. Select the `Orchestrate` Tab. **Run** the **Exercise 8 - Execute Business Analyst Queries** Pipeline, which will run / trigger  `asa.sql.workload02` queries. **Let this pipeline run for 30 seconds to 1 minute, then cancel the run recursively**.
-
-7. In the query window, replace the script with the following:
-
-    ```sql
-    SELECT *
-    FROM sys.dm_pdw_exec_requests
-    WHERE status not in ('Completed','Failed','Cancelled')
-      AND session_id <> session_id()
-    ORDER BY submit_time DESC;
-    ```
-
-8. Select **Run** from the toolbar menu to execute the SQL command. You should see a list of sessions in the query results similar to the following. **Note the `Request_ID` of a query** in the results that you would like to investigate (*keep this value in a text editor for a later step*):
-
-    ![Active query results.](media/query-active-requests-results.png "Query results")
-
-9. As an alternative, you can execute the following SQL command to find the top 10 longest running queries.
-
-    ```sql
-    SELECT TOP 10 *
-    FROM sys.dm_pdw_exec_requests
-    ORDER BY total_elapsed_time DESC;
-    ```
-
-10. To simplify the lookup of a query in the `sys.dm_pdw_exec_requests` table, use `LABEL` to assign a comment to your query, which can be looked up in the `sys.dm_pdw_exec_requests` view. To test using the labels, replace the script in the query window with the following:
-
+10. `sys.dm_pdw_exec_requests` テーブルでクエリを検索しやすくするために、`LABEL` を使用してクエリにコメントを割り当てます。このコメントで、`sys.dm_pdw_exec_requests` ビューを検索できます。ラベルを使用してテストするために、クエリ ウィンドウのスクリプトを以下のテキストで置き換えます。
+    
     ```sql
     SELECT *
     FROM sys.tables
     OPTION (LABEL = 'My Query');
     ```
 
-11. Select **Run** from the toolbar menu to execute the SQL command.
+11. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。
 
-12. In the query window, replace the script with the following to filter the results with the label, `My Query`.
-
+12. クエリ ウィンドウのスクリプトを以下のテキストで置き換えて、結果をラベル `My Query` でフィルターします。
+    
     ```sql
     -- Find a query with the Label 'My Query'
     -- Use brackets when querying the label column, as it is a key word
@@ -2050,68 +2048,68 @@ All logins to your data warehouse are logged to `sys.dm_pdw_exec_sessions`. This
     WHERE [label] = 'My Query';
     ```
 
-13. Select **Run** from the toolbar menu to execute the SQL command. You should see the previously run query in the results view.
+13. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。結果ビューに、1 つ前に実行したクエリが表示されます。
 
-14. In the query window, replace the script with the following to retrieve the query's distributed SQL (DSQL) plan from `sys.dm_pdw_request_steps`. **Be sure to replace** the `QID#####` with the `Request_ID` you noted in Step 8:
-
+14. クエリ ウィンドウのスクリプトを以下のテキストで置き換えて、`sys.dm_pdw_request_steps` からクエリの分散 SQL (DSQL) プランを取得します。`QID#####` をステップ 8 で書き留めた `Request_ID` で**置き換えることを忘れないでください。**
+    
     ```sql
     SELECT * FROM sys.dm_pdw_request_steps
     WHERE request_id = 'QID####'
     ORDER BY step_index;
     ```
 
-15. Select **Run** from the toolbar menu to execute the SQL command. You should see results showing the distributed query plan steps for the specified request:
+15. ツールバー メニューから **\[Run\]** を選択して SQL コマンドを実行します。指定した要求の分散クエリ プランのステップを示す結果が表示されます。
+    
+    ![クエリ結果が表示されています。](media/sql-dsql-plan-results.png "クエリ結果")
+    
+    > DSQL プランに予想以上に時間がかかっている場合、多数の DSQL ステップが存在する複雑なプランであること、または 1 つのステップに長時間かかっていることが原因である可能性があります。プランに複数の移動操作を含む多数のステップが存在する場合、テーブル分散を最適化してデータ移動を減らすことを検討してください。
 
-    ![The query results are displayed.](media/sql-dsql-plan-results.png "Query results")
+### タスク 4: \[Monitor\] ハブによるオーケストレーションの監視
 
-    > When a DSQL plan is taking longer than expected, the cause can be a complex plan with many DSQL steps or just one step taking a long time. If the plan is many steps with several move operations, consider optimizing your table distributions to reduce data movement.
+1. パイプラインを実行して、その実行を次のステップで監視してみましょう。それには、\[`Orchestrate`\] タブを選択します。**\[Run\]** を選択して **\[Exercise 8 - Execute Business Analyst Queries\]** パイプラインを実行します。
+   
+   ![\[add trigger\] メニュー項目と \[trigger now\] メニュー項目が強調表示されています。](media/ex7-task4-01.png "Add trigger")
 
-### Task 4: Orchestration Monitoring with the Monitor Hub
+2. \[`Monitor`\] ハブに移動します。**\[Pipeline runs\]** を選択して、過去 24 時間に実行されたパイプラインのリストを取得します。パイプラインのステータスを監視します。
+   
+   ![\[Monitor\] ハブで \[pipeline runs\] ブレードが表示されています。](media/ex7-task4-02.png "[Monitor] - [Pipeline runs]")
 
-1. Let's run a pipeline to monitor its execution in the next step. To do this, select the `Orchestrate` Tab. **Run** the **Exercise 8 - Execute Business Analyst Queries** Pipeline.
+3. 実行中のパイプラインをポイントして **\[Cancel\]** を選択し、そのパイプラインの現在のインスタンスの実行をキャンセルします。
+   
+   ![\[Cancel\] オプションが強調表示されています。](media/ex7-task4-03.png "キャンセル")
 
-    ![The add trigger and trigger now menu items are highlighted.](media/ex7-task4-01.png "Add trigger")
+### タスク 5: \[Monitor\] ハブによる SQL 要求の監視
 
-2. Navigate to the `Monitor` hub. Then select **Pipeline runs** to get a list of pipelines that ran during the last 24 hours. Observe the Pipeline status.
+1. パイプラインを実行して、その実行を次のステップで監視してみましょう。それには、\[`Orchestrate`\] タブを選択します。**\[Run\]** を選択して **\[Exercise 8 - Execute Business Analyst Queries\]** パイプラインを実行します。
+   
+   ![\[add trigger\] メニュー項目と \[trigger now\] メニュー項目が強調表示されています。](media/ex7-task5-01.png "Add trigger")
 
-    ![The pipeline runs blade is displayed within the Monitor hub.](media/ex7-task4-02.png "Monitor - Pipeline runs")
+2. \[`Monitor`\] ハブに移動します。**\[**SQL requests**\]** を選択して、過去 24 時間に実行された SQL 要求のリストを取得します。
 
-3. Hover over the running pipeline and select **Cancel** to cancel the execution of the current instance of the pipeline.
+3. **\[Pool\]** フィルターを選択して、SQL プールを選択します。`Request Submitter`、`Submit Time`、`Duration`、および `Queued Duration` の値を監視します。
+   
+   ![\[Monitor\] ハブで \[SQL requests\] ブレードが表示されています。](media/ex7-task5-02.png "[Monitor] - [SQL requests]")
 
-    ![The Cancel option is highlighted.](media/ex7-task4-03.png "Cancel")
+4. SQL 要求のログをポイントして `Request Content` を選択し、SQL 要求の一部として実行された実際の T-SQL コマンドにアクセスします。
+   
+   ![SQL 要求の上に要求コンテンツ リンクが表示されています。](media/ex7-task5-03.png "SQL requests")
 
-### Task 5: Monitoring SQL Requests with the Monitor Hub
+5. 次に、**\[Monitor\]** ハブに戻り、進行中のパイプラインの実行をキャンセルすることができます。
 
-1. Let's run a pipeline to monitor its execution in the next step. To do this, select the `Orchestrate` Tab. **Run** the **Exercise 8 - Execute Business Analyst Queries** Pipeline.
+## ハンズオン ラボの後に
 
-    ![The add trigger and trigger now menu items are highlighted.](media/ex7-task5-01.png "Add trigger")
+**所要時間**: 5 分
 
-2. Navigate to the `Monitor` hub. Then select **SQL requests** to get a list of SQL requests that ran during the last 24 hours.
+### タスク 1: リソース グループの削除
 
-3. Select the **Pool** filter and select your SQL Pool. Observe the `Request Submitter`, `Submit Time`, `Duration`, and `Queued Duration` values.
+1. Azure Portal で、このラボのリソース グループを開きます。上部のツールバー メニューから **\[Delete\]** を選択します。
 
-    ![The SQL requests blade is displayed within the Monitor hub.](media/ex7-task5-02.png "Monitor - SQL requests")
+2. Azure Portal で、Function App と同じ名前のリソース グループを開きます。上部のツールバー メニューから **\[Delete\]** を選択します。
 
-4. Hover onto a SQL Request log and select `Request Content` to access the actual T-SQL command executed as part of the SQL Request.
-
-    ![The request content link is displayed over a SQL request.](media/ex7-task5-03.png "SQL requests")
-
-5. You may now return to the **Monitor** hub and cancel the in-progress pipeline run.
-  
-## After the hands-on lab
-
-**Duration**: 5 minutes
-
-### Task 1: Delete the resource group
-
-1. In the Azure Portal, open the resource group for this lab. Select **Delete** from the top toolbar menu.
-
-2. In the Azure Portal, open the resource group with the same name as your Function App. Select **Delete** from the top toolbar menu.
-
-3. Open the Cloud Shell and issue the following command to remove the lab files:
-
+3. \[Cloud Shell\] を開き、以下のコマンドを発行してラボのファイルを削除します。
+   
    ```PowerShell
    Remove-Item -Path .\Synapse-MCW -recurse -force  
    ```
 
-You should follow all steps provided *after* attending the Hands-on lab.
+ここで挙げられた手順のすべては、ハンズオン ラボの "参加後" に行う必要があります。
